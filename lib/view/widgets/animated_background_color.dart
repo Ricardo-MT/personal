@@ -48,7 +48,7 @@ class _AnimatedBackgroundColor extends State<AnimatedBackgroundColor> {
 }
 
 const _colors = [
-  Colors.red,
+  Colors.black,
   Colors.blue,
   Colors.green,
   Colors.yellow,
