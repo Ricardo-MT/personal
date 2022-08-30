@@ -22,18 +22,26 @@ class _AnimatedBackgroundColor extends State<AnimatedBackgroundColor> {
   @override
   void initState() {
     super.initState();
-    widget.controller.addListener(() {
-      double sectionH =
-          widget.controller.position.maxScrollExtent / (widget.sections - 1);
-      int pos = widget.controller.offset ~/ (sectionH);
+    widget.controller.addListener(listener);
+  }
 
-      double p = widget.controller.offset - sectionH * pos;
+  void listener() {
+    double sectionH =
+        widget.controller.position.maxScrollExtent / (widget.sections - 1);
+    int pos = widget.controller.offset ~/ (sectionH);
 
-      setState(() {
-        _color = Color.lerp(_colors[pos],
-            _colors[min(pos + 1, widget.sections - 1)], p / sectionH);
-      });
+    double p = widget.controller.offset - sectionH * pos;
+
+    setState(() {
+      _color = Color.lerp(_colors[pos],
+          _colors[min(pos + 1, widget.sections - 1)], p / sectionH);
     });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    widget.controller.removeListener(listener);
   }
 
   @override
@@ -48,9 +56,10 @@ class _AnimatedBackgroundColor extends State<AnimatedBackgroundColor> {
 }
 
 const _colors = [
-  Colors.black,
-  Colors.blue,
-  Colors.green,
-  Colors.yellow,
-  Colors.blueGrey,
+  Color(0xFF1D1D1D),
+  Color(0xFF321CB1),
+  Color(0xFFA71F1D),
+  Color(0xFFD6DD09),
+  Color(0xFF255430),
+  Color(0xFF1D1D1D),
 ];

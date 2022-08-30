@@ -6,7 +6,7 @@ class NominasPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var months = ["Ene", "Feb", "Mar", "Abr", "May", "Jun"];
+    var months = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul"];
     return Scaffold(
       body: Center(
           child: Row(

@@ -4,7 +4,9 @@ import 'dart:math';
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:ricardomejiastravieso/view/page/sections/section_1.dart';
 import 'package:ricardomejiastravieso/view/widgets/animated_background_color.dart';
+import 'package:ricardomejiastravieso/view/widgets/animated_background_radial_gradient.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -36,7 +38,7 @@ class _HomePageState extends State<HomePage> {
     double dy = event.scrollDelta.dy;
 
     // Primary
-    double sH = _controllerPrimary.position.maxScrollExtent / 4;
+    double sH = _controllerPrimary.position.maxScrollExtent / 5;
     double pY = _controllerPrimary.offset;
     double MY = _controllerPrimary.position.maxScrollExtent;
 
@@ -49,21 +51,21 @@ class _HomePageState extends State<HomePage> {
     double M3Y = _controller3.position.maxScrollExtent;
 
     // Está en la 1ra
-    if (pY < sH) {
+    if (pY < sH * 2) {
       _controllerPrimary.jumpTo(
-        max(0, min(sH, pY + dy)),
+        max(0, min(sH * 2, pY + dy)),
       );
       return;
     }
 
     // Está en la 2da sección
-    if (pY == sH) {
+    if (pY == sH * 2) {
       if (dy > 0) {
         if (p2Y + dy > M2Y) {
           _controller2.jumpTo(
             M2Y,
           );
-          _controllerPrimary.jumpTo(sH + p2Y + dy - M2Y);
+          _controllerPrimary.jumpTo(sH * 2 + p2Y + dy - M2Y);
           return;
         }
       } else {
@@ -71,7 +73,7 @@ class _HomePageState extends State<HomePage> {
           _controller2.jumpTo(
             0,
           );
-          _controllerPrimary.jumpTo(sH + p2Y + dy);
+          _controllerPrimary.jumpTo(sH * 2 + p2Y + dy);
           return;
         }
       }
@@ -80,21 +82,21 @@ class _HomePageState extends State<HomePage> {
     }
 
     // Está en la 3ra
-    if (pY < sH * 3) {
+    if (pY < sH * 4) {
       _controllerPrimary.jumpTo(
-        max(sH, min(sH * 3, pY + dy)),
+        max(sH, min(sH * 4, pY + dy)),
       );
       return;
     }
 
     // Está en la 4ta sección
-    if (pY == sH * 3) {
+    if (pY == sH * 4) {
       if (dy > 0) {
         if (p3Y + dy > M3Y) {
           _controller3.jumpTo(
             M3Y,
           );
-          _controllerPrimary.jumpTo(sH * 3 + p3Y + dy - M3Y);
+          _controllerPrimary.jumpTo(sH * 4 + p3Y + dy - M3Y);
           return;
         }
       } else {
@@ -102,7 +104,7 @@ class _HomePageState extends State<HomePage> {
           _controller3.jumpTo(
             0,
           );
-          _controllerPrimary.jumpTo(sH * 3 + p3Y + dy);
+          _controllerPrimary.jumpTo(sH * 4 + p3Y + dy);
           return;
         }
       }
@@ -110,15 +112,15 @@ class _HomePageState extends State<HomePage> {
       return;
     }
 
-    if (pY + dy < sH) {
-      _controllerPrimary.jumpTo(sH);
-      _controller2.jumpTo(M2Y - sH + (pY + dy));
+    if (pY + dy < sH * 2) {
+      _controllerPrimary.jumpTo(sH * 2);
+      _controller2.jumpTo(M2Y - sH * 2 + (pY + dy));
       return;
     }
 
-    if (pY + dy < sH * 3) {
-      _controllerPrimary.jumpTo(sH * 3);
-      _controller3.jumpTo(M3Y - sH * 3 + (pY + dy));
+    if (pY + dy < sH * 4) {
+      _controllerPrimary.jumpTo(sH * 4);
+      _controller3.jumpTo(M3Y - sH * 4 + (pY + dy));
       return;
     }
 
@@ -141,7 +143,7 @@ class _HomePageState extends State<HomePage> {
           }
         },
         child: AnimatedBackgroundColor(
-          sections: 5,
+          sections: 6,
           controller: _controllerPrimary,
           child: ScrollConfiguration(
             behavior:
@@ -151,27 +153,21 @@ class _HomePageState extends State<HomePage> {
               controller: _controllerPrimary,
               physics: const ClampingScrollPhysics(
                   parent: NeverScrollableScrollPhysics()),
-              child: DecoratedBox(
-                decoration: const BoxDecoration(
-                    gradient: RadialGradient(
-                        focal: Alignment.centerLeft,
-                        radius: 2,
-                        stops: [
-                      0,
-                      0.5,
-                      1
-                    ],
-                        colors: [
-                      Colors.transparent,
-                      Colors.white,
-                      Colors.transparent
-                    ])),
+              child: AnimatedRadialGradient(
                 child: Column(
                   children: [
                     SizedBox(
                       height: h,
                       // width: w,
-                      child: const Center(child: Text("PRIMERO")),
+                      child: SectionInitial(
+                        sections: 6,
+                        controller: _controllerPrimary,
+                      ),
+                    ),
+                    SizedBox(
+                      height: h,
+                      // width: w,
+                      child: const Center(child: Text("Primero")),
                     ),
                     SizedBox(
                       height: h,
