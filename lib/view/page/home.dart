@@ -2,7 +2,6 @@
 
 import 'dart:math';
 
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:ricardomejiastravieso/view/page/sections/section_1.dart';
 import 'package:ricardomejiastravieso/view/widgets/animated_background_color.dart';
@@ -154,24 +153,27 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       body: Listener(
-        onPointerMove: (event) {
-          handlePrimaryRegion(
-              event.delta.dy * max(3, event.delta.distance) * 2 * -1);
-        },
-        onPointerSignal: (event) {
-          print(event.delta.dy);
-          if (event is PointerScrollEvent) {
-            handlePrimaryRegion(event.scrollDelta.dy);
-          }
-        },
+        // onPointerMove: (event) {
+        //   if (event.delta.dy == 0) {
+        //     return;
+        //   }
+        //   handlePrimaryRegion(
+        //       (event.delta.dy / event.delta.dy.abs()) * 300 * -1);
+        // },
+        // onPointerSignal: (event) {
+        //   if (event is PointerScrollEvent) {
+        //     print(event.scrollDelta.dy);
+        //     handlePrimaryRegion(event.scrollDelta.dy);
+        //   }
+        // },
         child: AnimatedBackgroundColor(
           sections: 6,
           controller: _controllerPrimary,
           child: SingleChildScrollView(
             scrollDirection: Axis.vertical,
             controller: _controllerPrimary,
-            physics: const NeverScrollableScrollPhysics(),
-            // physics: const ClampingScrollPhysics(),
+            // physics: const NeverScrollableScrollPhysics(),
+            physics: const ClampingScrollPhysics(),
             // physics: const BouncingScrollPhysics(
             //     parent: NeverScrollableScrollPhysics()),
             child: AnimatedRadialGradient(

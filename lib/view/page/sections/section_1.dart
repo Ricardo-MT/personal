@@ -79,7 +79,7 @@ class _SectionInitial extends State<SectionInitial>
                     children: [
                       AnimatedContainer(
                         duration: const Duration(milliseconds: 200),
-                        curve: Curves.ease,
+                        curve: Curves.fastLinearToSlowEaseIn,
                         width: w * _anim,
                       ),
                       SizedBox(
@@ -150,7 +150,7 @@ class _SectionInitial extends State<SectionInitial>
                       ),
                       AnimatedContainer(
                         duration: const Duration(milliseconds: 200),
-                        curve: Curves.ease,
+                        curve: Curves.fastLinearToSlowEaseIn,
                         width: w * _anim,
                       )
                     ],
@@ -201,7 +201,7 @@ class _SectionInitial extends State<SectionInitial>
                               "software",
                               style: style.copyWith(
                                   fontFamily: "Bungee",
-                                  fontSize: max(w * 0.09, 70)),
+                                  fontSize: max(w * 0.09, 60)),
                             ),
                           ),
                           const Spacer(),
