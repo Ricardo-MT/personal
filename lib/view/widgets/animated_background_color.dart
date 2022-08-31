@@ -56,10 +56,10 @@ class _AnimatedBackgroundColor extends State<AnimatedBackgroundColor> {
 }
 
 const _colors = [
-  Color(0xFF1D1D1D),
-  Color(0xFF321CB1),
-  Color(0xFFA71F1D),
-  Color(0xFFD6DD09),
-  Color(0xFF255430),
-  Color(0xFF1D1D1D),
+  Color(0xFF051923),
+  Color(0xFF044367),
+  Color.fromARGB(255, 17, 160, 117),
+  Color.fromARGB(255, 161, 201, 244),
+  Color.fromARGB(255, 164, 3, 3),
+  Color.fromARGB(255, 255, 162, 105),
 ];

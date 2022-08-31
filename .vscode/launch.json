@@ -12,7 +12,7 @@
                 "--web-port",
                 "8000",
                 "--web-hostname",
-                "localhost",
+                "0.0.0.0",
                 "--web-renderer",
                 "canvaskit"
             ],
