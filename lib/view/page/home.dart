@@ -154,11 +154,12 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       body: Listener(
-        // onPointerMove: (event) {
-        //   handlePrimaryRegion(
-        //       event.delta.dy * max(3, event.delta.distance) * 2 * -1);
-        // },
+        onPointerMove: (event) {
+          handlePrimaryRegion(
+              event.delta.dy * max(3, event.delta.distance) * 2 * -1);
+        },
         onPointerSignal: (event) {
+          print(event.delta.dy);
           if (event is PointerScrollEvent) {
             handlePrimaryRegion(event.scrollDelta.dy);
           }
