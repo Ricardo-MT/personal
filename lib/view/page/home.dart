@@ -7,6 +7,7 @@ import 'package:ricardomejiastravieso/view/page/sections/section_1.dart';
 import 'package:ricardomejiastravieso/view/widgets/animated_background_color.dart';
 import 'package:ricardomejiastravieso/view/widgets/animated_background_radial_gradient.dart';
 import 'package:flutter/foundation.dart';
+import 'package:ricardomejiastravieso/view/widgets/animated_cuba_stamp.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -160,6 +161,16 @@ class _HomePageState extends State<HomePage> {
             height: h,
             width: w,
             child: AnimatedBackgroundColor(
+              controller: _controllerPrimary,
+              sections: 6,
+              sectionHeight: h,
+              totalheight: tH,
+            ),
+          ),
+          SizedBox(
+            height: h,
+            width: w,
+            child: AnimatedCubaStamp(
               controller: _controllerPrimary,
               sections: 6,
               sectionHeight: h,
