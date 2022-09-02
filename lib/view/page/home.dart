@@ -149,39 +149,45 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final h = MediaQuery.of(context).size.height;
+    final tH = h * 6;
     final w = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      body: Listener(
-        // onPointerMove: (event) {
-        //   if (event.delta.dy == 0) {
-        //     return;
-        //   }
-        //   handlePrimaryRegion(
-        //       (event.delta.dy / event.delta.dy.abs()) * 300 * -1);
-        // },
-        // onPointerSignal: (event) {
-        //   if (event is PointerScrollEvent) {
-        //     print(event.scrollDelta.dy);
-        //     handlePrimaryRegion(event.scrollDelta.dy);
-        //   }
-        // },
-        child: AnimatedBackgroundColor(
-          sections: 6,
-          controller: _controllerPrimary,
-          child: SingleChildScrollView(
-            scrollDirection: Axis.vertical,
-            controller: _controllerPrimary,
-            // physics: const NeverScrollableScrollPhysics(),
-            physics: const ClampingScrollPhysics(),
-            // physics: const BouncingScrollPhysics(
-            //     parent: NeverScrollableScrollPhysics()),
+      body: Stack(
+        alignment: Alignment.topCenter,
+        children: [
+          SizedBox(
+            height: h,
+            width: w,
+            child: AnimatedBackgroundColor(
+              controller: _controllerPrimary,
+              sections: 6,
+              sectionHeight: h,
+              totalheight: tH,
+            ),
+          ),
+          SizedBox(
+            height: h,
+            width: w,
             child: AnimatedRadialGradient(
+              controller: _controllerPrimary,
+              sections: 6,
+              sectionHeight: h,
+              totalheight: tH,
+            ),
+          ),
+          SizedBox(
+            height: h,
+            width: w,
+            child: SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              controller: _controllerPrimary,
+              physics: const ClampingScrollPhysics(),
               child: Column(
                 children: [
                   SizedBox(
                     height: h,
-                    // width: w,
+                    width: w,
                     child: SectionInitial(
                       sections: 6,
                       controller: _controllerPrimary,
@@ -189,7 +195,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                   SizedBox(
                     height: h,
-                    // width: w,
+                    width: w,
                     child: const Center(child: Text("Primero")),
                   ),
                   SizedBox(
@@ -198,22 +204,22 @@ class _HomePageState extends State<HomePage> {
                       controller: _controller2,
                       pageSnapping: false,
                       physics: const NeverScrollableScrollPhysics(),
-                      children: [
-                        Container(
-                          child: const Center(child: Text("SEGUNDO")),
+                      children: const [
+                        SizedBox(
+                          child: Center(child: Text("SEGUNDO")),
                         ),
-                        Container(
-                          child: const Center(child: Text("SEGUNDO")),
+                        SizedBox(
+                          child: Center(child: Text("SEGUNDO")),
                         ),
-                        Container(
-                          child: const Center(child: Text("SEGUNDO")),
+                        SizedBox(
+                          child: Center(child: Text("SEGUNDO")),
                         ),
                       ],
                     ),
                   ),
                   SizedBox(
                     height: h,
-                    // width: w,
+                    width: w,
                     child: const Center(child: Text("TERCERO")),
                   ),
                   SizedBox(
@@ -223,15 +229,15 @@ class _HomePageState extends State<HomePage> {
                       pageSnapping: false,
                       reverse: true,
                       physics: const NeverScrollableScrollPhysics(),
-                      children: [
-                        Container(
-                          child: const Center(child: Text("CUARTO")),
+                      children: const [
+                        SizedBox(
+                          child: Center(child: Text("CUARTO")),
                         ),
-                        Container(
-                          child: const Center(child: Text("CUARTO")),
+                        SizedBox(
+                          child: Center(child: Text("CUARTO")),
                         ),
-                        Container(
-                          child: const Center(child: Text("CUARTO")),
+                        SizedBox(
+                          child: Center(child: Text("CUARTO")),
                         ),
                       ],
                     ),
@@ -245,7 +251,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
-        ),
+        ],
       ),
     );
   }

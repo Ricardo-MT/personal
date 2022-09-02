@@ -5,11 +5,13 @@ import 'package:flutter/material.dart';
 class AnimatedBackgroundColor extends StatefulWidget {
   const AnimatedBackgroundColor({
     Key? key,
-    this.child,
+    required this.sectionHeight,
+    required this.totalheight,
     required this.controller,
     required this.sections,
   }) : super(key: key);
-  final Widget? child;
+  final double sectionHeight;
+  final double totalheight;
   final ScrollController controller;
   final int sections;
 
@@ -19,6 +21,7 @@ class AnimatedBackgroundColor extends StatefulWidget {
 
 class _AnimatedBackgroundColor extends State<AnimatedBackgroundColor> {
   Color? _color = _colors[0];
+
   @override
   void initState() {
     super.initState();
@@ -26,15 +29,13 @@ class _AnimatedBackgroundColor extends State<AnimatedBackgroundColor> {
   }
 
   void listener() {
-    double sectionH =
-        widget.controller.position.maxScrollExtent / (widget.sections - 1);
-    int pos = widget.controller.offset ~/ (sectionH);
+    int pos = widget.controller.offset ~/ (widget.sectionHeight);
 
-    double p = widget.controller.offset - sectionH * pos;
+    double p = widget.controller.offset - widget.sectionHeight * pos;
 
     setState(() {
       _color = Color.lerp(_colors[pos],
-          _colors[min(pos + 1, widget.sections - 1)], p / sectionH);
+          _colors[min(pos + 1, widget.sections - 1)], p / widget.sectionHeight);
     });
   }
 
@@ -46,11 +47,14 @@ class _AnimatedBackgroundColor extends State<AnimatedBackgroundColor> {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedContainer(
-      decoration: BoxDecoration(color: _color),
-      duration: const Duration(milliseconds: 10),
-      curve: Curves.fastOutSlowIn,
-      child: widget.child,
+    return RepaintBoundary(
+      key: const Key("BACKGROUND_LINEAR_GRADIENT"),
+      child: AnimatedContainer(
+        height: widget.sectionHeight,
+        decoration: BoxDecoration(color: _color),
+        duration: const Duration(milliseconds: 10),
+        curve: Curves.fastOutSlowIn,
+      ),
     );
   }
 }

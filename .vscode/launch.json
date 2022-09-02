@@ -26,8 +26,6 @@
             "args": [
                 "-d",
                 "chrome",
-                "--web-hostname",
-                "localhost",
                 "--web-renderer",
                 "canvaskit"
             ],

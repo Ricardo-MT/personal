@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
 
 class AnimatedRadialGradient extends StatefulWidget {
-  const AnimatedRadialGradient({Key? key, required this.child})
-      : super(key: key);
-  final Widget child;
+  const AnimatedRadialGradient({
+    Key? key,
+    required this.sectionHeight,
+    required this.totalheight,
+    required this.controller,
+    required this.sections,
+  }) : super(key: key);
+  final double sectionHeight;
+  final double totalheight;
+  final ScrollController controller;
+  final int sections;
 
   @override
   State<AnimatedRadialGradient> createState() => _AnimatedRadialGradient();
@@ -11,6 +19,7 @@ class AnimatedRadialGradient extends StatefulWidget {
 
 class _AnimatedRadialGradient extends State<AnimatedRadialGradient>
     with SingleTickerProviderStateMixin {
+  final ScrollController _controllerPrimary = ScrollController();
   late final AnimationController _controller = AnimationController(
     duration: const Duration(seconds: 10),
     reverseDuration: const Duration(seconds: 14),
@@ -21,7 +30,7 @@ class _AnimatedRadialGradient extends State<AnimatedRadialGradient>
     end: const BoxDecoration(
         gradient: RadialGradient(
             focal: Alignment.centerLeft,
-            radius: 2,
+            radius: 4,
             tileMode: TileMode.mirror,
             focalRadius: 0.15,
             stops: [0, 0.5, 1],
@@ -29,7 +38,7 @@ class _AnimatedRadialGradient extends State<AnimatedRadialGradient>
     begin: BoxDecoration(
         gradient: RadialGradient(
             focal: Alignment.centerLeft,
-            radius: 1,
+            radius: 2,
             tileMode: TileMode.mirror,
             focalRadius: 0.2,
             stops: const [
@@ -45,20 +54,40 @@ class _AnimatedRadialGradient extends State<AnimatedRadialGradient>
   );
 
   @override
+  void initState() {
+    super.initState();
+    widget.controller.addListener(listener);
+  }
+
+  void listener() {
+    _controllerPrimary.animateTo(widget.controller.offset,
+        duration: const Duration(seconds: 6), curve: Curves.easeInOut);
+  }
+
+  @override
   void dispose() {
     _controller.dispose();
+    widget.controller.removeListener(listener);
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return DecoratedBoxTransition(
-      decoration: decorationTween.animate(CurvedAnimation(
-        parent: _controller,
-        reverseCurve: Curves.easeInOut,
-        curve: Curves.easeInOut,
-      )),
-      child: widget.child,
+    return RepaintBoundary(
+      key: const Key("BACKGROUND_RADIAL_GRADIENT"),
+      child: SingleChildScrollView(
+        controller: _controllerPrimary,
+        child: DecoratedBoxTransition(
+          decoration: decorationTween.animate(CurvedAnimation(
+            parent: _controller,
+            reverseCurve: Curves.easeInOut,
+            curve: Curves.easeInOut,
+          )),
+          child: SizedBox(
+            height: widget.totalheight,
+          ),
+        ),
+      ),
     );
   }
 }
