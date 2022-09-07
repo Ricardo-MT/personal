@@ -1,13 +1,11 @@
 // ignore_for_file: non_constant_identifier_names
 
 import 'dart:math';
-
+// ignore: unnecessary_import
+import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:ricardomejiastravieso/view/page/sections/section_1.dart';
-import 'package:ricardomejiastravieso/view/widgets/animated_background_color.dart';
-import 'package:ricardomejiastravieso/view/widgets/animated_background_radial_gradient.dart';
 import 'package:flutter/foundation.dart';
-import 'package:ricardomejiastravieso/view/widgets/animated_cuba_stamp.dart';
+import 'package:ricardomejiastravieso/view/page/sections/section_newmorphism.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -157,34 +155,41 @@ class _HomePageState extends State<HomePage> {
       body: Stack(
         alignment: Alignment.topCenter,
         children: [
-          SizedBox(
-            height: h,
-            width: w,
-            child: AnimatedBackgroundColor(
-              controller: _controllerPrimary,
-              sections: 6,
-              sectionHeight: h,
-              totalheight: tH,
-            ),
-          ),
-          SizedBox(
-            height: h,
-            width: w,
-            child: AnimatedCubaStamp(
-              controller: _controllerPrimary,
-              sections: 6,
-              sectionHeight: h,
-              totalheight: tH,
-            ),
-          ),
-          SizedBox(
-            height: h,
-            width: w,
-            child: AnimatedRadialGradient(
-              controller: _controllerPrimary,
-              sections: 6,
-              sectionHeight: h,
-              totalheight: tH,
+          // SizedBox(
+          //   height: h,
+          //   width: w,
+          //   child: AnimatedBackgroundColor(
+          //     controller: _controllerPrimary,
+          //     sections: 6,
+          //     sectionHeight: h,
+          //     totalheight: tH,
+          //   ),
+          // ),
+          // SizedBox(
+          //   height: h,
+          //   width: w,
+          //   child: AnimatedCubaStamp(
+          //     controller: _controllerPrimary,
+          //     sections: 6,
+          //     sectionHeight: h,
+          //     totalheight: tH,
+          //   ),
+          // ),
+          // SizedBox(
+          //   height: h,
+          //   width: w,
+          //   child: AnimatedRadialGradient(
+          //     controller: _controllerPrimary,
+          //     sections: 6,
+          //     sectionHeight: h,
+          //     totalheight: tH,
+          //   ),
+          // ),
+          DecoratedBox(
+            decoration: const BoxDecoration(color: Color(0xFF333333)),
+            child: SizedBox(
+              height: h,
+              width: w,
             ),
           ),
           SizedBox(
@@ -199,7 +204,7 @@ class _HomePageState extends State<HomePage> {
                   SizedBox(
                     height: h,
                     width: w,
-                    child: SectionInitial(
+                    child: SectionInitialNewmorphism(
                       sections: 6,
                       controller: _controllerPrimary,
                     ),
