@@ -201,17 +201,17 @@ class _SectionInitialNewmorphism extends State<SectionInitialNewmorphism>
                 color: const Color(0xFF333333),
                 boxShadow: [
                   BoxShadow(
-                    color: const Color(0xFF010101).withOpacity(1 - _anim),
+                    color: const Color(0xFF010101),
                     offset: offset,
-                    blurRadius: blurRadius - blurRadius * _anim,
-                    spreadRadius: spreadRadius - spreadRadius * _anim,
+                    blurRadius: blurRadius - blurRadius * 0,
+                    spreadRadius: spreadRadius - spreadRadius * 0,
                     inset: inset,
                   ),
                   BoxShadow(
-                    color: const Color(0xFF555555).withOpacity(1 - _anim),
+                    color: const Color(0xFF555555),
                     offset: Offset(-offset.dx, -offset.dy),
-                    blurRadius: blurRadius - blurRadius * _anim,
-                    spreadRadius: spreadRadius - spreadRadius * _anim,
+                    blurRadius: blurRadius - blurRadius * 0,
+                    spreadRadius: spreadRadius - spreadRadius * 0,
                     inset: inset,
                   ),
                 ],

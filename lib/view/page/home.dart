@@ -5,6 +5,7 @@ import 'dart:math';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
+import 'package:ricardomejiastravieso/view/page/sections/section_b.dart';
 import 'package:ricardomejiastravieso/view/page/sections/section_newmorphism.dart';
 
 class HomePage extends StatefulWidget {
@@ -210,29 +211,29 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   SizedBox(
-                    height: h,
+                    height: 2*h,
                     width: w,
-                    child: const Center(child: Text("Primero")),
+                    child: SecondSection(controller: _controllerPrimary, sections: 6),
                   ),
-                  SizedBox(
-                    height: h,
-                    child: PageView(
-                      controller: _controller2,
-                      pageSnapping: false,
-                      physics: const NeverScrollableScrollPhysics(),
-                      children: const [
-                        SizedBox(
-                          child: Center(child: Text("SEGUNDO")),
-                        ),
-                        SizedBox(
-                          child: Center(child: Text("SEGUNDO")),
-                        ),
-                        SizedBox(
-                          child: Center(child: Text("SEGUNDO")),
-                        ),
-                      ],
-                    ),
-                  ),
+                  // SizedBox(
+                  //   height: h,
+                  //   child: PageView(
+                  //     controller: _controller2,
+                  //     pageSnapping: false,
+                  //     physics: const NeverScrollableScrollPhysics(),
+                  //     children: const [
+                  //       SizedBox(
+                  //         child: Center(child: Text("SEGUNDO")),
+                  //       ),
+                  //       SizedBox(
+                  //         child: Center(child: Text("SEGUNDO")),
+                  //       ),
+                  //       SizedBox(
+                  //         child: Center(child: Text("SEGUNDO")),
+                  //       ),
+                  //     ],
+                  //   ),
+                  // ),
                   SizedBox(
                     height: h,
                     width: w,
