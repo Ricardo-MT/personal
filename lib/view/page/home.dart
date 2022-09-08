@@ -143,99 +143,103 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final h = MediaQuery.of(context).size.height;
-    final tH = h * 6;
-    final w = MediaQuery.of(context).size.width;
-
     return Scaffold(
-      body: Stack(
-        alignment: Alignment.topCenter,
-        children: [
-          // SizedBox(
-          //   height: h,
-          //   width: w,
-          //   child: AnimatedBackgroundColor(
-          //     controller: _controllerPrimary,
-          //     sections: 6,
-          //     sectionHeight: h,
-          //     totalheight: tH,
-          //   ),
-          // ),
-          // SizedBox(
-          //   height: h,
-          //   width: w,
-          //   child: AnimatedCubaStamp(
-          //     controller: _controllerPrimary,
-          //     sections: 6,
-          //     sectionHeight: h,
-          //     totalheight: tH,
-          //   ),
-          // ),
-          // SizedBox(
-          //   height: h,
-          //   width: w,
-          //   child: AnimatedRadialGradient(
-          //     controller: _controllerPrimary,
-          //     sections: 6,
-          //     sectionHeight: h,
-          //     totalheight: tH,
-          //   ),
-          // ),
-          DecoratedBox(
-            decoration: const BoxDecoration(color: Color(0xFF333333)),
-            child: SizedBox(
-              height: h,
-              width: w,
-            ),
-          ),
-          SizedBox(
-            height: h,
-            width: w,
-            child: SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              controller: _controllerPrimary,
-              physics: const ClampingScrollPhysics(),
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: h,
-                    width: w,
-                    child: SectionInitialNewmorphism(
-                      sections: 6,
-                      controller: _controllerPrimary,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 2 * h,
-                    width: w,
-                    child: SecondSection(
-                      controller: _controllerPrimary,
-                      sections: 6,
-                      sectionH: h,
-                      sectionW: w,
-                      totalH: h * 5,
-                    ),
-                  ),
-                  SizedBox(
-                    height: h,
-                    width: w,
-                    child: const Center(child: Text("TERCERO")),
-                  ),
-                  SizedBox(
-                    height: h,
-                    child: const Center(child: Text("CUARTO")),
-                  ),
-                  SizedBox(
-                    height: h,
-                    width: w,
-                    child: const Center(child: Text("QUINTO")),
-                  ),
-                ],
+      body: LayoutBuilder(builder: (context, constraints) {
+        final h = MediaQuery.of(context).size.height;
+        final tH = h * 6;
+        final w = MediaQuery.of(context).size.width;
+        return Stack(
+          alignment: Alignment.topCenter,
+          children: [
+            // SizedBox(
+            //   height: h,
+            //   width: w,
+            //   child: AnimatedBackgroundColor(
+            //     controller: _controllerPrimary,
+            //     sections: 6,
+            //     sectionHeight: h,
+            //     totalheight: tH,
+            //   ),
+            // ),
+            // SizedBox(
+            //   height: h,
+            //   width: w,
+            //   child: AnimatedCubaStamp(
+            //     controller: _controllerPrimary,
+            //     sections: 6,
+            //     sectionHeight: h,
+            //     totalheight: tH,
+            //   ),
+            // ),
+            // SizedBox(
+            //   height: h,
+            //   width: w,
+            //   child: AnimatedRadialGradient(
+            //     controller: _controllerPrimary,
+            //     sections: 6,
+            //     sectionHeight: h,
+            //     totalheight: tH,
+            //   ),
+            // ),
+            DecoratedBox(
+              decoration: const BoxDecoration(color: Color(0xFF333333)),
+              child: SizedBox(
+                height: h,
+                width: w,
               ),
             ),
-          ),
-        ],
-      ),
+            SizedBox(
+              height: h,
+              width: w,
+              child: SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                controller: _controllerPrimary,
+                physics: const ClampingScrollPhysics(),
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: h,
+                      width: w,
+                      child: SectionInitialNewmorphism(
+                        sections: 6,
+                        controller: _controllerPrimary,
+                        sectionH: h,
+                        sectionW: w,
+                        totalH: h * 5,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 2 * h,
+                      width: w,
+                      child: SecondSection(
+                        controller: _controllerPrimary,
+                        sections: 6,
+                        sectionH: h,
+                        sectionW: w,
+                        totalH: h * 5,
+                      ),
+                    ),
+                    SizedBox(
+                      height: h,
+                      width: w,
+                      child: const Center(child: Text("TERCERO")),
+                    ),
+                    SizedBox(
+                      height: h,
+                      child: const Center(child: Text("CUARTO")),
+                    ),
+                    SizedBox(
+                      height: h,
+                      width: w,
+                      child: const Center(child: Text("QUINTO")),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        );
+      }),
     );
   }
 }

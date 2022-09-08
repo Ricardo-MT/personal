@@ -8,9 +8,15 @@ class SectionInitialNewmorphism extends StatefulWidget {
     Key? key,
     required this.controller,
     required this.sections,
+    required this.sectionH,
+    required this.sectionW,
+    required this.totalH,
   }) : super(key: key);
   final ScrollController controller;
   final int sections;
+  final double sectionH;
+  final double sectionW;
+  final double totalH;
 
   @override
   State<SectionInitialNewmorphism> createState() =>
@@ -37,16 +43,16 @@ class _SectionInitialNewmorphism extends State<SectionInitialNewmorphism>
   }
 
   void listener() {
-    double sectionH =
-        widget.controller.position.maxScrollExtent / (widget.sections - 1);
-    int pos = widget.controller.offset ~/ (sectionH);
+    // double sectionH =
+    //     widget.controller.position.maxScrollExtent / (widget.sections - 1);
+    int pos = widget.controller.offset ~/ (widget.sectionH);
     if (pos >= 1) {
       return;
     }
-    double p = widget.controller.offset - sectionH * pos;
+    double p = widget.controller.offset - widget.sectionH * pos;
     setState(() {
       // borderWidth = 14 - p * 14 / sectionH;
-      _anim = p / sectionH;
+      _anim = p / widget.sectionH;
     });
   }
 
@@ -59,30 +65,14 @@ class _SectionInitialNewmorphism extends State<SectionInitialNewmorphism>
 
   @override
   Widget build(BuildContext context) {
-    var style = const TextStyle(color: Colors.white, fontSize: 40);
-    final h = MediaQuery.of(context).size.height;
-    final w = MediaQuery.of(context).size.width;
-    bool inset = false;
-    double blurRadius = 18;
-    double spreadRadius = 1;
-    var offset = const Offset(4, 4);
-    String family = "Bungee";
-    // family = "Fascinate";
-    // family = "Gloria";
-    family = "Monoton";
-    // family = "Monofett";
-    // family = "Rancho";
-    // family = "RubikBurned";
-    // family = "RubikMarkerHatch";
-    var color = const Color(0xFF8a6c94);
-    var sigmaBlur = 160.0;
+    String family = "Monoton";
 
     return SizedBox(
       child: Stack(
         alignment: Alignment.center,
         children: [
           SizedBox(
-            height: h,
+            height: widget.sectionH,
             child: Column(
               children: [
                 const Spacer(),
@@ -96,10 +86,10 @@ class _SectionInitialNewmorphism extends State<SectionInitialNewmorphism>
                       AnimatedContainer(
                         duration: const Duration(milliseconds: 200),
                         curve: Curves.fastLinearToSlowEaseIn,
-                        width: w * _anim,
+                        width: widget.sectionW * _anim,
                       ),
                       SizedBox(
-                        width: w,
+                        width: widget.sectionW,
                         child: Row(
                           children: [
                             const Spacer(
@@ -133,7 +123,7 @@ class _SectionInitialNewmorphism extends State<SectionInitialNewmorphism>
                   padding:
                       const EdgeInsets.symmetric(horizontal: 60, vertical: 15),
                   child: SizedBox(
-                    height: h * 0.6,
+                    height: widget.sectionH * 0.6,
                     width: 540,
                   ),
                 ),
@@ -145,7 +135,7 @@ class _SectionInitialNewmorphism extends State<SectionInitialNewmorphism>
                   child: Row(
                     children: [
                       SizedBox(
-                        width: w,
+                        width: widget.sectionW,
                         child: Row(
                           children: [
                             const Spacer(
@@ -169,7 +159,7 @@ class _SectionInitialNewmorphism extends State<SectionInitialNewmorphism>
                       AnimatedContainer(
                         duration: const Duration(milliseconds: 200),
                         curve: Curves.fastLinearToSlowEaseIn,
-                        width: w * _anim,
+                        width: widget.sectionW * _anim,
                       )
                     ],
                   ),
@@ -244,7 +234,7 @@ class _SectionInitialNewmorphism extends State<SectionInitialNewmorphism>
                 child: Row(
                   children: [
                     SizedBox(
-                      width: w,
+                      width: widget.sectionW,
                       child: Row(
                         children: [
                           const Spacer(),
@@ -255,7 +245,7 @@ class _SectionInitialNewmorphism extends State<SectionInitialNewmorphism>
                               "software",
                               style: style.copyWith(
                                 fontFamily: family,
-                                fontSize: max(w * 0.09, 60),
+                                fontSize: max(widget.sectionW * 0.09, 60),
                                 color: color,
                               ),
                             ),
@@ -283,7 +273,7 @@ class _SectionInitialNewmorphism extends State<SectionInitialNewmorphism>
                       width: _anim * 400,
                     ),
                     SizedBox(
-                      width: w,
+                      width: widget.sectionW,
                       child: Center(
                         child: AnimatedOpacity(
                           duration: const Duration(milliseconds: 200),
@@ -292,7 +282,7 @@ class _SectionInitialNewmorphism extends State<SectionInitialNewmorphism>
                             "developer",
                             style: style.copyWith(
                               fontFamily: family,
-                              fontSize: w * 0.09,
+                              fontSize: widget.sectionW * 0.09,
                               foreground: Paint()..shader = linearGradient,
                             ),
                           ),
@@ -320,19 +310,5 @@ final Shader linearGradient = const LinearGradient(
   ],
 ).createShader(const Rect.fromLTWH(0.0, 0.0, 300.0, 60.0));
 
-// boxShadow: [
-                  //   BoxShadow(
-                  //     color: const Color(0xFF010101).withOpacity(1 - _anim),
-                  //     offset: offset,
-                  //     blurRadius: blurRadius - blurRadius * _anim,
-                  //     spreadRadius: spreadRadius - spreadRadius * _anim,
-                  //     inset: inset,
-                  //   ),
-                  //   BoxShadow(
-                  //     color: const Color(0xFF555555).withOpacity(1 - _anim),
-                  //     offset: Offset(-offset.dx, -offset.dy),
-                  //     blurRadius: blurRadius - blurRadius * _anim,
-                  //     spreadRadius: spreadRadius - spreadRadius * _anim,
-                  //     inset: inset,
-                  //   ),
-                  // ],
+var color = const Color(0xFF8a6c94);
+var style = const TextStyle(color: Colors.white, fontSize: 40);

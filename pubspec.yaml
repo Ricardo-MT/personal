@@ -26,73 +26,22 @@ flutter:
 
   uses-material-design: true
 
-  # To add assets to your application, add an assets section, like this:
   assets:
     - assets/fonts/
     - assets/images/
-  #   - images/a_dot_ham.jpeg
 
-  # An image asset can refer to one or more resolution-specific "variants", see
-  # https://flutter.dev/assets-and-images/#resolution-aware
-
-  # For details regarding adding assets from package dependencies, see
-  # https://flutter.dev/assets-and-images/#from-packages
-
-  # To add custom fonts to your application, add a fonts section here,
-  # in this "flutter" section. Each entry in this list should have a
-  # "family" key with the font family name, and a "fonts" key with a
-  # list giving the asset and other descriptors for the font. For
-  # example:
   fonts:
-    - family: Bungee
-      fonts:
-        - asset: assets/fonts/BungeeShade-Regular.ttf
-    - family: Fascinate
-      fonts:
-        - asset: assets/fonts/Fascinate-Regular.ttf
-    - family: Gloria
-      fonts:
-        - asset: assets/fonts/GloriaHallelujah-Regular.ttf
     - family: LibreBarcode
       fonts:
         - asset: assets/fonts/LibreBarcode128Text-Regular.ttf
-    - family: Monofett
-      fonts:
-        - asset: assets/fonts/Monofett-Regular.ttf
     - family: Monoton
       fonts:
         - asset: assets/fonts/Monoton-Regular.ttf
-    - family: Rancho
-      fonts:
-        - asset: assets/fonts/Rancho-Regular.ttf
-    - family: RubikBurned
-      fonts:
-        - asset: assets/fonts/RubikBurned-Regular.ttf
-    - family: RubikMarkerHatch
-      fonts:
-        - asset: assets/fonts/RubikMarkerHatch-Regular.ttf
     - family: Comfortaa
       fonts:
-        - asset: assets/fonts/Comfortaa-Bold.ttf
-          weight: 900
         - asset: assets/fonts/Comfortaa-Regular.ttf
           weight: 400
-    - family: Varela
-      fonts:
-        - asset: assets/fonts/VarelaRound-Regular.ttf
     - family: Montserrat
       fonts:
-        - asset: assets/fonts/Montserrat-Black.ttf
-          weight: 900
         - asset: assets/fonts/Montserrat-Bold.ttf
           weight: 700
-        - asset: assets/fonts/Montserrat-Medium.ttf
-          weight: 400
-  #   - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
-  #
-  # For details regarding fonts from package dependencies,
-  # see https://flutter.dev/custom-fonts/#from-packages
