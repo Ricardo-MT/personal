@@ -10,41 +10,30 @@ class SecondSection extends StatefulWidget {
     required this.controller,
     required this.sections,
     required this.sectionH,
+    required this.sectionW,
     required this.totalH,
   }) : super(key: key);
   final ScrollController controller;
   final int sections;
   final double sectionH;
+  final double sectionW;
   final double totalH;
 
   @override
   State<SecondSection> createState() => _SecondSection();
 }
 
-class _SecondSection extends State<SecondSection>
-    with TickerProviderStateMixin {
-  late final AnimationController _controller = AnimationController(
-    duration: const Duration(milliseconds: 1500),
-    vsync: this,
-  );
-  late final Animation<double> _animation = CurvedAnimation(
-    parent: _controller,
-    curve: Curves.fastOutSlowIn,
-  );
-  final double _anim = 0;
+class _SecondSection extends State<SecondSection> {
   double _top = 0;
   double _percent = 0;
 
   @override
   void initState() {
     super.initState();
-    _controller.forward();
     widget.controller.addListener(listener);
   }
 
   void listener() {
-    // double sectionH =
-    //     widget.controller.position.maxScrollExtent / (widget.sections - 1);
     int pos = widget.controller.offset ~/ (widget.sectionH);
     if (pos < 1) {
       return;
@@ -54,8 +43,6 @@ class _SecondSection extends State<SecondSection>
     }
     double p = widget.controller.offset - widget.sectionH * pos;
     setState(() {
-      // borderWidth = 14 - p * 14 / sectionH;
-      // _anim = p / sectionH;
       _top = min(p + (pos - 1) * widget.sectionH, widget.sectionH);
       _percent = _top / widget.sectionH;
     });
@@ -65,46 +52,37 @@ class _SecondSection extends State<SecondSection>
   void dispose() {
     super.dispose();
     widget.controller.removeListener(listener);
-    _controller.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    var style = const TextStyle(color: Colors.white, fontSize: 40);
-    final h = MediaQuery.of(context).size.height;
-    final w = MediaQuery.of(context).size.width;
-    bool inset = false;
-    double blurRadius = 18;
-    double spreadRadius = 1;
-    var offset = const Offset(4, 4);
-    String family = "Bungee";
+    // final h = MediaQuery.of(context).size.height;
+    // final w = MediaQuery.of(context).size.width;
+    // String family = "Bungee";
     // family = "Fascinate";
     // family = "Gloria";
-    family = "Monoton";
+    // family = "Monoton";
     // family = "Monofett";
     // family = "Rancho";
     // family = "RubikBurned";
     // family = "RubikMarkerHatch";
-    var color = const Color(0xFF8a6c94);
-    var sigmaBlur = 160.0;
 
     return Stack(
       children: [
         AnimatedPositioned(
           duration: const Duration(milliseconds: 0),
-          curve: Curves.ease,
           right: 0,
           left: 0,
           top: _top,
           child: SizedBox(
-            width: w,
-            height: h,
+            width: widget.sectionW,
+            height: widget.sectionH,
             child: Padding(
               padding: const EdgeInsets.all(10.0),
               child: Row(
                 children: [
                   MuiTimeline(
-                    height: h - 30,
+                    height: widget.sectionH - 30,
                     progress: _percent,
                   ),
                   _spacer,
@@ -115,11 +93,11 @@ class _SecondSection extends State<SecondSection>
                         AnimatedOpacity(
                           // opacity: _percent > 0.08 ? 1 : 0,
                           opacity: min(1, _percent / 0.25 * 3),
-                          duration: const Duration(milliseconds: 200),
+                          duration: _duration,
                           curve: Curves.linear,
                           child: MuiTrayectoryCard(
-                            active: _percent > 0.12,
-                            insetShadow: _percent > 0.37,
+                            active: _percent > 0.16,
+                            insetShadow: _percent > 0.41,
                             icon: Icons.local_library_outlined,
                             title: "A-Levels",
                             location: "IPVCE Lenin, Havana",
@@ -129,11 +107,11 @@ class _SecondSection extends State<SecondSection>
                         AnimatedOpacity(
                           opacity: min(1, max(0, (_percent - 0.25) / 0.25 * 3)),
                           // opacity: _percent > 0.3 ? 1 : 0,
-                          duration: const Duration(milliseconds: 200),
+                          duration: _duration,
                           curve: Curves.ease,
                           child: MuiTrayectoryCard(
-                            active: _percent > 0.37,
-                            insetShadow: _percent > 0.62,
+                            active: _percent > 0.41,
+                            insetShadow: _percent > 0.66,
                             icon: Icons.book_outlined,
                             title: "2 years in CS",
                             location: "University of Havana, Havana",
@@ -143,11 +121,11 @@ class _SecondSection extends State<SecondSection>
                         AnimatedOpacity(
                           opacity: min(1, max(0, (_percent - 0.5) / 0.25 * 3)),
                           // opacity: _percent > 0.58 ? 1 : 0,
-                          duration: const Duration(milliseconds: 200),
+                          duration: _duration,
                           curve: Curves.ease,
                           child: MuiTrayectoryCard(
-                            active: _percent > 0.62,
-                            insetShadow: _percent > 0.8,
+                            active: _percent > 0.66,
+                            insetShadow: _percent > 0.84,
                             icon: Icons.school_outlined,
                             title: "HND Software Dev.",
                             location: "IES Saladillo, Algeciras",
@@ -157,10 +135,10 @@ class _SecondSection extends State<SecondSection>
                         AnimatedOpacity(
                           opacity: min(1, max(0, (_percent - 0.70) / 0.25 * 3)),
                           // opacity: _percent > 0.8 ? 1 : 0,
-                          duration: const Duration(milliseconds: 200),
+                          duration: _duration,
                           curve: Curves.ease,
                           child: MuiTrayectoryCard(
-                            active: _percent > 0.8,
+                            active: _percent > 0.84,
                             // insetShadow: _percent > 0.25,
                             icon: Icons.important_devices_rounded,
                             title: "Fullstack Developer",
@@ -311,6 +289,8 @@ class MuiTimeline extends StatelessWidget {
         alignment: Alignment.topCenter,
         child: MuiCard(
           width: 10,
+          curve: Curves.linear,
+          containerDuration: 0,
           heigth: min((height - 2) * progress, (height - 2)),
           colorStart: const Color(0xFF4B3C50),
           colorEnd: const Color(0xFF9678A0),
@@ -325,3 +305,5 @@ const _spacer = SizedBox(
   width: 20,
   height: 15,
 );
+
+const _duration = Duration(milliseconds: 200);

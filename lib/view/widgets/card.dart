@@ -13,6 +13,8 @@ class MuiCard extends StatelessWidget {
     this.backgroundColor = defaultBackgroundColor,
     this.colorStart = defaultColorStart,
     this.colorEnd = defaultColorEnd,
+    this.curve = Curves.fastOutSlowIn,
+    this.containerDuration = 300,
   }) : super(key: key);
   final bool active;
   final bool insetShadow;
@@ -23,6 +25,8 @@ class MuiCard extends StatelessWidget {
   final Color backgroundColor;
   final Color colorStart;
   final Color colorEnd;
+  final Curve curve;
+  final int containerDuration;
 
   @override
   Widget build(BuildContext context) {
@@ -31,10 +35,10 @@ class MuiCard extends StatelessWidget {
       duration: const Duration(milliseconds: 300),
       curve: Curves.fastOutSlowIn,
       child: AnimatedContainer(
-        duration: const Duration(milliseconds: 300),
+        duration: Duration(milliseconds: containerDuration),
         width: width,
         height: heigth,
-        curve: Curves.fastOutSlowIn,
+        curve: curve,
         decoration: BoxDecoration(
           borderRadius: circular ? null : BorderRadius.circular(26),
           shape: circular ? BoxShape.circle : BoxShape.rectangle,
