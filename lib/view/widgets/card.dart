@@ -69,12 +69,19 @@ class MuiCard extends StatelessWidget {
 }
 
 class MuiBadge extends StatelessWidget {
-  const MuiBadge({Key? key, this.child}) : super(key: key);
+  const MuiBadge({
+    Key? key,
+    this.child,
+    this.inverted = false,
+  }) : super(key: key);
   final Widget? child;
+  final bool inverted;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.fastOutSlowIn,
       width: 60,
       height: 60,
       decoration: BoxDecoration(
@@ -83,13 +90,18 @@ class MuiBadge extends StatelessWidget {
           width: 2,
         ),
         shape: BoxShape.circle,
-        gradient: const LinearGradient(
+        gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: [
-              Color(0xFF4B3C50),
-              Color(0xFF9678A0),
-            ]),
+            colors: inverted
+                ? [
+                    const Color(0xFF9678A0),
+                    const Color(0xFF4B3C50),
+                  ]
+                : [
+                    const Color(0xFF4B3C50),
+                    const Color(0xFF9678A0),
+                  ]),
       ),
       child: Center(child: child),
     );

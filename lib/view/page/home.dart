@@ -5,6 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:ricardomejiastravieso/view/page/sections/section_b.dart';
+import 'package:ricardomejiastravieso/view/page/sections/section_c.dart';
 import 'package:ricardomejiastravieso/view/page/sections/section_newmorphism.dart';
 
 class HomePage extends StatefulWidget {
@@ -220,13 +221,15 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                     SizedBox(
-                      height: h,
+                      height: 2 * h,
                       width: w,
-                      child: const Center(child: Text("TERCERO")),
-                    ),
-                    SizedBox(
-                      height: h,
-                      child: const Center(child: Text("CUARTO")),
+                      child: ThirdSection(
+                        controller: _controllerPrimary,
+                        sections: 6,
+                        sectionH: h,
+                        sectionW: w,
+                        totalH: h * 5,
+                      ),
                     ),
                     SizedBox(
                       height: h,
