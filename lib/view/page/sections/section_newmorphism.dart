@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
-import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart';
+import 'package:ricardomejiastravieso/view/widgets/card.dart';
 
 class SectionInitialNewmorphism extends StatefulWidget {
   const SectionInitialNewmorphism({
@@ -109,6 +109,7 @@ class _SectionInitialNewmorphism extends State<SectionInitialNewmorphism>
                               "Ricardo",
                               style: style.copyWith(
                                 fontFamily: "Comfortaa",
+                                color: const Color(0xFFCECECE),
                                 // shadows: [
                                 //   for (int i = 0; i < 5; i++)
                                 //     BoxShadow(
@@ -151,9 +152,10 @@ class _SectionInitialNewmorphism extends State<SectionInitialNewmorphism>
                               flex: 21,
                             ),
                             Text(
-                              "Ricardo",
+                              "<Ricardo/>",
                               style: style.copyWith(
                                 fontFamily: "LibreBarcode",
+                                color: const Color(0xFFCECECE),
                                 // color: color,
                                 // foreground: Paint()..shader = linearGradient,
                               ),
@@ -191,35 +193,41 @@ class _SectionInitialNewmorphism extends State<SectionInitialNewmorphism>
             //         width: (18 - 18 * _anim),
             //       )),
             // ),
-            child: AnimatedContainer(
-              duration: const Duration(milliseconds: 200),
-              curve: Curves.fastOutSlowIn,
-              width: 300,
-              height: 300,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(150),
-                color: const Color(0xFF333333),
-                boxShadow: [
-                  BoxShadow(
-                    color: const Color(0xFF010101),
-                    offset: offset,
-                    blurRadius: blurRadius - blurRadius * 0,
-                    spreadRadius: spreadRadius - spreadRadius * 0,
-                    inset: inset,
-                  ),
-                  BoxShadow(
-                    color: const Color(0xFF555555),
-                    offset: Offset(-offset.dx, -offset.dy),
-                    blurRadius: blurRadius - blurRadius * 0,
-                    spreadRadius: spreadRadius - spreadRadius * 0,
-                    inset: inset,
-                  ),
-                ],
-                // color: Colors.red,
-                // image: DecorationImage(
-                //     image: AssetImage("assets/images/cuba_a.png"),
-                //     colorFilter: ColorFilter.linearToSrgbGamma()),
-              ),
+            // child: AnimatedContainer(
+            //   duration: const Duration(milliseconds: 200),
+            //   curve: Curves.fastOutSlowIn,
+            //   width: 300,
+            //   height: 300,
+            //   decoration: BoxDecoration(
+            //     borderRadius: BorderRadius.circular(150),
+            //     color: const Color(0xFF333333),
+            //     boxShadow: [
+            //       BoxShadow(
+            //         color: const Color(0xFF010101),
+            //         offset: offset,
+            //         blurRadius: blurRadius - blurRadius * 0,
+            //         spreadRadius: spreadRadius - spreadRadius * 0,
+            //         inset: inset,
+            //       ),
+            //       BoxShadow(
+            //         color: const Color(0xFF555555),
+            //         offset: Offset(-offset.dx, -offset.dy),
+            //         blurRadius: blurRadius - blurRadius * 0,
+            //         spreadRadius: spreadRadius - spreadRadius * 0,
+            //         inset: inset,
+            //       ),
+            //     ],
+            //     // color: Colors.red,
+            //     // image: DecorationImage(
+            //     //     image: AssetImage("assets/images/cuba_a.png"),
+            //     //     colorFilter: ColorFilter.linearToSrgbGamma()),
+            //   ),
+            // ),
+            child: const MuiCard(
+              circular: true,
+              // active: _anim > 0.1 ? true : false,
+              width: 400,
+              heigth: 400,
             ),
           ),
           Column(

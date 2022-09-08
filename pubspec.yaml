@@ -10,6 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
 
+  font_awesome_flutter: ^10.1.0
   flutter_inset_box_shadow: ^1.0.8
   flutter_svg: ^0.23.0+1
   url_launcher: ^6.1.5
