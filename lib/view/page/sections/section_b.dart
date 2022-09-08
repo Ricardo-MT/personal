@@ -75,6 +75,79 @@ class _SecondSection extends State<SecondSection> {
             child: Padding(
               padding: const EdgeInsets.all(10.0),
               child: Builder(builder: (context) {
+                if (widget.sectionW < 500) {
+                  return Row(
+                    children: [
+                      MuiTimeline(
+                        height: widget.sectionH - 30,
+                        progress: _percent,
+                      ),
+                      _spacer,
+                      Expanded(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            AnimatedOpacity(
+                              opacity: min(1, _percent / 0.25 * 3),
+                              duration: _duration,
+                              curve: Curves.linear,
+                              child: MuiTrayectoryCard(
+                                active: _percent > 0.16,
+                                insetShadow: _percent > 0.41,
+                                icon: Icons.local_library_outlined,
+                                title: "A-Levels",
+                                location: "IPVCE Lenin, Havana",
+                                time: "2009-2012",
+                              ),
+                            ),
+                            AnimatedOpacity(
+                              opacity:
+                                  min(1, max(0, (_percent - 0.25) / 0.25 * 3)),
+                              duration: _duration,
+                              curve: Curves.ease,
+                              child: MuiTrayectoryCard(
+                                active: _percent > 0.41,
+                                insetShadow: _percent > 0.66,
+                                icon: Icons.book_outlined,
+                                title: "2 years in CS",
+                                location: "University of Havana, Havana",
+                                time: "2013-2015",
+                              ),
+                            ),
+                            AnimatedOpacity(
+                              opacity:
+                                  min(1, max(0, (_percent - 0.5) / 0.25 * 3)),
+                              duration: _duration,
+                              curve: Curves.ease,
+                              child: MuiTrayectoryCard(
+                                active: _percent > 0.66,
+                                insetShadow: _percent > 0.84,
+                                icon: Icons.school_outlined,
+                                title: "HND Software Dev.",
+                                location: "IES Saladillo, Algeciras",
+                                time: "2020-2022",
+                              ),
+                            ),
+                            AnimatedOpacity(
+                              opacity:
+                                  min(1, max(0, (_percent - 0.70) / 0.25 * 3)),
+                              duration: _duration,
+                              curve: Curves.ease,
+                              child: MuiTrayectoryCard(
+                                active: _percent > 0.84,
+                                insetShadow: _percent > 0.98,
+                                icon: Icons.important_devices_rounded,
+                                title: "Fullstack Developer",
+                                location: "Boorpret, Cádiz",
+                                time: "2020-2022",
+                              ),
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
+                  );
+                }
                 var item1 = AnimatedOpacity(
                   opacity: min(1, _percent / 0.25 * 3),
                   duration: _duration,
@@ -127,32 +200,8 @@ class _SecondSection extends State<SecondSection> {
                     time: "2020-2022",
                   ),
                 );
-                if (widget.sectionW > 1000) {
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Expanded(
-                          child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          item1,
-                          item2,
-                          item3,
-                          item4,
-                        ],
-                      )),
-                      MuiTimeline(
-                        height: widget.sectionW - 60,
-                        progress: _percent,
-                        vertical: false,
-                      ),
-                      _spacer,
-                      _spacer
-                    ],
-                  );
-                }
-                if (widget.sectionW > 500) {
+
+                if (widget.sectionW < 1000) {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
@@ -191,24 +240,27 @@ class _SecondSection extends State<SecondSection> {
                     ],
                   );
                 }
-                return Row(
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
+                    Expanded(
+                        child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        item1,
+                        item2,
+                        item3,
+                        item4,
+                      ],
+                    )),
                     MuiTimeline(
-                      height: widget.sectionH - 30,
+                      height: widget.sectionW - 60,
                       progress: _percent,
+                      vertical: false,
                     ),
                     _spacer,
-                    Expanded(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          item1,
-                          item2,
-                          item3,
-                          item4,
-                        ],
-                      ),
-                    )
+                    _spacer
                   ],
                 );
               }),
