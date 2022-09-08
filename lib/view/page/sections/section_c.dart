@@ -67,6 +67,78 @@ class _ThirdSection extends State<ThirdSection> {
       child: Stack(
         children: [
           AnimatedPositioned(
+              duration: const Duration(milliseconds: 0),
+              top: _top,
+              right: 0,
+              left: 0,
+              height: widget.sectionH,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  AnimatedOpacity(
+                    opacity: _percent > 0.01 ? 1 : 0,
+                    duration: const Duration(milliseconds: 200),
+                    child: Text(
+                      "PROGRAMMING LANGUAGES",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          color: AppColors.whiteAccent.withOpacity(0.8),
+                          fontSize: 30,
+                          fontFamily: "Monoton"),
+                    ),
+                  ),
+                  AnimatedOpacity(
+                    opacity: _percent > 0.21 ? 1 : 0,
+                    duration: const Duration(milliseconds: 200),
+                    child: Text(
+                      "Frameworks & libraries",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          color: AppColors.whiteAccent.withOpacity(0.8),
+                          fontSize: 30,
+                          fontFamily: "Monoton"),
+                    ),
+                  ),
+                  AnimatedOpacity(
+                    opacity: _percent > 0.41 ? 1 : 0,
+                    duration: const Duration(milliseconds: 200),
+                    child: Text(
+                      "Other tech",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          color: AppColors.whiteAccent.withOpacity(0.8),
+                          fontSize: 30,
+                          fontFamily: "Monoton"),
+                    ),
+                  ),
+                  AnimatedOpacity(
+                    opacity: _percent > 0.61 ? 1 : 0,
+                    duration: const Duration(milliseconds: 200),
+                    child: Text(
+                      "Dev tools",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          color: AppColors.whiteAccent.withOpacity(0.8),
+                          fontSize: 30,
+                          fontFamily: "Monoton"),
+                    ),
+                  ),
+                  AnimatedOpacity(
+                    opacity: _percent > 0.81 ? 1 : 0,
+                    duration: const Duration(milliseconds: 200),
+                    child: Text(
+                      "Team & management",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          color: AppColors.whiteAccent.withOpacity(0.8),
+                          fontSize: 30,
+                          fontFamily: "Monoton"),
+                    ),
+                  ),
+                ],
+              )),
+          AnimatedPositioned(
             duration: const Duration(milliseconds: 0),
             right: 0,
             left: 0,
@@ -75,7 +147,7 @@ class _ThirdSection extends State<ThirdSection> {
               width: widget.sectionW,
               height: widget.sectionH,
               child: Padding(
-                padding: const EdgeInsets.all(10.0),
+                padding: const EdgeInsets.all(5.0),
                 child: Builder(builder: (context) {
                   return Wrap(
                     alignment: WrapAlignment.spaceEvenly,
@@ -119,8 +191,8 @@ class MuiSkillItem extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         SizedBox(
-            height: 50,
-            width: 50,
+            height: 24,
+            width: 24,
             child: Center(
                 child: AnimatedSwitcher(
               duration: const Duration(milliseconds: 1000),
@@ -130,7 +202,7 @@ class MuiSkillItem extends StatelessWidget {
                       key: Key('animatedSwitchedIconOn${skill.name}'),
                       skill.icon,
                       color: skill.color,
-                      size: 40,
+                      size: 22,
                       shadows: [
                         for (int i = 1; i < 5; i++)
                           Shadow(
@@ -143,20 +215,20 @@ class MuiSkillItem extends StatelessWidget {
                       key: Key('animatedSwitchedIconOff${skill.name}'),
                       skill.icon,
                       color: skill.color?.withOpacity(0.6),
-                      size: 40,
+                      size: 20,
                       shadows: const [],
                     ),
             ))),
         SizedBox(
-          height: 50,
-          width: 200,
+          height: 24,
+          width: 100,
           child: Align(
             alignment: Alignment.centerLeft,
             child: Text(
               skill.name,
               style: TextStyle(
                 color: AppColors.whiteAccent,
-                fontSize: 22,
+                fontSize: 15,
                 fontFamily: "Comfortaa",
               ),
             ),
@@ -212,9 +284,7 @@ List<Skill> skills = [
   Skill(icon: CustomIcons.html5, name: "HTML", color: const Color(0xFFE34F26)),
   Skill(icon: CustomIcons.css3, name: "CSS", color: const Color(0xFF1572B6)),
   Skill(
-      icon: CustomIcons.mongodb,
-      name: "MongoDB",
-      color: const Color(0xFF47A248)),
+      icon: CustomIcons.mongodb, name: "Mongo", color: const Color(0xFF47A248)),
   Skill(icon: CustomIcons.mysql, name: "MySQL", color: const Color(0xFF4479A1)),
   Skill(
       icon: CustomIcons.firebase,
@@ -225,7 +295,7 @@ List<Skill> skills = [
       icon: CustomIcons.github, name: "GitHub", color: const Color(0xFF800080)),
   Skill(
       icon: CustomIcons.digitalocean,
-      name: "Digital Ocean",
+      name: "Dig.Ocean",
       color: const Color(0xFF0080FF)),
   Skill(icon: CustomIcons.ionos, name: "IONOS", color: const Color(0xFF003D8F)),
   Skill(
@@ -235,7 +305,7 @@ List<Skill> skills = [
   Skill(icon: CustomIcons.xcode, name: "XCode", color: const Color(0xFF147EFB)),
   Skill(
       icon: CustomIcons.android,
-      name: "Android Studio",
+      name: "Android",
       color: const Color(0xFF3DDC84)),
   Skill(
       icon: CustomIcons.postman,
@@ -254,7 +324,7 @@ List<Skill> skills = [
   Skill(icon: CustomIcons.slack, name: "Slack", color: const Color(0xFF4A154B)),
   Skill(
       icon: CustomIcons.microsoftteams,
-      name: "Microsoft Teams",
+      name: "Teams",
       color: const Color(0xFF6264A7)),
   Skill(
       icon: CustomIcons.discord,
