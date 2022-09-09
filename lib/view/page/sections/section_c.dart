@@ -28,6 +28,8 @@ class ThirdSection extends StatefulWidget {
 class _ThirdSection extends State<ThirdSection> {
   double _top = 0;
   double _percent = 0;
+  double _opacityPercent = 0;
+  double _outPercent = 0;
 
   @override
   void initState() {
@@ -37,14 +39,25 @@ class _ThirdSection extends State<ThirdSection> {
 
   void listener() {
     int pos = widget.controller.offset ~/ (widget.sectionH);
+    if (pos < 2) {
+      return;
+    }
     if (pos < 3) {
-      if (_top != 0 || _percent != 0) {
+      setState(() {
+        _top = 0;
+        _percent = 0;
+        _opacityPercent =
+            min(1, (widget.controller.offset / (widget.sectionH * 1)) - 2);
+      });
+      return;
+    }
+    if (pos == 3) {
+      if (_outPercent != 0 || _opacityPercent != 1) {
         setState(() {
-          _top = 0;
-          _percent = 0;
+          _outPercent = 0;
+          _opacityPercent = 1;
         });
       }
-      return;
     }
     if (pos > 3) {
       return;
@@ -173,8 +186,32 @@ class _ThirdSection extends State<ThirdSection> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 crossAxisAlignment: CrossAxisAlignment.center,
-                children: List.generate(sections.length,
-                    (index) => MuiSectionWidget(section: sections[index])),
+                children: List.generate(
+                    sections.length,
+                    (index) => AnimatedSlide(
+                        offset: _opacityPercent >
+                                (1 / sections.length + 0.1) * index
+                            ? (_outPercent > (1 / sections.length) * index
+                                ? const Offset(-1, 0)
+                                : const Offset(0, 0))
+                            : const Offset(-1, 0),
+                        duration: _slideDuration,
+                        curve: Curves.fastOutSlowIn,
+                        child: AnimatedOpacity(
+                            opacity: _opacityPercent >
+                                    (1 / sections.length + 0.1) * index
+                                ? (_outPercent > (1 / sections.length) * index
+                                    ? 0
+                                    : 1)
+                                : 0,
+                            duration: _duration,
+                            curve: Curves.linear,
+                            child: MuiSectionWidget(
+                              section: sections[index],
+                              progress: _opacityPercent,
+                              active: _opacityPercent >
+                                  ((1 / sections.length) * index + 0.3),
+                            )))),
               )),
         ],
       ),
@@ -194,9 +231,11 @@ class MuiSectionWidget extends StatelessWidget {
     Key? key,
     required this.section,
     this.active = false,
+    required this.progress,
   }) : super(key: key);
   final MuiSection section;
   final bool active;
+  final double progress;
 
   @override
   Widget build(BuildContext context) {
@@ -219,13 +258,14 @@ class MuiSectionWidget extends StatelessWidget {
                 child: MuiSectionTitle(
                   title: section.title,
                   alignment: getAlignment(section.alignment),
-                  active: true,
+                  active: active,
                 ),
               ),
             ),
           ),
           MuiCard(
-            insetShadow: true,
+            insetShadow: active,
+            active: active,
             width: 300,
             heigth: 126,
             child: Padding(
@@ -238,7 +278,7 @@ class MuiSectionWidget extends StatelessWidget {
                       section.skills.length,
                       (index) => MuiSkillItem(
                             skill: section.skills[index],
-                            active: true,
+                            active: active,
                           )),
                 ),
               ),
@@ -326,23 +366,23 @@ class MuiSectionTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedDefaultTextStyle(
-      duration: const Duration(milliseconds: 300),
-      style: TextStyle(
-          color: AppColors.whiteAccent.withOpacity(0.8),
-          fontSize: 16,
-          fontFamily: "Monoton",
-          shadows: active
-              ? [
-                  for (int i = 1; i < 8; i++)
-                    Shadow(
-                        color: AppColors.whiteAccent.withOpacity(0.6),
-                        blurRadius: (8 * i).toDouble())
-                ]
-              : []),
+    return AnimatedSwitcher(
+      duration: const Duration(milliseconds: 1000),
       child: Text(
         title,
         textAlign: alignment,
+        style: TextStyle(
+            color: AppColors.whiteAccent.withOpacity(0.8),
+            fontSize: 16,
+            fontFamily: "Monoton",
+            shadows: active
+                ? [
+                    for (int i = 1; i < 8; i++)
+                      Shadow(
+                          color: AppColors.whiteAccent.withOpacity(0.6),
+                          blurRadius: (8 * i).toDouble())
+                  ]
+                : []),
       ),
     );
   }
@@ -500,3 +540,7 @@ List<Skill> skills = [
   //     color: const Color(0xFF5865F2)),
   // Skill(icon: CustomIcons.skype, name: "Skype", color: const Color(0xFF00AFF0)),
 ];
+
+const _duration = Duration(milliseconds: 200);
+
+const _slideDuration = Duration(milliseconds: 500);

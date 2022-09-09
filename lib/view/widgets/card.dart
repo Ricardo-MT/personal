@@ -31,7 +31,7 @@ class MuiCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedScale(
-      scale: active ? 1 : 0.9,
+      scale: active ? (insetShadow ? 0.9 : 1) : (insetShadow ? 1 : 0.9),
       duration: const Duration(milliseconds: 300),
       curve: Curves.fastOutSlowIn,
       child: AnimatedContainer(

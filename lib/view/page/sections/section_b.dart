@@ -59,9 +59,10 @@ class _SecondSection extends State<SecondSection> {
       return;
     }
     if (pos == 1) {
-      if (_outPercent != 0) {
+      if (_outPercent != 0 || _opacityPercent != 1) {
         setState(() {
           _outPercent = 0;
+          _opacityPercent = 1;
         });
       }
     }
