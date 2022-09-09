@@ -26,6 +26,7 @@ class SecondSection extends StatefulWidget {
 class _SecondSection extends State<SecondSection> {
   double _top = 0;
   double _percent = 0;
+  double _opacityPercent = 0;
 
   @override
   void initState() {
@@ -36,18 +37,31 @@ class _SecondSection extends State<SecondSection> {
   void listener() {
     int pos = widget.controller.offset ~/ (widget.sectionH);
     if (pos < 1) {
-      if (_top != 0 || _percent != 0) {
+      // if (_top != 0 || _percent != 0) {
+      //   setState(() {
+      //     _top = 0;
+      //     _percent = 0;
+      //   });
+      // }
+      setState(() {
+        _top = 0;
+        _percent = 0;
+        _opacityPercent =
+            min(1, (widget.controller.offset / widget.sectionH) * 1.1);
+      });
+      return;
+    }
+    if (pos > 1) {
+      if (_top != widget.sectionH || _percent != 1) {
         setState(() {
-          _top = 0;
-          _percent = 0;
+          _top = widget.sectionH;
+          _percent = 1;
         });
       }
       return;
     }
-    if (pos > 1) {
-      return;
-    }
     double p = widget.controller.offset - widget.sectionH * pos;
+
     setState(() {
       _top = min(p, widget.sectionH);
       _percent = _top / widget.sectionH;
@@ -79,68 +93,108 @@ class _SecondSection extends State<SecondSection> {
                   if (widget.sectionW < 500) {
                     return Row(
                       children: [
-                        MuiTimeline(
-                          height: widget.sectionH - 30,
-                          progress: _percent,
+                        AnimatedSlide(
+                          // opacity: _opacityPercent > 0.4 ? 1 : 0,
+                          offset: _opacityPercent > 0.4
+                              ? const Offset(0, 0)
+                              : const Offset(-3, 0),
+                          duration: _slideDuration,
+                          curve: Curves.fastOutSlowIn,
+                          child: MuiTimeline(
+                            height: widget.sectionH - 30,
+                            progress: _percent,
+                          ),
                         ),
                         _spacer,
                         Expanded(
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              AnimatedOpacity(
-                                opacity: min(1, _percent / 0.25 * 3),
-                                duration: _duration,
-                                curve: Curves.linear,
-                                child: MuiTrayectoryCard(
-                                  active: _percent > 0.16,
-                                  insetShadow: _percent > 0.41,
-                                  icon: Icons.local_library_outlined,
-                                  title: "A-Levels",
-                                  location: "IPVCE Lenin, Havana",
-                                  time: "2009-2012",
+                              AnimatedSlide(
+                                offset: _opacityPercent > 0.4
+                                    ? const Offset(0, 0)
+                                    : const Offset(0, 0.2),
+                                duration: _slideDuration,
+                                curve: Curves.fastOutSlowIn,
+                                child: AnimatedOpacity(
+                                  // opacity: min(1, _percent / 0.25 * 3),
+                                  opacity: _opacityPercent > 0.4 ? 1 : 0,
+                                  duration: _duration,
+                                  curve: Curves.linear,
+                                  child: MuiTrayectoryCard(
+                                    active: _percent > 0.16,
+                                    insetShadow: _percent > 0.41,
+                                    icon: Icons.local_library_outlined,
+                                    title: "A-Levels",
+                                    location: "IPVCE Lenin, Havana",
+                                    time: "2009-2012",
+                                  ),
                                 ),
                               ),
-                              AnimatedOpacity(
-                                opacity: min(
-                                    1, max(0, (_percent - 0.25) / 0.25 * 3)),
-                                duration: _duration,
-                                curve: Curves.ease,
-                                child: MuiTrayectoryCard(
-                                  active: _percent > 0.41,
-                                  insetShadow: _percent > 0.66,
-                                  icon: Icons.book_outlined,
-                                  title: "2 years in CS",
-                                  location: "University of Havana, Havana",
-                                  time: "2013-2015",
+                              AnimatedSlide(
+                                offset: _opacityPercent > 0.6
+                                    ? const Offset(0, 0)
+                                    : const Offset(0, 0.2),
+                                duration: _slideDuration,
+                                curve: Curves.fastOutSlowIn,
+                                child: AnimatedOpacity(
+                                  // opacity: min(
+                                  //     1, max(0, (_percent - 0.25) / 0.25 * 3)),
+                                  opacity: _opacityPercent > 0.6 ? 1 : 0,
+                                  duration: _duration,
+                                  curve: Curves.ease,
+                                  child: MuiTrayectoryCard(
+                                    active: _percent > 0.41,
+                                    insetShadow: _percent > 0.66,
+                                    icon: Icons.book_outlined,
+                                    title: "2 years in CS",
+                                    location: "University of Havana, Havana",
+                                    time: "2013-2015",
+                                  ),
                                 ),
                               ),
-                              AnimatedOpacity(
-                                opacity:
-                                    min(1, max(0, (_percent - 0.5) / 0.25 * 3)),
-                                duration: _duration,
-                                curve: Curves.ease,
-                                child: MuiTrayectoryCard(
-                                  active: _percent > 0.66,
-                                  insetShadow: _percent > 0.84,
-                                  icon: Icons.school_outlined,
-                                  title: "HND Software Dev.",
-                                  location: "IES Saladillo, Algeciras",
-                                  time: "2020-2022",
+                              AnimatedSlide(
+                                offset: _opacityPercent > 0.8
+                                    ? const Offset(0, 0)
+                                    : const Offset(0, 0.2),
+                                duration: _slideDuration,
+                                curve: Curves.fastOutSlowIn,
+                                child: AnimatedOpacity(
+                                  // opacity:
+                                  //     min(1, max(0, (_percent - 0.5) / 0.25 * 3)),
+                                  opacity: _opacityPercent > 0.8 ? 1 : 0,
+                                  duration: _duration,
+                                  curve: Curves.ease,
+                                  child: MuiTrayectoryCard(
+                                    active: _percent > 0.66,
+                                    insetShadow: _percent > 0.84,
+                                    icon: Icons.school_outlined,
+                                    title: "HND Software Dev.",
+                                    location: "IES Saladillo, Algeciras",
+                                    time: "2020-2022",
+                                  ),
                                 ),
                               ),
-                              AnimatedOpacity(
-                                opacity: min(
-                                    1, max(0, (_percent - 0.70) / 0.25 * 3)),
-                                duration: _duration,
-                                curve: Curves.ease,
-                                child: MuiTrayectoryCard(
-                                  active: _percent > 0.84,
-                                  insetShadow: _percent > 0.98,
-                                  icon: Icons.important_devices_rounded,
-                                  title: "Fullstack Developer",
-                                  location: "Boorpret, Cádiz",
-                                  time: "2020-2022",
+                              AnimatedSlide(
+                                offset: _opacityPercent > 0.95
+                                    ? const Offset(0, 0)
+                                    : const Offset(0, 0.2),
+                                duration: _slideDuration,
+                                curve: Curves.fastOutSlowIn,
+                                child: AnimatedOpacity(
+                                  // opacity: min(
+                                  //     1, max(0, (_percent - 0.70) / 0.25 * 3)),
+                                  opacity: _opacityPercent > 0.95 ? 1 : 0,
+                                  duration: _duration,
+                                  curve: Curves.ease,
+                                  child: MuiTrayectoryCard(
+                                    active: _percent > 0.84,
+                                    insetShadow: _percent > 0.98,
+                                    icon: Icons.important_devices_rounded,
+                                    title: "Fullstack Developer",
+                                    location: "Boorpret, Cádiz",
+                                    time: "2020-2022",
+                                  ),
                                 ),
                               ),
                             ],
@@ -491,3 +545,5 @@ const _spacer = SizedBox(
 );
 
 const _duration = Duration(milliseconds: 200);
+
+const _slideDuration = Duration(milliseconds: 500);
