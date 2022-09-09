@@ -290,7 +290,7 @@ class MuiSectionVerticalWidget extends StatelessWidget {
             active: active,
             width: 300,
             heigth: 126,
-            decorated: true,
+            decorated: false,
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: Center(

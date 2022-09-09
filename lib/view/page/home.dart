@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:ricardomejiastravieso/view/page/sections/section_b.dart';
 import 'package:ricardomejiastravieso/view/page/sections/section_c.dart';
+import 'package:ricardomejiastravieso/view/page/sections/section_d.dart';
 import 'package:ricardomejiastravieso/view/page/sections/section_newmorphism.dart';
 
 class HomePage extends StatefulWidget {
@@ -147,7 +148,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: LayoutBuilder(builder: (context, constraints) {
         final h = MediaQuery.of(context).size.height;
-        final tH = h * 6;
+        final tH = h * 8;
         final w = MediaQuery.of(context).size.width;
         return Stack(
           alignment: Alignment.topCenter,
@@ -202,11 +203,11 @@ class _HomePageState extends State<HomePage> {
                       height: h,
                       width: w,
                       child: SectionInitialNewmorphism(
-                        sections: 6,
+                        sections: 8,
                         controller: _controllerPrimary,
                         sectionH: h,
                         sectionW: w,
-                        totalH: h * 5,
+                        totalH: h * 7,
                       ),
                     ),
                     SizedBox(
@@ -214,10 +215,10 @@ class _HomePageState extends State<HomePage> {
                       width: w,
                       child: SecondSection(
                         controller: _controllerPrimary,
-                        sections: 6,
+                        sections: 8,
                         sectionH: h,
                         sectionW: w,
-                        totalH: h * 5,
+                        totalH: h * 7,
                       ),
                     ),
                     SizedBox(
@@ -228,13 +229,18 @@ class _HomePageState extends State<HomePage> {
                         sections: 6,
                         sectionH: h,
                         sectionW: w,
-                        totalH: h * 5,
+                        totalH: h * 7,
                       ),
                     ),
                     SizedBox(
-                      height: h,
+                      height: h * 3,
                       width: w,
-                      child: const Center(child: Text("QUINTO")),
+                      child: SectionFourth(
+                        sections: 8,
+                        sectionH: h,
+                        sectionW: w,
+                        totalH: h * 7,
+                      ),
                     ),
                   ],
                 ),
