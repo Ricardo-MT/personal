@@ -221,7 +221,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                     SizedBox(
-                      height: 2 * h,
+                      height: h,
                       width: w,
                       child: ThirdSection(
                         controller: _controllerPrimary,

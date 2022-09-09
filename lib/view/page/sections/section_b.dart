@@ -67,20 +67,21 @@ class _SecondSection extends State<SecondSection> {
       }
     }
     if (pos > 1) {
-      setState(() {
-        _top = widget.sectionH;
-        _percent = 1;
-        _outPercent = min(
-            1,
-            (widget.controller.offset - widget.sectionH * pos) /
-                widget.sectionH);
-      });
-      // if (_top != widget.sectionH || _percent != 1) {
-      //   setState(() {
-      //     _top = widget.sectionH;
-      //     _percent = 1;
-      //   });
-      // } else {
+      // setState(() {
+      //   _top = widget.sectionH;
+      //   _percent = 1;
+      //   _outPercent = min(
+      //       1,
+      //       (widget.controller.offset - widget.sectionH * pos) /
+      //           widget.sectionH);
+      // });
+      if (_top != widget.sectionH || _percent != 1) {
+        setState(() {
+          _top = widget.sectionH;
+          _percent = 1;
+        });
+      }
+      // else {
       //   setState(() {
       //     _outPercent = min(
       //         1,
@@ -246,7 +247,9 @@ class _SecondSection extends State<SecondSection> {
                     );
                   }
                   var item1 = AnimatedOpacity(
-                    opacity: min(1, _percent / 0.25 * 3),
+                    // opacity: min(1, _percent / 0.25 * 3),
+                    opacity:
+                        _opacityPercent > 0.4 ? (_outPercent > 0.1 ? 0 : 1) : 0,
                     duration: _duration,
                     curve: Curves.linear,
                     child: MuiTrayectoryVerticalCard(
@@ -259,7 +262,9 @@ class _SecondSection extends State<SecondSection> {
                     ),
                   );
                   var item2 = AnimatedOpacity(
-                    opacity: min(1, max(0, (_percent - 0.25) / 0.25 * 3)),
+                    // opacity: min(1, max(0, (_percent - 0.25) / 0.25 * 3)),
+                    opacity:
+                        _opacityPercent > 0.6 ? (_outPercent > 0.1 ? 0 : 1) : 0,
                     duration: _duration,
                     curve: Curves.ease,
                     child: MuiTrayectoryVerticalCard(
@@ -272,7 +277,9 @@ class _SecondSection extends State<SecondSection> {
                     ),
                   );
                   var item3 = AnimatedOpacity(
-                    opacity: min(1, max(0, (_percent - 0.5) / 0.25 * 3)),
+                    // opacity: min(1, max(0, (_percent - 0.5) / 0.25 * 3)),
+                    opacity:
+                        _opacityPercent > 0.8 ? (_outPercent > 0.1 ? 0 : 1) : 0,
                     duration: _duration,
                     curve: Curves.ease,
                     child: MuiTrayectoryVerticalCard(
@@ -285,7 +292,10 @@ class _SecondSection extends State<SecondSection> {
                     ),
                   );
                   var item4 = AnimatedOpacity(
-                    opacity: min(1, max(0, (_percent - 0.70) / 0.25 * 3)),
+                    // opacity: min(1, max(0, (_percent - 0.70) / 0.25 * 3)),
+                    opacity: _opacityPercent > 0.95
+                        ? (_outPercent > 0.1 ? 0 : 1)
+                        : 0,
                     duration: _duration,
                     curve: Curves.ease,
                     child: MuiTrayectoryVerticalCard(
@@ -330,10 +340,19 @@ class _SecondSection extends State<SecondSection> {
                           ],
                         )),
                         _spacer,
-                        MuiTimeline(
-                          height: widget.sectionW - 60,
-                          progress: _percent,
-                          vertical: false,
+                        AnimatedSlide(
+                          offset: _opacityPercent > 0.4
+                              ? (_outPercent > 0.8
+                                  ? const Offset(-3, 0)
+                                  : const Offset(0, 0))
+                              : const Offset(-3, 0),
+                          duration: _slideDuration,
+                          curve: Curves.fastOutSlowIn,
+                          child: MuiTimeline(
+                            height: widget.sectionW - 60,
+                            progress: _percent,
+                            vertical: false,
+                          ),
                         ),
                         _spacer
                       ],
@@ -404,6 +423,7 @@ class MuiTrayectoryCard extends StatelessWidget {
     return MuiCard(
       heigth: 92,
       width: 294,
+      decorated: true,
       active: active,
       insetShadow: insetShadow,
       child: Row(
@@ -487,6 +507,7 @@ class MuiTrayectoryVerticalCard extends StatelessWidget {
     return MuiCard(
       heigth: 300,
       width: 220,
+      decorated: true,
       active: active,
       insetShadow: insetShadow,
       child: Padding(

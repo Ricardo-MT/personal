@@ -1,5 +1,7 @@
-import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
-import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart';
+import 'package:flutter/material.dart';
+// ignore: unused_import
+import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart'
+    as shadow;
 
 class MuiCard extends StatelessWidget {
   const MuiCard({
@@ -15,6 +17,7 @@ class MuiCard extends StatelessWidget {
     this.colorEnd = defaultColorEnd,
     this.curve = Curves.fastOutSlowIn,
     this.containerDuration = 300,
+    this.decorated = false,
   }) : super(key: key);
   final bool active;
   final bool insetShadow;
@@ -27,6 +30,7 @@ class MuiCard extends StatelessWidget {
   final Color colorEnd;
   final Curve curve;
   final int containerDuration;
+  final bool decorated;
 
   @override
   Widget build(BuildContext context) {
@@ -39,20 +43,20 @@ class MuiCard extends StatelessWidget {
         width: width,
         height: heigth,
         curve: curve,
-        decoration: BoxDecoration(
+        decoration: shadow.BoxDecoration(
           borderRadius: circular ? null : BorderRadius.circular(26),
           shape: circular ? BoxShape.circle : BoxShape.rectangle,
           color: backgroundColor,
           boxShadow: active
               ? [
-                  BoxShadow(
+                  shadow.BoxShadow(
                     color: colorStart,
                     offset: offset,
                     blurRadius: blurRadius,
                     spreadRadius: spreadRadius,
                     inset: insetShadow,
                   ),
-                  BoxShadow(
+                  shadow.BoxShadow(
                     color: colorEnd,
                     offset: Offset(-offset.dx, -offset.dy),
                     blurRadius: blurRadius,
@@ -62,7 +66,23 @@ class MuiCard extends StatelessWidget {
                 ]
               : [],
         ),
-        child: child,
+        child: decorated
+            ? RepaintBoundary(
+                child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      borderRadius: circular ? null : BorderRadius.circular(26),
+                      shape: circular ? BoxShape.circle : BoxShape.rectangle,
+                      image: DecorationImage(
+                          image: width > heigth
+                              ? const AssetImage("assets/images/decoration.png")
+                              : const AssetImage(
+                                  "assets/images/decorationVertical.png"),
+                          opacity: insetShadow ? 0.8 : 1,
+                          fit: BoxFit.fitWidth,
+                          alignment: Alignment.topRight),
+                    ),
+                    child: child))
+            : child,
       ),
     );
   }
@@ -115,3 +135,5 @@ const offset = Offset(4, 4);
 const defaultBackgroundColor = Color(0xFF333333);
 const defaultColorStart = Color(0xFF010101);
 const defaultColorEnd = Color(0xFF555555);
+
+enum MuiCardDecoration { vertical, horizontal }
