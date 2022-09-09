@@ -197,52 +197,61 @@ class _HomePageState extends State<HomePage> {
                 scrollDirection: Axis.vertical,
                 controller: _controllerPrimary,
                 physics: const ClampingScrollPhysics(),
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: h,
-                      width: w,
-                      child: SectionInitialNewmorphism(
-                        sections: 8,
-                        controller: _controllerPrimary,
-                        sectionH: h,
-                        sectionW: w,
-                        totalH: h * 7,
+                child: DecoratedBox(
+                  decoration: const BoxDecoration(
+                      image: DecorationImage(
+                    image: AssetImage("assets/back.png"),
+                    fit: BoxFit.contain,
+                    alignment: Alignment.topCenter,
+                    repeat: ImageRepeat.repeatY,
+                  )),
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: h,
+                        width: w,
+                        child: SectionInitialNewmorphism(
+                          sections: 8,
+                          controller: _controllerPrimary,
+                          sectionH: h,
+                          sectionW: w,
+                          totalH: h * 7,
+                        ),
                       ),
-                    ),
-                    SizedBox(
-                      height: 2 * h,
-                      width: w,
-                      child: SecondSection(
-                        controller: _controllerPrimary,
-                        sections: 8,
-                        sectionH: h,
-                        sectionW: w,
-                        totalH: h * 7,
+                      SizedBox(
+                        height: 2 * h,
+                        width: w,
+                        child: SecondSection(
+                          controller: _controllerPrimary,
+                          sections: 8,
+                          sectionH: h,
+                          sectionW: w,
+                          totalH: h * 7,
+                        ),
                       ),
-                    ),
-                    SizedBox(
-                      height: h,
-                      width: w,
-                      child: ThirdSection(
-                        controller: _controllerPrimary,
-                        sections: 6,
-                        sectionH: h,
-                        sectionW: w,
-                        totalH: h * 7,
+                      SizedBox(
+                        height: h,
+                        width: w,
+                        child: ThirdSection(
+                          controller: _controllerPrimary,
+                          sections: 6,
+                          sectionH: h,
+                          sectionW: w,
+                          totalH: h * 7,
+                        ),
                       ),
-                    ),
-                    SizedBox(
-                      height: h * 3,
-                      width: w,
-                      child: SectionFourth(
-                        sections: 8,
-                        sectionH: h,
-                        sectionW: w,
-                        totalH: h * 7,
+                      SizedBox(
+                        height: h * 3,
+                        width: w,
+                        child: SectionFourth(
+                          sections: 8,
+                          sectionH: h,
+                          sectionW: w,
+                          totalH: h * 7,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
