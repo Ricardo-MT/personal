@@ -27,6 +27,7 @@ class _SecondSection extends State<SecondSection> {
   double _top = 0;
   double _percent = 0;
   double _opacityPercent = 0;
+  double _outPercent = 0;
 
   @override
   void initState() {
@@ -36,6 +37,12 @@ class _SecondSection extends State<SecondSection> {
 
   void listener() {
     int pos = widget.controller.offset ~/ (widget.sectionH);
+    if (pos > 2) {
+      if (_outPercent != 1) {
+        _outPercent = 1;
+      }
+      return;
+    }
     if (pos < 1) {
       // if (_top != 0 || _percent != 0) {
       //   setState(() {
@@ -51,13 +58,35 @@ class _SecondSection extends State<SecondSection> {
       });
       return;
     }
-    if (pos > 1) {
-      if (_top != widget.sectionH || _percent != 1) {
+    if (pos == 1) {
+      if (_outPercent != 0) {
         setState(() {
-          _top = widget.sectionH;
-          _percent = 1;
+          _outPercent = 0;
         });
       }
+    }
+    if (pos > 1) {
+      setState(() {
+        _top = widget.sectionH;
+        _percent = 1;
+        _outPercent = min(
+            1,
+            (widget.controller.offset - widget.sectionH * pos) /
+                widget.sectionH);
+      });
+      // if (_top != widget.sectionH || _percent != 1) {
+      //   setState(() {
+      //     _top = widget.sectionH;
+      //     _percent = 1;
+      //   });
+      // } else {
+      //   setState(() {
+      //     _outPercent = min(
+      //         1,
+      //         (widget.controller.offset - widget.sectionH * pos) /
+      //             widget.sectionH);
+      //   });
+      // }
       return;
     }
     double p = widget.controller.offset - widget.sectionH * pos;
@@ -96,7 +125,9 @@ class _SecondSection extends State<SecondSection> {
                         AnimatedSlide(
                           // opacity: _opacityPercent > 0.4 ? 1 : 0,
                           offset: _opacityPercent > 0.4
-                              ? const Offset(0, 0)
+                              ? (_outPercent > 0.8
+                                  ? const Offset(-3, 0)
+                                  : const Offset(0, 0))
                               : const Offset(-3, 0),
                           duration: _slideDuration,
                           curve: Curves.fastOutSlowIn,
@@ -112,13 +143,17 @@ class _SecondSection extends State<SecondSection> {
                             children: [
                               AnimatedSlide(
                                 offset: _opacityPercent > 0.4
-                                    ? const Offset(0, 0)
+                                    ? (_outPercent > 0.1
+                                        ? const Offset(1.5, 0)
+                                        : const Offset(0, 0))
                                     : const Offset(0, 0.2),
                                 duration: _slideDuration,
                                 curve: Curves.fastOutSlowIn,
                                 child: AnimatedOpacity(
                                   // opacity: min(1, _percent / 0.25 * 3),
-                                  opacity: _opacityPercent > 0.4 ? 1 : 0,
+                                  opacity: _opacityPercent > 0.4
+                                      ? (_outPercent > 0.1 ? 0 : 1)
+                                      : 0,
                                   duration: _duration,
                                   curve: Curves.linear,
                                   child: MuiTrayectoryCard(
@@ -133,7 +168,9 @@ class _SecondSection extends State<SecondSection> {
                               ),
                               AnimatedSlide(
                                 offset: _opacityPercent > 0.6
-                                    ? const Offset(0, 0)
+                                    ? (_outPercent > 0.3
+                                        ? const Offset(1.5, 0)
+                                        : const Offset(0, 0))
                                     : const Offset(0, 0.2),
                                 duration: _slideDuration,
                                 curve: Curves.fastOutSlowIn,
@@ -155,7 +192,9 @@ class _SecondSection extends State<SecondSection> {
                               ),
                               AnimatedSlide(
                                 offset: _opacityPercent > 0.8
-                                    ? const Offset(0, 0)
+                                    ? (_outPercent > 0.5
+                                        ? const Offset(1.5, 0)
+                                        : const Offset(0, 0))
                                     : const Offset(0, 0.2),
                                 duration: _slideDuration,
                                 curve: Curves.fastOutSlowIn,
@@ -177,7 +216,9 @@ class _SecondSection extends State<SecondSection> {
                               ),
                               AnimatedSlide(
                                 offset: _opacityPercent > 0.95
-                                    ? const Offset(0, 0)
+                                    ? (_outPercent > 0.8
+                                        ? const Offset(1.5, 0)
+                                        : const Offset(0, 0))
                                     : const Offset(0, 0.2),
                                 duration: _slideDuration,
                                 curve: Curves.fastOutSlowIn,
