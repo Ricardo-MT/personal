@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
+import 'package:ricardomejiastravieso/utils/theming.dart';
 import 'package:ricardomejiastravieso/view/widgets/card.dart';
 
 class SectionInitialNewmorphism extends StatefulWidget {
@@ -33,270 +34,35 @@ class _SectionInitialNewmorphism extends State<SectionInitialNewmorphism>
     parent: _controller,
     curve: Curves.fastOutSlowIn,
   );
-  double _anim = 0;
 
   @override
   void initState() {
     super.initState();
     _controller.forward();
-    widget.controller.addListener(listener);
-  }
-
-  void listener() {
-    // double sectionH =
-    //     widget.controller.position.maxScrollExtent / (widget.sections - 1);
-    int pos = widget.controller.offset ~/ (widget.sectionH);
-    if (pos >= 1) {
-      return;
-    }
-    double p = widget.controller.offset - widget.sectionH * pos;
-    setState(() {
-      // borderWidth = 14 - p * 14 / sectionH;
-      _anim = p / widget.sectionH;
-    });
   }
 
   @override
   void dispose() {
     super.dispose();
-    widget.controller.removeListener(listener);
     _controller.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    String family = "Monoton";
-
     return SizedBox(
       child: Stack(
         alignment: Alignment.center,
         children: [
-          SizedBox(
-            height: widget.sectionH,
-            child: Column(
-              children: [
-                const Spacer(),
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  controller: ScrollController(),
-                  reverse: false,
-                  physics: const NeverScrollableScrollPhysics(),
-                  child: Row(
-                    children: [
-                      AnimatedContainer(
-                        duration: const Duration(milliseconds: 200),
-                        curve: Curves.fastLinearToSlowEaseIn,
-                        width: widget.sectionW * _anim,
-                      ),
-                      SizedBox(
-                        width: widget.sectionW,
-                        child: Row(
-                          children: [
-                            const Spacer(
-                              flex: 1,
-                            ),
-                            Text(
-                              "Ricardo",
-                              style: style.copyWith(
-                                fontFamily: "Comfortaa",
-                                color: const Color(0xFFCECECE),
-                                // shadows: [
-                                //   for (int i = 0; i < 5; i++)
-                                //     BoxShadow(
-                                //       color: color,
-                                //       blurRadius: (3 * i).toDouble(),
-                                //       spreadRadius: 0,
-                                //     ),
-                                // ],
-                              ),
-                            ),
-                            const Spacer(
-                              flex: 2,
-                            )
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 60, vertical: 15),
-                  child: SizedBox(
-                    height: widget.sectionH * 0.6,
-                    width: 540,
-                  ),
-                ),
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  controller: ScrollController(),
-                  reverse: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  child: Row(
-                    children: [
-                      SizedBox(
-                        width: widget.sectionW,
-                        child: Row(
-                          children: [
-                            const Spacer(
-                              flex: 21,
-                            ),
-                            Text(
-                              "<Ricardo/>",
-                              style: style.copyWith(
-                                fontFamily: "LibreBarcode",
-                                color: const Color(0xFFCECECE),
-                                // color: color,
-                                // foreground: Paint()..shader = linearGradient,
-                              ),
-                            ),
-                            const Spacer(
-                              flex: 10,
-                            )
-                          ],
-                        ),
-                      ),
-                      AnimatedContainer(
-                        duration: const Duration(milliseconds: 200),
-                        curve: Curves.fastLinearToSlowEaseIn,
-                        width: widget.sectionW * _anim,
-                      )
-                    ],
-                  ),
-                ),
-                const Spacer(),
-              ],
-            ),
-          ),
+          NameLayer(sectionH: widget.sectionH, sectionW: widget.sectionW),
           ScaleTransition(
             scale: _animation,
-            // child: AnimatedContainer(
-            //   width: 540 + (w - 540) * _anim,
-            //   height: h * 0.6 + _anim * h * 0.8,
-            //   duration: const Duration(milliseconds: 100),
-            //   decoration: BoxDecoration(
-            //       // color: Colors.blue,
-            //       borderRadius: BorderRadius.circular(4),
-            //       border: Border.all(
-            //         color: const Color.fromARGB(255, 183, 45, 35)
-            //             .withOpacity(1 - _anim),
-            //         width: (18 - 18 * _anim),
-            //       )),
-            // ),
-            // child: AnimatedContainer(
-            //   duration: const Duration(milliseconds: 200),
-            //   curve: Curves.fastOutSlowIn,
-            //   width: 300,
-            //   height: 300,
-            //   decoration: BoxDecoration(
-            //     borderRadius: BorderRadius.circular(150),
-            //     color: const Color(0xFF333333),
-            //     boxShadow: [
-            //       BoxShadow(
-            //         color: const Color(0xFF010101),
-            //         offset: offset,
-            //         blurRadius: blurRadius - blurRadius * 0,
-            //         spreadRadius: spreadRadius - spreadRadius * 0,
-            //         inset: inset,
-            //       ),
-            //       BoxShadow(
-            //         color: const Color(0xFF555555),
-            //         offset: Offset(-offset.dx, -offset.dy),
-            //         blurRadius: blurRadius - blurRadius * 0,
-            //         spreadRadius: spreadRadius - spreadRadius * 0,
-            //         inset: inset,
-            //       ),
-            //     ],
-            //     // color: Colors.red,
-            //     // image: DecorationImage(
-            //     //     image: AssetImage("assets/images/cuba_a.png"),
-            //     //     colorFilter: ColorFilter.linearToSrgbGamma()),
-            //   ),
-            // ),
             child: const MuiCard(
               circular: true,
-              // active: _anim > 0.1 ? true : false,
               width: 400,
               heigth: 400,
             ),
           ),
-          Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              const Spacer(
-                flex: 3,
-              ),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                controller: ScrollController(),
-                reverse: true,
-                physics: const NeverScrollableScrollPhysics(),
-                child: Row(
-                  children: [
-                    SizedBox(
-                      width: widget.sectionW,
-                      child: Row(
-                        children: [
-                          const Spacer(),
-                          AnimatedOpacity(
-                            duration: const Duration(milliseconds: 200),
-                            opacity: max(1 - _anim * 2, 0),
-                            child: Text(
-                              "software",
-                              style: style.copyWith(
-                                fontFamily: family,
-                                fontSize: max(widget.sectionW * 0.09, 60),
-                                color: color,
-                              ),
-                            ),
-                          ),
-                          const Spacer(),
-                        ],
-                      ),
-                    ),
-                    AnimatedContainer(
-                      duration: const Duration(milliseconds: 200),
-                      width: _anim * 400,
-                    )
-                  ],
-                ),
-              ),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                controller: ScrollController(),
-                reverse: false,
-                physics: const NeverScrollableScrollPhysics(),
-                child: Row(
-                  children: [
-                    AnimatedContainer(
-                      duration: const Duration(milliseconds: 200),
-                      width: _anim * 400,
-                    ),
-                    SizedBox(
-                      width: widget.sectionW,
-                      child: Center(
-                        child: AnimatedOpacity(
-                          duration: const Duration(milliseconds: 200),
-                          opacity: max(1 - _anim * 2, 0),
-                          child: Text(
-                            "developer",
-                            style: style.copyWith(
-                              fontFamily: family,
-                              fontSize: widget.sectionW * 0.09,
-                              foreground: Paint()..shader = linearGradient,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const Spacer(
-                flex: 6,
-              ),
-            ],
-          ),
+          ProfessionLayer(sectionH: widget.sectionH, sectionW: widget.sectionW),
         ],
       ),
     );
@@ -312,3 +78,281 @@ final Shader linearGradient = const LinearGradient(
 
 var color = const Color(0xFF8a6c94);
 var style = const TextStyle(color: Colors.white, fontSize: 40);
+
+class NameLayer extends StatelessWidget {
+  NameLayer({
+    Key? key,
+    required this.sectionH,
+    required this.sectionW,
+  }) : super(key: key);
+  final double sectionH;
+  final double sectionW;
+  final GlobalKey _nameKeyA = GlobalKey();
+  final GlobalKey _nameKeyB = GlobalKey();
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: sectionH,
+      width: sectionW,
+      child: _buildParallaxBackground(context),
+    );
+  }
+
+  Widget _buildParallaxBackground(BuildContext context) {
+    return Flow(
+      delegate: SlideNameFlowDelegate(
+        scrollable: Scrollable.of(context)!,
+        listItemContext: context,
+        nameKeyA: _nameKeyA,
+        nameKeyB: _nameKeyB,
+        sectionH: sectionH,
+        sectionW: sectionW,
+      ),
+      children: [
+        Align(
+          alignment: Alignment.topLeft,
+          child: Text(
+            "Ricardo",
+            key: _nameKeyA,
+            style: style.copyWith(
+              fontFamily: "Comfortaa",
+              color: AppColors.whitePrimary,
+            ),
+          ),
+        ),
+        Align(
+          alignment: Alignment.bottomLeft,
+          child: Text(
+            "<Ricardo/>",
+            key: _nameKeyB,
+            style: style.copyWith(
+              fontFamily: "LibreBarcode",
+              color: AppColors.whitePrimary,
+            ),
+          ),
+        ),
+        // Image.asset(
+        //   project.imageUrl,
+        //   key: _backgroundImageKey,
+        //   fit: BoxFit.cover,
+        // )
+      ],
+    );
+  }
+}
+
+class ProfessionLayer extends StatelessWidget {
+  ProfessionLayer({
+    Key? key,
+    required this.sectionH,
+    required this.sectionW,
+  }) : super(key: key);
+  final double sectionH;
+  final double sectionW;
+  final GlobalKey _nameKeyA = GlobalKey();
+  final GlobalKey _nameKeyB = GlobalKey();
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: sectionH,
+      width: sectionW,
+      child: _buildParallaxBackground(context),
+    );
+  }
+
+  Widget _buildParallaxBackground(BuildContext context) {
+    return Flow(
+      delegate: SlideProfessionFlowDelegate(
+        scrollable: Scrollable.of(context)!,
+        listItemContext: context,
+        nameKeyA: _nameKeyA,
+        nameKeyB: _nameKeyB,
+        sectionH: sectionH,
+        sectionW: sectionW,
+      ),
+      children: [
+        Align(
+          alignment: Alignment.topLeft,
+          child: Text(
+            "software",
+            key: _nameKeyA,
+            style: style.copyWith(
+              fontFamily: "Monoton",
+              fontSize: max(sectionW * 0.09, 60),
+              color: color,
+            ),
+          ),
+        ),
+        Align(
+          alignment: Alignment.bottomLeft,
+          child: Text(
+            "developer",
+            key: _nameKeyB,
+            style: style.copyWith(
+              fontFamily: "Monoton",
+              fontSize: sectionW * 0.09,
+              foreground: Paint()..shader = linearGradient,
+            ),
+          ),
+        ),
+        // Image.asset(
+        //   project.imageUrl,
+        //   key: _backgroundImageKey,
+        //   fit: BoxFit.cover,
+        // )
+      ],
+    );
+  }
+}
+
+class SlideProfessionFlowDelegate extends FlowDelegate {
+  SlideProfessionFlowDelegate({
+    required this.scrollable,
+    required this.listItemContext,
+    required this.nameKeyA,
+    required this.nameKeyB,
+    required this.sectionH,
+    required this.sectionW,
+  }) : super(repaint: scrollable.position);
+
+  final ScrollableState scrollable;
+  final BuildContext listItemContext;
+  final GlobalKey nameKeyA;
+  final GlobalKey nameKeyB;
+  final double sectionH;
+  final double sectionW;
+
+  @override
+  BoxConstraints getConstraintsForChild(int i, BoxConstraints constraints) {
+    return BoxConstraints.tightFor(
+      width: constraints.maxWidth,
+    );
+  }
+
+  @override
+  void paintChildren(FlowPaintingContext context) {
+    final scrollableBox = scrollable.context.findRenderObject() as RenderBox;
+    final listItemBox = listItemContext.findRenderObject() as RenderBox;
+    final listItemOffset = listItemBox.localToGlobal(
+      listItemBox.size.topLeft(Offset.zero),
+      ancestor: scrollableBox,
+    );
+
+    final viewportDimension = scrollable.position.viewportDimension;
+    final scrollFraction =
+        (listItemOffset.dy.abs() / viewportDimension).clamp(0.0, 1.0);
+
+    if (scrollFraction == 1) {
+      return;
+    }
+
+    // Convert the background alignment into a pixel offset for
+    // painting purposes.
+    final nameASize =
+        (nameKeyA.currentContext!.findRenderObject() as RenderBox).size;
+    final nameBSize =
+        (nameKeyB.currentContext!.findRenderObject() as RenderBox).size;
+
+    double leftA = (sectionW - nameASize.width) / 2;
+    double leftB = (sectionW - nameBSize.width) / 2;
+    double s1 = (sectionH - nameASize.height - nameBSize.height) / 9;
+
+    context.paintChild(
+      0,
+      transform: Transform.translate(
+              offset: Offset(leftA - sectionW * scrollFraction, s1 * 3))
+          .transform,
+    );
+    context.paintChild(
+      1,
+      transform: Transform.translate(
+              offset: Offset(leftB + sectionW * scrollFraction,
+                  s1 * 3 + nameASize.height - 0.3 * nameASize.height))
+          .transform,
+    );
+  }
+
+  @override
+  bool shouldRepaint(SlideProfessionFlowDelegate oldDelegate) {
+    return scrollable != oldDelegate.scrollable ||
+        listItemContext != oldDelegate.listItemContext ||
+        nameKeyA != oldDelegate.nameKeyA;
+  }
+}
+
+class SlideNameFlowDelegate extends FlowDelegate {
+  SlideNameFlowDelegate({
+    required this.scrollable,
+    required this.listItemContext,
+    required this.nameKeyA,
+    required this.nameKeyB,
+    required this.sectionH,
+    required this.sectionW,
+  }) : super(repaint: scrollable.position);
+
+  final ScrollableState scrollable;
+  final BuildContext listItemContext;
+  final GlobalKey nameKeyA;
+  final GlobalKey nameKeyB;
+  final double sectionH;
+  final double sectionW;
+
+  @override
+  BoxConstraints getConstraintsForChild(int i, BoxConstraints constraints) {
+    return BoxConstraints.tightFor(
+      width: constraints.maxWidth,
+    );
+  }
+
+  @override
+  void paintChildren(FlowPaintingContext context) {
+    final scrollableBox = scrollable.context.findRenderObject() as RenderBox;
+    final listItemBox = listItemContext.findRenderObject() as RenderBox;
+    final listItemOffset = listItemBox.localToGlobal(
+      listItemBox.size.topLeft(Offset.zero),
+      ancestor: scrollableBox,
+    );
+
+    final viewportDimension = scrollable.position.viewportDimension;
+    final scrollFraction =
+        (listItemOffset.dy.abs() / viewportDimension).clamp(0.0, 1.0);
+
+    if (scrollFraction == 1) {
+      return;
+    }
+
+    // Convert the background alignment into a pixel offset for
+    // painting purposes.
+    final nameASize =
+        (nameKeyA.currentContext!.findRenderObject() as RenderBox).size;
+    final nameBSize =
+        (nameKeyB.currentContext!.findRenderObject() as RenderBox).size;
+
+    double leftA = (sectionW - nameASize.width) / 3;
+    double leftB = ((sectionW - nameBSize.width) / 3) * 2;
+    double s1 = (sectionH - (sectionH * 0.6 + 30)) / 2;
+
+    context.paintChild(
+      0,
+      transform: Transform.translate(
+              offset: Offset(leftA + sectionW * scrollFraction, s1))
+          .transform,
+    );
+    context.paintChild(
+      1,
+      transform: Transform.translate(
+              offset: Offset(leftB + 40 - sectionW * scrollFraction,
+                  sectionH - nameBSize.height - s1))
+          .transform,
+    );
+  }
+
+  @override
+  bool shouldRepaint(SlideNameFlowDelegate oldDelegate) {
+    return scrollable != oldDelegate.scrollable ||
+        listItemContext != oldDelegate.listItemContext ||
+        nameKeyA != oldDelegate.nameKeyA;
+  }
+}
