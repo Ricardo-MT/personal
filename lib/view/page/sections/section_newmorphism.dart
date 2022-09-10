@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
 import 'package:ricardomejiastravieso/utils/theming.dart';
 import 'package:ricardomejiastravieso/view/widgets/card.dart';
@@ -180,7 +178,7 @@ class ProfessionLayer extends StatelessWidget {
             key: _nameKeyA,
             style: style.copyWith(
               fontFamily: "Monoton",
-              fontSize: max(sectionW * 0.09, 60),
+              fontSize: sectionW * 0.1,
               color: color,
             ),
           ),
@@ -192,7 +190,7 @@ class ProfessionLayer extends StatelessWidget {
             key: _nameKeyB,
             style: style.copyWith(
               fontFamily: "Monoton",
-              fontSize: sectionW * 0.09,
+              fontSize: sectionW * 0.12,
               foreground: Paint()..shader = linearGradient,
             ),
           ),
@@ -337,14 +335,15 @@ class SlideNameFlowDelegate extends FlowDelegate {
     context.paintChild(
       0,
       transform: Transform.translate(
-              offset: Offset(leftA + sectionW * scrollFraction, s1))
+              offset: Offset(leftA + sectionW * scrollFraction,
+                  s1 - nameASize.height * 0.5))
           .transform,
     );
     context.paintChild(
       1,
       transform: Transform.translate(
               offset: Offset(leftB + 40 - sectionW * scrollFraction,
-                  sectionH - nameBSize.height - s1))
+                  sectionH - nameBSize.height - s1 + nameBSize.height * 0.6))
           .transform,
     );
   }
