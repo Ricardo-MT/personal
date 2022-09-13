@@ -1,4 +1,3 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:ricardomejiastravieso/utils/theming.dart';
 import 'package:ricardomejiastravieso/view/widgets/card.dart';
@@ -75,31 +74,39 @@ class _SectionLast extends State<SectionLast> {
                             ),
                           ),
                           Wrap(
-                            spacing: 10,
-                            runSpacing: 10,
+                            spacing: 5,
+                            runSpacing: 5,
                             children: [
                               MuiBadge(
+                                size: 40,
                                 child: Icon(
                                   Icons.facebook,
                                   color: AppColors.whitePrimary,
+                                  size: 18,
                                 ),
                               ),
                               MuiBadge(
+                                size: 40,
                                 child: Icon(
                                   Icons.whatsapp,
                                   color: AppColors.whitePrimary,
+                                  size: 18,
                                 ),
                               ),
                               MuiBadge(
+                                size: 40,
                                 child: Icon(
                                   Icons.email,
                                   color: AppColors.whitePrimary,
+                                  size: 18,
                                 ),
                               ),
                               MuiBadge(
+                                size: 40,
                                 child: Icon(
                                   Icons.link_outlined,
                                   color: AppColors.whitePrimary,
+                                  size: 18,
                                 ),
                               ),
                             ],
@@ -117,30 +124,35 @@ class _SectionLast extends State<SectionLast> {
                         children: const [
                           Text(
                             "Ricardo Mejías Travieso",
+                            textAlign: TextAlign.right,
                             style: TextStyle(
                               fontFamily: "Montserrat",
                             ),
                           ),
                           Text(
                             "Fulstack & Mobile Developer",
+                            textAlign: TextAlign.right,
                             style: TextStyle(
                               fontFamily: "Montserrat",
                             ),
                           ),
                           Text(
                             "Cádiz, España",
+                            textAlign: TextAlign.right,
                             style: TextStyle(
                               fontFamily: "Montserrat",
                             ),
                           ),
                           Text(
                             "+34 644 096889",
+                            textAlign: TextAlign.right,
                             style: TextStyle(
                               fontFamily: "Montserrat",
                             ),
                           ),
                           Text(
                             "rikr2.mt@gmail.com",
+                            textAlign: TextAlign.right,
                             style: TextStyle(
                               fontFamily: "Montserrat",
                             ),
@@ -178,9 +190,11 @@ class _SectionLast extends State<SectionLast> {
             )),
             child: Center(
               child: Text(
-                "©2022 RICARDO MEJIAS TRAVIESO. - ALL RIGHTS RESERVED",
+                "©2022 RICARDO MEJIAS TRAVIESO\nPOWERED BY FLUTTER",
+                textAlign: TextAlign.center,
                 style: TextStyle(
                   fontFamily: "Montserrat",
+                  fontSize: 12,
                   color: AppColors.whitePrimary,
                 ),
               ),

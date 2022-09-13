@@ -113,20 +113,23 @@ class _SectionZero extends State<SectionZero> {
                         ),
                         TextSpan(text: "solutions in order to maximize the "),
                         TextSpan(
-                          text: "RESULT.",
+                          text: "RESULT",
                           style: _accentStyle,
+                        ),
+                        TextSpan(
+                          text: " ./>",
                         ),
                       ]),
                       textAlign: TextAlign.justify,
                       style: TextStyle(
-                        fontSize: 50,
+                        fontSize: 30,
                         // color: AppColors.whitePrimary,
                         color: Colors.white,
                         fontFamily: "Comfortaa",
                         shadows: [
-                          for (int i = 1; i < 5; i++)
+                          for (int i = 1; i < 3; i++)
                             Shadow(
-                                color: AppColors.whiteAccent, blurRadius: i * 4)
+                                color: AppColors.whiteAccent, blurRadius: i * 5)
                         ],
                       ),
                     ),
@@ -230,7 +233,7 @@ class _AnimatedCubaStampState extends State<AnimatedCubaStamp> {
 
 const _accentStyle = TextStyle(
   fontFamily: "Montserrat",
-  fontSize: 60,
+  fontSize: 36,
   color: Color(0xFF8a6c94),
   shadows: [],
 );

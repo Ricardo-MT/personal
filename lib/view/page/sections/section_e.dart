@@ -30,10 +30,10 @@ class _SectionFifth extends State<SectionFifth> {
         children: [
           const Spacer(),
           Expanded(
-            flex: 4,
+            flex: 6,
             child: Padding(
               padding:
-                  const EdgeInsets.symmetric(vertical: 14.0, horizontal: 40),
+                  const EdgeInsets.symmetric(vertical: 14.0, horizontal: 20),
               child: AutoSizeText.rich(
                 const TextSpan(text: "< I have always been ", children: [
                   TextSpan(
@@ -107,19 +107,18 @@ class _SectionFifth extends State<SectionFifth> {
                 textAlign: TextAlign.justify,
                 style: TextStyle(
                   fontSize: 30,
-                  // color: AppColors.whitePrimary,
                   color: Colors.white,
                   fontFamily: "Comfortaa",
-
                   shadows: [
-                    for (int i = 1; i < 5; i++)
-                      Shadow(color: AppColors.whiteAccent, blurRadius: i * 4)
+                    for (int i = 1; i < 3; i++)
+                      Shadow(color: AppColors.whiteAccent, blurRadius: i * 5)
                   ],
                 ),
               ),
             ),
           ),
           Expanded(
+            flex: 1,
             child: Row(
               children: [
                 Expanded(
@@ -214,7 +213,7 @@ class _AnimatedCubaStampState extends State<AnimatedCubaStamp> {
 
 const _accentStyle = TextStyle(
   fontFamily: "Montserrat",
-  fontSize: 40,
+  fontSize: 36,
   color: Color(0xFF8a6c94),
   shadows: [],
 );

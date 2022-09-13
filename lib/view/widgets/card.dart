@@ -96,20 +96,22 @@ class MuiBadge extends StatelessWidget {
     this.colorStart = const Color(0xFF4B3C50),
     this.colorEnd = const Color(0xFF9678A0),
     this.backgroundColor = const Color(0xFF775A81),
+    this.size = 60,
   }) : super(key: key);
   final Widget? child;
   final bool inverted;
   final Color backgroundColor;
   final Color colorStart;
   final Color colorEnd;
+  final double size;
 
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
       duration: const Duration(milliseconds: 300),
       curve: Curves.fastOutSlowIn,
-      width: 60,
-      height: 60,
+      width: size,
+      height: size,
       decoration: BoxDecoration(
         border: Border.all(
           color: backgroundColor,
