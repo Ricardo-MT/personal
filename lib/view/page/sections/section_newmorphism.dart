@@ -178,7 +178,7 @@ class ProfessionLayer extends StatelessWidget {
             key: _nameKeyA,
             style: style.copyWith(
               fontFamily: "Monoton",
-              fontSize: sectionW * 0.1,
+              fontSize: sectionW * 0.09,
               color: color,
             ),
           ),
@@ -190,7 +190,7 @@ class ProfessionLayer extends StatelessWidget {
             key: _nameKeyB,
             style: style.copyWith(
               fontFamily: "Monoton",
-              fontSize: sectionW * 0.12,
+              fontSize: sectionW * 0.09,
               foreground: Paint()..shader = linearGradient,
             ),
           ),

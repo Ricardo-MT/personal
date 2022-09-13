@@ -39,19 +39,19 @@ class _ThirdSection extends State<ThirdSection> {
 
   void listener() {
     int pos = widget.controller.offset ~/ (widget.sectionH);
-    if (pos < 2) {
+    if (pos < 3) {
       return;
     }
-    if (pos < 3) {
+    if (pos < 4) {
       setState(() {
         _top = 0;
         _percent = 0;
         _opacityPercent =
-            min(1, (widget.controller.offset / (widget.sectionH * 1)) - 2);
+            min(1, (widget.controller.offset / (widget.sectionH * 1)) - 3);
       });
       return;
     }
-    if (pos == 3) {
+    if (pos == 4) {
       if (_outPercent != 0 || _opacityPercent != 1) {
         setState(() {
           _outPercent = 0;
@@ -59,7 +59,7 @@ class _ThirdSection extends State<ThirdSection> {
         });
       }
     }
-    if (pos > 3) {
+    if (pos > 4) {
       if (_opacityPercent != 1) {
         setState(() {
           _opacityPercent = 1;

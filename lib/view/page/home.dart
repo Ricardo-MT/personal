@@ -4,10 +4,14 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
+import 'package:ricardomejiastravieso/view/page/sections/section_a.dart';
 import 'package:ricardomejiastravieso/view/page/sections/section_b.dart';
 import 'package:ricardomejiastravieso/view/page/sections/section_c.dart';
 import 'package:ricardomejiastravieso/view/page/sections/section_d.dart';
+import 'package:ricardomejiastravieso/view/page/sections/section_e.dart';
+import 'package:ricardomejiastravieso/view/page/sections/section_f.dart';
 import 'package:ricardomejiastravieso/view/page/sections/section_newmorphism.dart';
+import 'package:ricardomejiastravieso/view/widgets/switch.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -148,41 +152,11 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: LayoutBuilder(builder: (context, constraints) {
         final h = MediaQuery.of(context).size.height;
-        final tH = h * 8;
         final w = MediaQuery.of(context).size.width;
+        const sections = 10;
         return Stack(
           alignment: Alignment.topCenter,
           children: [
-            // SizedBox(
-            //   height: h,
-            //   width: w,
-            //   child: AnimatedBackgroundColor(
-            //     controller: _controllerPrimary,
-            //     sections: 6,
-            //     sectionHeight: h,
-            //     totalheight: tH,
-            //   ),
-            // ),
-            // SizedBox(
-            //   height: h,
-            //   width: w,
-            //   child: AnimatedCubaStamp(
-            //     controller: _controllerPrimary,
-            //     sections: 6,
-            //     sectionHeight: h,
-            //     totalheight: tH,
-            //   ),
-            // ),
-            // SizedBox(
-            //   height: h,
-            //   width: w,
-            //   child: AnimatedRadialGradient(
-            //     controller: _controllerPrimary,
-            //     sections: 6,
-            //     sectionHeight: h,
-            //     totalheight: tH,
-            //   ),
-            // ),
             DecoratedBox(
               decoration: const BoxDecoration(
                   image: DecorationImage(
@@ -219,11 +193,20 @@ class _HomePageState extends State<HomePage> {
                       height: h,
                       width: w,
                       child: SectionInitialNewmorphism(
-                        sections: 8,
+                        sections: sections,
                         controller: _controllerPrimary,
                         sectionH: h,
                         sectionW: w,
-                        totalH: h * 7,
+                        totalH: h * (sections - 1),
+                      ),
+                    ),
+                    SizedBox(
+                      height: h,
+                      width: w,
+                      child: SectionZero(
+                        sections: sections,
+                        controller: _controllerPrimary,
+                        sectionH: h,
                       ),
                     ),
                     SizedBox(
@@ -231,10 +214,10 @@ class _HomePageState extends State<HomePage> {
                       width: w,
                       child: SecondSection(
                         controller: _controllerPrimary,
-                        sections: 8,
+                        sections: sections,
                         sectionH: h,
                         sectionW: w,
-                        totalH: h * 7,
+                        totalH: h * (sections - 1),
                       ),
                     ),
                     SizedBox(
@@ -242,26 +225,46 @@ class _HomePageState extends State<HomePage> {
                       width: w,
                       child: ThirdSection(
                         controller: _controllerPrimary,
-                        sections: 6,
+                        sections: sections,
                         sectionH: h,
                         sectionW: w,
-                        totalH: h * 7,
+                        totalH: h * (sections - 1),
                       ),
                     ),
                     SizedBox(
-                      height: h * 3,
+                      height: h * 2,
                       width: w,
                       child: SectionFourth(
-                        sections: 8,
+                        sections: sections,
                         sectionH: h,
                         sectionW: w,
-                        totalH: h * 7,
+                        totalH: h * sections - 1,
+                      ),
+                    ),
+                    SizedBox(
+                      height: h,
+                      width: w,
+                      child: SectionFifth(
+                        sections: sections,
+                        sectionH: h,
+                        controller: _controllerPrimary,
+                      ),
+                    ),
+                    SizedBox(
+                      height: h,
+                      width: w,
+                      child: SectionLast(
+                        sections: sections,
+                        sectionH: h,
+                        controller: _controllerPrimary,
                       ),
                     ),
                   ],
                 ),
               ),
             ),
+            const Positioned(bottom: 5, right: 5, child: MuiSwitchTheme()),
+            const Positioned(bottom: 5, left: 5, child: MuiSwitchLang()),
           ],
         );
       }),

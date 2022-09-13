@@ -93,9 +93,15 @@ class MuiBadge extends StatelessWidget {
     Key? key,
     this.child,
     this.inverted = false,
+    this.colorStart = const Color(0xFF4B3C50),
+    this.colorEnd = const Color(0xFF9678A0),
+    this.backgroundColor = const Color(0xFF775A81),
   }) : super(key: key);
   final Widget? child;
   final bool inverted;
+  final Color backgroundColor;
+  final Color colorStart;
+  final Color colorEnd;
 
   @override
   Widget build(BuildContext context) {
@@ -106,7 +112,7 @@ class MuiBadge extends StatelessWidget {
       height: 60,
       decoration: BoxDecoration(
         border: Border.all(
-          color: const Color(0xFF775A81),
+          color: backgroundColor,
           width: 2,
         ),
         shape: BoxShape.circle,
@@ -115,12 +121,12 @@ class MuiBadge extends StatelessWidget {
             end: Alignment.bottomRight,
             colors: inverted
                 ? [
-                    const Color(0xFF9678A0),
-                    const Color(0xFF4B3C50),
+                    colorEnd,
+                    colorStart,
                   ]
                 : [
-                    const Color(0xFF4B3C50),
-                    const Color(0xFF9678A0),
+                    colorStart,
+                    colorEnd,
                   ]),
       ),
       child: Center(child: child),

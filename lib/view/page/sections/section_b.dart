@@ -38,13 +38,13 @@ class _SecondSection extends State<SecondSection> {
 
   void listener() {
     int pos = widget.controller.offset ~/ (widget.sectionH);
-    if (pos > 2) {
+    if (pos > 3) {
       if (_outPercent != 1) {
         _outPercent = 1;
       }
       return;
     }
-    if (pos < 1) {
+    if (pos < 2) {
       // if (_top != 0 || _percent != 0) {
       //   setState(() {
       //     _top = 0;
@@ -59,7 +59,7 @@ class _SecondSection extends State<SecondSection> {
       // });
       return;
     }
-    if (pos == 1) {
+    if (pos == 2) {
       if (_outPercent != 0 || _opacityPercent != 1) {
         setState(() {
           _outPercent = 0;
@@ -67,29 +67,13 @@ class _SecondSection extends State<SecondSection> {
         });
       }
     }
-    if (pos > 1) {
-      // setState(() {
-      //   _top = widget.sectionH;
-      //   _percent = 1;
-      //   _outPercent = min(
-      //       1,
-      //       (widget.controller.offset - widget.sectionH * pos) /
-      //           widget.sectionH);
-      // });
+    if (pos > 2) {
       if (_top != widget.sectionH || _percent != 1) {
         setState(() {
           _top = widget.sectionH;
           _percent = 1;
         });
       }
-      // else {
-      //   setState(() {
-      //     _outPercent = min(
-      //         1,
-      //         (widget.controller.offset - widget.sectionH * pos) /
-      //             widget.sectionH);
-      //   });
-      // }
       return;
     }
     double p = widget.controller.offset - widget.sectionH * pos;
@@ -108,7 +92,8 @@ class _SecondSection extends State<SecondSection> {
 
   @override
   Widget build(BuildContext context) {
-    var item1 = Flow(delegate: ParallaxFlowDelegate(
+    var item1 = Flow(
+      delegate: ParallaxFlowDelegate(
         scrollable: Scrollable.of(context)!,
         sectionH: widget.sectionH,
         sectionW: widget.sectionW,
@@ -116,19 +101,20 @@ class _SecondSection extends State<SecondSection> {
         backgroundImageKey: _backgroundImageKey,
       ),
       children: [
-                    Align(
+        Align(
           alignment: Alignment.topLeft,
-                      child: MuiTrayectoryVerticalCard(
-                        key: _backgroundImageKey,
-                      active: _percent > 0.16,
-                      insetShadow: _percent > 0.41,
-                      icon: Icons.local_library_outlined,
-                      title: "A-Levels",
-                      location: "IPVCE Lenin, Havana",
-                      time: "2009-2012",
-                                      ),
-                    )
-                  ],);
+          child: MuiTrayectoryVerticalCard(
+            key: _backgroundImageKey,
+            active: _percent > 0.16,
+            insetShadow: _percent > 0.41,
+            icon: Icons.local_library_outlined,
+            title: "A-Levels",
+            location: "IPVCE Lenin, Havana",
+            time: "2009-2012",
+          ),
+        )
+      ],
+    );
     return RepaintBoundary(
       child: Stack(
         children: [
@@ -443,10 +429,10 @@ class ParallaxFlowDelegate extends FlowDelegate {
     final viewportDimension = scrollable.position.viewportDimension;
     final scrollFraction =
         (listItemOffset.dy / viewportDimension).clamp(0.0, 1.0);
-        
-    final opacity = ((listItemOffset.dy - sectionH) / viewportDimension).clamp(0.0, 1.0);
+
+    final opacity =
+        ((listItemOffset.dy - sectionH) / viewportDimension).clamp(0.0, 1.0);
     final verticalAlignment = Alignment(0.0, scrollFraction * 2 - 1);
-print(opacity);
     // Convert the background alignment into a pixel offset for
     // painting purposes.
     final backgroundSize =
@@ -455,12 +441,15 @@ print(opacity);
     final listItemSize = context.size;
     final childRect =
         verticalAlignment.inscribe(backgroundSize, Offset.zero & listItemSize);
-    context.paintChild(
-      0,
-      transform:
-          Transform.translate(offset: Offset(0.0, sectionH-scrollFraction*sectionH +backgroundSize.height*opacity )).transform,
-          opacity: 1-opacity
-    );
+    context.paintChild(0,
+        transform: Transform.translate(
+                offset: Offset(
+                    0.0,
+                    sectionH -
+                        scrollFraction * sectionH +
+                        backgroundSize.height * opacity))
+            .transform,
+        opacity: 1 - opacity);
   }
 
   @override
