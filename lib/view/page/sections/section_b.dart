@@ -26,8 +26,9 @@ class SecondSection extends StatefulWidget {
 class _SecondSection extends State<SecondSection> {
   double _top = 0;
   double _percent = 0;
-  double _opacityPercent = 0;
+  double _opacityPercent = 1;
   double _outPercent = 0;
+  final GlobalKey _backgroundImageKey = GlobalKey();
 
   @override
   void initState() {
@@ -50,12 +51,12 @@ class _SecondSection extends State<SecondSection> {
       //     _percent = 0;
       //   });
       // }
-      setState(() {
-        _top = 0;
-        _percent = 0;
-        _opacityPercent =
-            min(1, (widget.controller.offset / widget.sectionH) * 1.1);
-      });
+      // setState(() {
+      //   _top = 0;
+      //   _percent = 0;
+      //   _opacityPercent =
+      //       min(1, (widget.controller.offset / widget.sectionH) * 1.1);
+      // });
       return;
     }
     if (pos == 1) {
@@ -107,9 +108,31 @@ class _SecondSection extends State<SecondSection> {
 
   @override
   Widget build(BuildContext context) {
+    var item1 = Flow(delegate: ParallaxFlowDelegate(
+        scrollable: Scrollable.of(context)!,
+        sectionH: widget.sectionH,
+        sectionW: widget.sectionW,
+        listItemContext: context,
+        backgroundImageKey: _backgroundImageKey,
+      ),
+      children: [
+                    Align(
+          alignment: Alignment.topLeft,
+                      child: MuiTrayectoryVerticalCard(
+                        key: _backgroundImageKey,
+                      active: _percent > 0.16,
+                      insetShadow: _percent > 0.41,
+                      icon: Icons.local_library_outlined,
+                      title: "A-Levels",
+                      location: "IPVCE Lenin, Havana",
+                      time: "2009-2012",
+                                      ),
+                    )
+                  ],);
     return RepaintBoundary(
       child: Stack(
         children: [
+          Positioned(child: item1),
           AnimatedPositioned(
             duration: const Duration(milliseconds: 0),
             right: 0,
@@ -246,20 +269,13 @@ class _SecondSection extends State<SecondSection> {
                       ],
                     );
                   }
-                  var item1 = AnimatedOpacity(
-                    // opacity: min(1, _percent / 0.25 * 3),
-                    opacity:
-                        _opacityPercent > 0.4 ? (_outPercent > 0.1 ? 0 : 1) : 0,
-                    duration: _duration,
-                    curve: Curves.linear,
-                    child: MuiTrayectoryVerticalCard(
-                      active: _percent > 0.16,
-                      insetShadow: _percent > 0.41,
-                      icon: Icons.local_library_outlined,
-                      title: "A-Levels",
-                      location: "IPVCE Lenin, Havana",
-                      time: "2009-2012",
-                    ),
+                  var item1 = MuiTrayectoryVerticalCard(
+                    active: _percent > 0.16,
+                    insetShadow: _percent > 0.41,
+                    icon: Icons.local_library_outlined,
+                    title: "A-Levels",
+                    location: "IPVCE Lenin, Havana",
+                    time: "2009-2012",
                   );
                   var item2 = AnimatedOpacity(
                     // opacity: min(1, max(0, (_percent - 0.25) / 0.25 * 3)),
@@ -388,6 +404,70 @@ class _SecondSection extends State<SecondSection> {
         ],
       ),
     );
+  }
+}
+
+class ParallaxFlowDelegate extends FlowDelegate {
+  ParallaxFlowDelegate({
+    required this.scrollable,
+    required this.listItemContext,
+    required this.backgroundImageKey,
+    required this.sectionH,
+    required this.sectionW,
+  }) : super(repaint: scrollable.position);
+
+  final ScrollableState scrollable;
+  final BuildContext listItemContext;
+  final GlobalKey backgroundImageKey;
+  final double sectionH;
+  final double sectionW;
+
+  @override
+  BoxConstraints getConstraintsForChild(int i, BoxConstraints constraints) {
+    return BoxConstraints.tightFor(
+      width: constraints.maxWidth,
+    );
+  }
+
+  @override
+  void paintChildren(FlowPaintingContext context) {
+    final scrollableBox = scrollable.context.findRenderObject() as RenderBox;
+    final listItemBox = listItemContext.findRenderObject() as RenderBox;
+    final listItemOffset = listItemBox.localToGlobal(
+      listItemBox.size.centerLeft(Offset.zero),
+      ancestor: scrollableBox,
+    );
+
+    // Determine the percent position of this list item within the
+    // scrollable area.
+    final viewportDimension = scrollable.position.viewportDimension;
+    final scrollFraction =
+        (listItemOffset.dy / viewportDimension).clamp(0.0, 1.0);
+        
+    final opacity = ((listItemOffset.dy - sectionH) / viewportDimension).clamp(0.0, 1.0);
+    final verticalAlignment = Alignment(0.0, scrollFraction * 2 - 1);
+print(opacity);
+    // Convert the background alignment into a pixel offset for
+    // painting purposes.
+    final backgroundSize =
+        (backgroundImageKey.currentContext!.findRenderObject() as RenderBox)
+            .size;
+    final listItemSize = context.size;
+    final childRect =
+        verticalAlignment.inscribe(backgroundSize, Offset.zero & listItemSize);
+    context.paintChild(
+      0,
+      transform:
+          Transform.translate(offset: Offset(0.0, sectionH-scrollFraction*sectionH +backgroundSize.height*opacity )).transform,
+          opacity: 1-opacity
+    );
+  }
+
+  @override
+  bool shouldRepaint(ParallaxFlowDelegate oldDelegate) {
+    return scrollable != oldDelegate.scrollable ||
+        listItemContext != oldDelegate.listItemContext ||
+        backgroundImageKey != oldDelegate.backgroundImageKey;
   }
 }
 
