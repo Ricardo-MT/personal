@@ -231,15 +231,11 @@ class _HomePageState extends State<HomePage> {
                         totalH: h * (sections - 1),
                       ),
                     ),
-                    SizedBox(
-                      height: h * 2,
-                      width: w,
-                      child: SectionFourth(
-                        sections: sections,
-                        sectionH: h,
-                        sectionW: w,
-                        totalH: h * sections - 1,
-                      ),
+                    SectionFourth(
+                      sections: sections,
+                      sectionH: h,
+                      sectionW: w,
+                      totalH: h * sections - 1,
                     ),
                     SizedBox(
                       height: h,

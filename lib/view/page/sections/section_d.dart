@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:ricardomejiastravieso/utils/theming.dart';
 import 'package:ricardomejiastravieso/view/widgets/card.dart';
@@ -17,42 +19,42 @@ class SectionFourth extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+    return Column(
+      mainAxisSize: MainAxisSize.min,
       children: [
-        Column(
-          children: List.generate(
-              projectsA.length,
-              (index) => Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 14, vertical: 16),
-                    child: MuiCard(
-                      heigth: (sectionH - 32) * 0.5,
-                      width: (sectionH - 32) * 0.265,
-                      child: LocationListItem(
-                        project: projectsA[index],
-                      ),
-                    ),
-                  )),
+        PCItem(
+          project: projectsA[0],
+          sectionH: sectionH,
+          sectionW: sectionW,
         ),
-        Padding(
-          padding: EdgeInsets.only(top: (sectionH - 32) * 0.25),
-          child: Column(
-            children: List.generate(
-                projectsB.length,
-                (index) => Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 24, vertical: 16),
-                      child: MuiCard(
-                        heigth: (sectionH - 32) * 0.5,
-                        width: (sectionH - 32) * 0.265,
-                        child: LocationListItem(
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              children: List.generate(
+                  projectsA.length,
+                  (index) => MobileItem(
+                        sectionH: sectionH,
+                        sectionW: sectionW,
+                        project: projectsA[index],
+                      )),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: (sectionH - 32) * 0.25),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: List.generate(
+                    projectsB.length,
+                    (index) => MobileItem(
+                          sectionH: sectionH,
+                          sectionW: sectionW,
                           project: projectsB[index],
-                        ),
-                      ),
-                    )),
-          ),
-        )
+                        )),
+              ),
+            )
+          ],
+        ),
       ],
     );
   }
@@ -95,27 +97,40 @@ class MuiProject {
 }
 
 @immutable
-class LocationListItem extends StatelessWidget {
-  LocationListItem({
+class MobileItem extends StatelessWidget {
+  MobileItem({
     super.key,
     required this.project,
+    required this.sectionH,
+    required this.sectionW,
   });
 
   final MuiProject project;
   final GlobalKey _backgroundImageKey = GlobalKey();
+  final double sectionH;
+  final double sectionW;
 
   @override
   Widget build(BuildContext context) {
-    return AspectRatio(
-      aspectRatio: 8 / 16,
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(16),
-        child: Stack(
-          children: [
-            _buildParallaxBackground(context),
-            _buildGradient(),
-            _buildTitleAndSubtitle(),
-          ],
+    double w = min((sectionW / 2 - 32), 300);
+    double aspectRatio = max(0.45, min(0.54, sectionW / sectionH));
+    double h = w / aspectRatio;
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+      child: MuiCard(
+        // heigth: (sectionH - 32) * 0.5,
+        // width: (sectionH - 32) * 0.265,
+        heigth: h,
+        width: w,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(16),
+          child: Stack(
+            children: [
+              _buildParallaxBackground(context),
+              _buildGradient(),
+              _buildTitleAndSubtitle(),
+            ],
+          ),
         ),
       ),
     );
@@ -240,5 +255,140 @@ class ParallaxFlowDelegate extends FlowDelegate {
     return scrollable != oldDelegate.scrollable ||
         listItemContext != oldDelegate.listItemContext ||
         backgroundImageKey != oldDelegate.backgroundImageKey;
+  }
+}
+
+@immutable
+class PCItem extends StatelessWidget {
+  PCItem({
+    super.key,
+    required this.project,
+    required this.sectionH,
+    required this.sectionW,
+  });
+
+  final MuiProject project;
+  final GlobalKey _backgroundImageKey = GlobalKey();
+  final double sectionH;
+  final double sectionW;
+
+  @override
+  Widget build(BuildContext context) {
+    double w = min((sectionW / 2 - 32), 300) * 2 + 32;
+    // double aspectRatio = max(0.45, min(0.54, sectionW / sectionH));
+    double h = w * (9 / 15);
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+      child: SizedBox(
+        height: h,
+        width: w,
+        child: Stack(
+          children: [
+            Align(
+              child: MuiCard(
+                heigth: h - 4,
+                width: w - 30,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(16),
+                  child: Stack(
+                    children: [
+                      _buildParallaxBackground(context),
+                      _buildGradient(),
+                      _buildTitleAndSubtitle(),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            Positioned(
+              right: 0,
+              left: 0,
+              bottom: 0,
+              child: _buildKeyboard(),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildParallaxBackground(BuildContext context) {
+    return Flow(
+      delegate: ParallaxFlowDelegate(
+        scrollable: Scrollable.of(context)!,
+        listItemContext: context,
+        backgroundImageKey: _backgroundImageKey,
+      ),
+      children: [
+        Image.asset(
+          project.imageUrl,
+          key: _backgroundImageKey,
+          fit: BoxFit.cover,
+        )
+      ],
+    );
+  }
+
+  Widget _buildGradient() {
+    return Positioned.fill(
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(width: 4, color: defaultColorEnd),
+          gradient: LinearGradient(
+            colors: [Colors.transparent, Colors.black.withOpacity(0.7)],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            stops: const [0.6, 0.95],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildTitleAndSubtitle() {
+    return Positioned(
+      left: 20,
+      bottom: 20,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            project.name,
+            style: TextStyle(
+              color: AppColors.whitePrimary,
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              fontFamily: "Montserrat",
+            ),
+          ),
+          Text(
+            project.country,
+            style: TextStyle(
+              color: AppColors.whitePrimary,
+              fontSize: 12,
+              fontFamily: "Comfortaa",
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildKeyboard() {
+    return Container(
+      height: 14,
+      decoration: const BoxDecoration(
+        borderRadius: BorderRadius.only(
+          topRight: Radius.circular(3),
+          topLeft: Radius.circular(3),
+          bottomLeft: Radius.circular(14),
+          bottomRight: Radius.circular(14),
+        ),
+        // border: Border.all(width: 4, color: defaultColorEnd),
+        color: defaultColorEnd,
+      ),
+    );
   }
 }

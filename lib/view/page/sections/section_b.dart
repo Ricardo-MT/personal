@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
+import 'package:flutter/material.dart';
 import 'package:ricardomejiastravieso/utils/theming.dart';
 import 'package:ricardomejiastravieso/view/widgets/card.dart';
 
@@ -26,14 +26,15 @@ class SecondSection extends StatefulWidget {
 class _SecondSection extends State<SecondSection> {
   double _top = 0;
   double _percent = 0;
-  double _opacityPercent = 1;
+  final double _opacityPercent = 1;
   double _outPercent = 0;
-  final GlobalKey _backgroundImageKey = GlobalKey();
+  late final List<GlobalKey> _keys;
 
   @override
   void initState() {
     super.initState();
     widget.controller.addListener(listener);
+    _keys = [GlobalKey(), GlobalKey(), GlobalKey(), GlobalKey()];
   }
 
   void listener() {
@@ -45,34 +46,22 @@ class _SecondSection extends State<SecondSection> {
       return;
     }
     if (pos < 2) {
-      // if (_top != 0 || _percent != 0) {
-      //   setState(() {
-      //     _top = 0;
-      //     _percent = 0;
-      //   });
-      // }
-      // setState(() {
-      //   _top = 0;
-      //   _percent = 0;
-      //   _opacityPercent =
-      //       min(1, (widget.controller.offset / widget.sectionH) * 1.1);
-      // });
       return;
     }
     if (pos == 2) {
       if (_outPercent != 0 || _opacityPercent != 1) {
-        setState(() {
-          _outPercent = 0;
-          _opacityPercent = 1;
-        });
+        // setState(() {
+        //   _outPercent = 0;
+        //   _opacityPercent = 1;
+        // });
       }
     }
     if (pos > 2) {
       if (_top != widget.sectionH || _percent != 1) {
-        setState(() {
-          _top = widget.sectionH;
-          _percent = 1;
-        });
+        // setState(() {
+        //   _top = widget.sectionH;
+        //   _percent = 1;
+        // });
       }
       return;
     }
@@ -92,33 +81,10 @@ class _SecondSection extends State<SecondSection> {
 
   @override
   Widget build(BuildContext context) {
-    var item1 = Flow(
-      delegate: ParallaxFlowDelegate(
-        scrollable: Scrollable.of(context)!,
-        sectionH: widget.sectionH,
-        sectionW: widget.sectionW,
-        listItemContext: context,
-        backgroundImageKey: _backgroundImageKey,
-      ),
-      children: [
-        Align(
-          alignment: Alignment.topLeft,
-          child: MuiTrayectoryVerticalCard(
-            key: _backgroundImageKey,
-            active: _percent > 0.16,
-            insetShadow: _percent > 0.41,
-            icon: Icons.local_library_outlined,
-            title: "A-Levels",
-            location: "IPVCE Lenin, Havana",
-            time: "2009-2012",
-          ),
-        )
-      ],
-    );
     return RepaintBoundary(
       child: Stack(
         children: [
-          Positioned(child: item1),
+          // item1,
           AnimatedPositioned(
             duration: const Duration(milliseconds: 0),
             right: 0,
@@ -148,26 +114,126 @@ class _SecondSection extends State<SecondSection> {
                           ),
                         ),
                         _spacer,
+                        // Expanded(
+                        //   child: Column(
+                        //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        //     children: [
+                        //       AnimatedSlide(
+                        //         offset: _opacityPercent > 0.4
+                        //             ? (_outPercent > 0.1
+                        //                 ? const Offset(1.5, 0)
+                        //                 : const Offset(0, 0))
+                        //             : const Offset(0, 0.2),
+                        //         duration: _slideDuration,
+                        //         curve: Curves.fastOutSlowIn,
+                        //         child: AnimatedOpacity(
+                        //           // opacity: min(1, _percent / 0.25 * 3),
+                        //           opacity: _opacityPercent > 0.4
+                        //               ? (_outPercent > 0.1 ? 0 : 1)
+                        //               : 0,
+                        //           duration: _duration,
+                        //           curve: Curves.linear,
+                        //           child: MuiTrayectoryCard(
+                        //             active: _percent > 0.16,
+                        //             insetShadow: _percent > 0.41,
+                        //             icon: Icons.local_library_outlined,
+                        //             title: "A-Levels",
+                        //             location: "IPVCE Lenin, Havana",
+                        //             time: "2009-2012",
+                        //           ),
+                        //         ),
+                        //       ),
+                        //       AnimatedSlide(
+                        //         offset: _opacityPercent > 0.6
+                        //             ? (_outPercent > 0.3
+                        //                 ? const Offset(1.5, 0)
+                        //                 : const Offset(0, 0))
+                        //             : const Offset(0, 0.2),
+                        //         duration: _slideDuration,
+                        //         curve: Curves.fastOutSlowIn,
+                        //         child: AnimatedOpacity(
+                        //           // opacity: min(
+                        //           //     1, max(0, (_percent - 0.25) / 0.25 * 3)),
+                        //           opacity: _opacityPercent > 0.6 ? 1 : 0,
+                        //           duration: _duration,
+                        //           curve: Curves.ease,
+                        //           child: MuiTrayectoryCard(
+                        //             active: _percent > 0.41,
+                        //             insetShadow: _percent > 0.66,
+                        //             icon: Icons.book_outlined,
+                        //             title: "2 years in CS",
+                        //             location: "University of Havana, Havana",
+                        //             time: "2013-2015",
+                        //           ),
+                        //         ),
+                        //       ),
+                        //       AnimatedSlide(
+                        //         offset: _opacityPercent > 0.8
+                        //             ? (_outPercent > 0.5
+                        //                 ? const Offset(1.5, 0)
+                        //                 : const Offset(0, 0))
+                        //             : const Offset(0, 0.2),
+                        //         duration: _slideDuration,
+                        //         curve: Curves.fastOutSlowIn,
+                        //         child: AnimatedOpacity(
+                        //           // opacity:
+                        //           //     min(1, max(0, (_percent - 0.5) / 0.25 * 3)),
+                        //           opacity: _opacityPercent > 0.8 ? 1 : 0,
+                        //           duration: _duration,
+                        //           curve: Curves.ease,
+                        //           child: MuiTrayectoryCard(
+                        //             active: _percent > 0.66,
+                        //             insetShadow: _percent > 0.84,
+                        //             icon: Icons.school_outlined,
+                        //             title: "HND Software Dev.",
+                        //             location: "IES Saladillo, Algeciras",
+                        //             time: "2020-2022",
+                        //           ),
+                        //         ),
+                        //       ),
+                        //       AnimatedSlide(
+                        //         offset: _opacityPercent > 0.95
+                        //             ? (_outPercent > 0.8
+                        //                 ? const Offset(1.5, 0)
+                        //                 : const Offset(0, 0))
+                        //             : const Offset(0, 0.2),
+                        //         duration: _slideDuration,
+                        //         curve: Curves.fastOutSlowIn,
+                        //         child: AnimatedOpacity(
+                        //           // opacity: min(
+                        //           //     1, max(0, (_percent - 0.70) / 0.25 * 3)),
+                        //           opacity: _opacityPercent > 0.95 ? 1 : 0,
+                        //           duration: _duration,
+                        //           curve: Curves.ease,
+                        //           child: MuiTrayectoryCard(
+                        //             active: _percent > 0.84,
+                        //             insetShadow: _percent > 0.98,
+                        //             icon: Icons.important_devices_rounded,
+                        //             title: "Fullstack Developer",
+                        //             location: "Boorpret, Cádiz",
+                        //             time: "2020-2022",
+                        //           ),
+                        //         ),
+                        //       ),
+                        //     ],
+                        //   ),
+                        // ),
                         Expanded(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              AnimatedSlide(
-                                offset: _opacityPercent > 0.4
-                                    ? (_outPercent > 0.1
-                                        ? const Offset(1.5, 0)
-                                        : const Offset(0, 0))
-                                    : const Offset(0, 0.2),
-                                duration: _slideDuration,
-                                curve: Curves.fastOutSlowIn,
-                                child: AnimatedOpacity(
-                                  // opacity: min(1, _percent / 0.25 * 3),
-                                  opacity: _opacityPercent > 0.4
-                                      ? (_outPercent > 0.1 ? 0 : 1)
-                                      : 0,
-                                  duration: _duration,
-                                  curve: Curves.linear,
+                            child: Stack(
+                          children: [
+                            Flow(
+                              delegate: ParallaxMobileFlowDelegate(
+                                scrollable: Scrollable.of(context)!,
+                                sectionH: widget.sectionH,
+                                sectionW: widget.sectionW,
+                                listItemContext: context,
+                                keys: _keys,
+                              ),
+                              children: [
+                                Align(
+                                  alignment: Alignment.topLeft,
                                   child: MuiTrayectoryCard(
+                                    key: _keys[0],
                                     active: _percent > 0.16,
                                     insetShadow: _percent > 0.41,
                                     icon: Icons.local_library_outlined,
@@ -176,22 +242,10 @@ class _SecondSection extends State<SecondSection> {
                                     time: "2009-2012",
                                   ),
                                 ),
-                              ),
-                              AnimatedSlide(
-                                offset: _opacityPercent > 0.6
-                                    ? (_outPercent > 0.3
-                                        ? const Offset(1.5, 0)
-                                        : const Offset(0, 0))
-                                    : const Offset(0, 0.2),
-                                duration: _slideDuration,
-                                curve: Curves.fastOutSlowIn,
-                                child: AnimatedOpacity(
-                                  // opacity: min(
-                                  //     1, max(0, (_percent - 0.25) / 0.25 * 3)),
-                                  opacity: _opacityPercent > 0.6 ? 1 : 0,
-                                  duration: _duration,
-                                  curve: Curves.ease,
+                                Align(
+                                  alignment: Alignment.topLeft,
                                   child: MuiTrayectoryCard(
+                                    key: _keys[1],
                                     active: _percent > 0.41,
                                     insetShadow: _percent > 0.66,
                                     icon: Icons.book_outlined,
@@ -200,22 +254,10 @@ class _SecondSection extends State<SecondSection> {
                                     time: "2013-2015",
                                   ),
                                 ),
-                              ),
-                              AnimatedSlide(
-                                offset: _opacityPercent > 0.8
-                                    ? (_outPercent > 0.5
-                                        ? const Offset(1.5, 0)
-                                        : const Offset(0, 0))
-                                    : const Offset(0, 0.2),
-                                duration: _slideDuration,
-                                curve: Curves.fastOutSlowIn,
-                                child: AnimatedOpacity(
-                                  // opacity:
-                                  //     min(1, max(0, (_percent - 0.5) / 0.25 * 3)),
-                                  opacity: _opacityPercent > 0.8 ? 1 : 0,
-                                  duration: _duration,
-                                  curve: Curves.ease,
+                                Align(
+                                  alignment: Alignment.topLeft,
                                   child: MuiTrayectoryCard(
+                                    key: _keys[2],
                                     active: _percent > 0.66,
                                     insetShadow: _percent > 0.84,
                                     icon: Icons.school_outlined,
@@ -224,22 +266,10 @@ class _SecondSection extends State<SecondSection> {
                                     time: "2020-2022",
                                   ),
                                 ),
-                              ),
-                              AnimatedSlide(
-                                offset: _opacityPercent > 0.95
-                                    ? (_outPercent > 0.8
-                                        ? const Offset(1.5, 0)
-                                        : const Offset(0, 0))
-                                    : const Offset(0, 0.2),
-                                duration: _slideDuration,
-                                curve: Curves.fastOutSlowIn,
-                                child: AnimatedOpacity(
-                                  // opacity: min(
-                                  //     1, max(0, (_percent - 0.70) / 0.25 * 3)),
-                                  opacity: _opacityPercent > 0.95 ? 1 : 0,
-                                  duration: _duration,
-                                  curve: Curves.ease,
+                                Align(
+                                  alignment: Alignment.topLeft,
                                   child: MuiTrayectoryCard(
+                                    key: _keys[3],
                                     active: _percent > 0.84,
                                     insetShadow: _percent > 0.98,
                                     icon: Icons.important_devices_rounded,
@@ -248,14 +278,16 @@ class _SecondSection extends State<SecondSection> {
                                     time: "2020-2022",
                                   ),
                                 ),
-                              ),
-                            ],
-                          ),
-                        )
+                              ],
+                            )
+                          ],
+                        ))
                       ],
                     );
                   }
+
                   var item1 = MuiTrayectoryVerticalCard(
+                    key: _keys[0],
                     active: _percent > 0.16,
                     insetShadow: _percent > 0.41,
                     icon: Icons.local_library_outlined,
@@ -263,51 +295,79 @@ class _SecondSection extends State<SecondSection> {
                     location: "IPVCE Lenin, Havana",
                     time: "2009-2012",
                   );
-                  var item2 = AnimatedOpacity(
-                    // opacity: min(1, max(0, (_percent - 0.25) / 0.25 * 3)),
-                    opacity:
-                        _opacityPercent > 0.6 ? (_outPercent > 0.1 ? 0 : 1) : 0,
-                    duration: _duration,
-                    curve: Curves.ease,
-                    child: MuiTrayectoryVerticalCard(
-                      active: _percent > 0.41,
-                      insetShadow: _percent > 0.66,
-                      icon: Icons.book_outlined,
-                      title: "2 years in CS",
-                      location: "University of Havana, Havana",
-                      time: "2013-2015",
-                    ),
+                  // var item2 = AnimatedOpacity(
+                  //   // opacity: min(1, max(0, (_percent - 0.25) / 0.25 * 3)),
+                  //   opacity:
+                  //       _opacityPercent > 0.6 ? (_outPercent > 0.1 ? 0 : 1) : 0,
+                  //   duration: _duration,
+                  //   curve: Curves.ease,
+                  //   child: MuiTrayectoryVerticalCard(
+                  //     active: _percent > 0.41,
+                  //     insetShadow: _percent > 0.66,
+                  //     icon: Icons.book_outlined,
+                  //     title: "2 years in CS",
+                  //     location: "University of Havana, Havana",
+                  //     time: "2013-2015",
+                  //   ),
+                  // );
+                  var item2 = MuiTrayectoryVerticalCard(
+                    key: _keys[1],
+                    active: _percent > 0.41,
+                    insetShadow: _percent > 0.66,
+                    icon: Icons.book_outlined,
+                    title: "2 years in CS",
+                    location: "University of Havana, Havana",
+                    time: "2013-2015",
                   );
-                  var item3 = AnimatedOpacity(
-                    // opacity: min(1, max(0, (_percent - 0.5) / 0.25 * 3)),
-                    opacity:
-                        _opacityPercent > 0.8 ? (_outPercent > 0.1 ? 0 : 1) : 0,
-                    duration: _duration,
-                    curve: Curves.ease,
-                    child: MuiTrayectoryVerticalCard(
-                      active: _percent > 0.66,
-                      insetShadow: _percent > 0.84,
-                      icon: Icons.school_outlined,
-                      title: "HND Software Dev.",
-                      location: "IES Saladillo, Algeciras",
-                      time: "2020-2022",
-                    ),
+                  // var item3 = AnimatedOpacity(
+                  //   // opacity: min(1, max(0, (_percent - 0.5) / 0.25 * 3)),
+                  //   opacity:
+                  //       _opacityPercent > 0.8 ? (_outPercent > 0.1 ? 0 : 1) : 0,
+                  //   duration: _duration,
+                  //   curve: Curves.ease,
+                  //   child: MuiTrayectoryVerticalCard(
+                  //     active: _percent > 0.66,
+                  //     insetShadow: _percent > 0.84,
+                  //     icon: Icons.school_outlined,
+                  //     title: "HND Software Dev.",
+                  //     location: "IES Saladillo, Algeciras",
+                  //     time: "2020-2022",
+                  //   ),
+                  // );
+                  var item3 = MuiTrayectoryVerticalCard(
+                    key: _keys[2],
+                    active: _percent > 0.66,
+                    insetShadow: _percent > 0.84,
+                    icon: Icons.school_outlined,
+                    title: "HND Software Dev.",
+                    location: "IES Saladillo, Algeciras",
+                    time: "2020-2022",
                   );
-                  var item4 = AnimatedOpacity(
-                    // opacity: min(1, max(0, (_percent - 0.70) / 0.25 * 3)),
-                    opacity: _opacityPercent > 0.95
-                        ? (_outPercent > 0.1 ? 0 : 1)
-                        : 0,
-                    duration: _duration,
-                    curve: Curves.ease,
-                    child: MuiTrayectoryVerticalCard(
-                      active: _percent > 0.84,
-                      insetShadow: _percent > 0.98,
-                      icon: Icons.important_devices_rounded,
-                      title: "Fullstack Developer",
-                      location: "Boorpret, Cádiz",
-                      time: "2020-2022",
-                    ),
+
+                  // var item4 = AnimatedOpacity(
+                  //   // opacity: min(1, max(0, (_percent - 0.70) / 0.25 * 3)),
+                  //   opacity: _opacityPercent > 0.95
+                  //       ? (_outPercent > 0.1 ? 0 : 1)
+                  //       : 0,
+                  //   duration: _duration,
+                  //   curve: Curves.ease,
+                  //   child: MuiTrayectoryVerticalCard(
+                  //     active: _percent > 0.84,
+                  //     insetShadow: _percent > 0.98,
+                  //     icon: Icons.important_devices_rounded,
+                  //     title: "Fullstack Developer",
+                  //     location: "Boorpret, Cádiz",
+                  //     time: "2020-2022",
+                  //   ),
+                  // );
+                  var item4 = MuiTrayectoryVerticalCard(
+                    key: _keys[3],
+                    active: _percent > 0.84,
+                    insetShadow: _percent > 0.98,
+                    icon: Icons.important_devices_rounded,
+                    title: "Fullstack Developer",
+                    location: "Boorpret, Cádiz",
+                    time: "2020-2022",
                   );
 
                   if (widget.sectionW < 1000) {
@@ -315,32 +375,34 @@ class _SecondSection extends State<SecondSection> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Expanded(
-                            child: Column(
-                          children: [
-                            Expanded(
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                crossAxisAlignment: CrossAxisAlignment.center,
+                          child: Stack(
+                            children: [
+                              Flow(
+                                delegate: ParallaxTabletFlowDelegate(
+                                  scrollable: Scrollable.of(context)!,
+                                  sectionH: widget.sectionH,
+                                  sectionW: widget.sectionW,
+                                  listItemContext: context,
+                                  keys: _keys,
+                                ),
                                 children: [
-                                  item1,
-                                  item2,
+                                  Align(
+                                      alignment: Alignment.topLeft,
+                                      child: item1),
+                                  Align(
+                                      alignment: Alignment.topLeft,
+                                      child: item2),
+                                  Align(
+                                      alignment: Alignment.topLeft,
+                                      child: item3),
+                                  Align(
+                                      alignment: Alignment.topLeft,
+                                      child: item4),
                                 ],
-                              ),
-                            ),
-                            Expanded(
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  item3,
-                                  item4,
-                                ],
-                              ),
-                            ),
-                          ],
-                        )),
+                              )
+                            ],
+                          ),
+                        ),
                         _spacer,
                         AnimatedSlide(
                           offset: _opacityPercent > 0.4
@@ -364,16 +426,30 @@ class _SecondSection extends State<SecondSection> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Expanded(
-                          child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          item1,
-                          item2,
-                          item3,
-                          item4,
-                        ],
-                      )),
+                        child: Stack(
+                          children: [
+                            Flow(
+                              delegate: ParallaxDesktopFlowDelegate(
+                                scrollable: Scrollable.of(context)!,
+                                sectionH: widget.sectionH,
+                                sectionW: widget.sectionW,
+                                listItemContext: context,
+                                keys: _keys,
+                              ),
+                              children: [
+                                Align(
+                                    alignment: Alignment.topLeft, child: item1),
+                                Align(
+                                    alignment: Alignment.topLeft, child: item2),
+                                Align(
+                                    alignment: Alignment.topLeft, child: item3),
+                                Align(
+                                    alignment: Alignment.topLeft, child: item4),
+                              ],
+                            )
+                          ],
+                        ),
+                      ),
                       MuiTimeline(
                         height: widget.sectionW - 60,
                         progress: _percent,
@@ -393,18 +469,18 @@ class _SecondSection extends State<SecondSection> {
   }
 }
 
-class ParallaxFlowDelegate extends FlowDelegate {
-  ParallaxFlowDelegate({
+class ParallaxDesktopFlowDelegate extends FlowDelegate {
+  ParallaxDesktopFlowDelegate({
     required this.scrollable,
     required this.listItemContext,
-    required this.backgroundImageKey,
+    required this.keys,
     required this.sectionH,
     required this.sectionW,
   }) : super(repaint: scrollable.position);
 
   final ScrollableState scrollable;
   final BuildContext listItemContext;
-  final GlobalKey backgroundImageKey;
+  final List<GlobalKey> keys;
   final double sectionH;
   final double sectionW;
 
@@ -428,35 +504,185 @@ class ParallaxFlowDelegate extends FlowDelegate {
     // scrollable area.
     final viewportDimension = scrollable.position.viewportDimension;
     final scrollFraction =
-        (listItemOffset.dy / viewportDimension).clamp(0.0, 1.0);
+        (listItemOffset.dy / viewportDimension - 0.5).clamp(0.0, 1.0);
 
-    final opacity =
-        ((listItemOffset.dy - sectionH) / viewportDimension).clamp(0.0, 1.0);
-    final verticalAlignment = Alignment(0.0, scrollFraction * 2 - 1);
     // Convert the background alignment into a pixel offset for
     // painting purposes.
-    final backgroundSize =
-        (backgroundImageKey.currentContext!.findRenderObject() as RenderBox)
-            .size;
+    final sizes = keys
+        .map((k) => (k.currentContext!.findRenderObject() as RenderBox).size)
+        .toList();
+    final backgroundSize = sizes[0];
     final listItemSize = context.size;
-    final childRect =
-        verticalAlignment.inscribe(backgroundSize, Offset.zero & listItemSize);
-    context.paintChild(0,
+    double space =
+        (listItemSize.width - backgroundSize.width * context.childCount) /
+            (context.childCount + 1);
+    double vSpace = (listItemSize.height - backgroundSize.height) / 2;
+    double keyPart = 0.5 / (context.childCount - 1);
+    for (var i = 0; i < context.childCount; i++) {
+      context.paintChild(
+        i,
         transform: Transform.translate(
-                offset: Offset(
-                    0.0,
-                    sectionH -
-                        scrollFraction * sectionH +
-                        backgroundSize.height * opacity))
-            .transform,
-        opacity: 1 - opacity);
+            offset: Offset(
+          space * (1 + i) + backgroundSize.width * i,
+          vSpace +
+              (1 - (1 - scrollFraction) / (0.5 + i * keyPart)).clamp(0, 1) *
+                  vSpace *
+                  2,
+        )).transform,
+        opacity: ((1 - scrollFraction) / (0.5 + i * keyPart)).clamp(0, 1),
+      );
+    }
   }
 
   @override
-  bool shouldRepaint(ParallaxFlowDelegate oldDelegate) {
+  bool shouldRepaint(ParallaxDesktopFlowDelegate oldDelegate) {
     return scrollable != oldDelegate.scrollable ||
         listItemContext != oldDelegate.listItemContext ||
-        backgroundImageKey != oldDelegate.backgroundImageKey;
+        keys.hashCode != oldDelegate.keys.hashCode;
+  }
+}
+
+class ParallaxTabletFlowDelegate extends FlowDelegate {
+  ParallaxTabletFlowDelegate({
+    required this.scrollable,
+    required this.listItemContext,
+    required this.keys,
+    required this.sectionH,
+    required this.sectionW,
+  }) : super(repaint: scrollable.position);
+
+  final ScrollableState scrollable;
+  final BuildContext listItemContext;
+  final List<GlobalKey> keys;
+  final double sectionH;
+  final double sectionW;
+
+  @override
+  BoxConstraints getConstraintsForChild(int i, BoxConstraints constraints) {
+    return BoxConstraints.tightFor(
+      width: constraints.maxWidth,
+    );
+  }
+
+  @override
+  void paintChildren(FlowPaintingContext context) {
+    final scrollableBox = scrollable.context.findRenderObject() as RenderBox;
+    final listItemBox = listItemContext.findRenderObject() as RenderBox;
+    final listItemOffset = listItemBox.localToGlobal(
+      listItemBox.size.centerLeft(Offset.zero),
+      ancestor: scrollableBox,
+    );
+
+    // Determine the percent position of this list item within the
+    // scrollable area.
+    final viewportDimension = scrollable.position.viewportDimension;
+    final scrollFraction =
+        (listItemOffset.dy / viewportDimension - 0.5).clamp(0.0, 1.0);
+
+    // Convert the background alignment into a pixel offset for
+    // painting purposes.
+    final sizes = keys
+        .map((k) => (k.currentContext!.findRenderObject() as RenderBox).size)
+        .toList();
+    final backgroundSize = sizes[0];
+    final listItemSize = context.size;
+    double space = (listItemSize.width - backgroundSize.width * 2) / 3;
+    double vSpace = (listItemSize.height - backgroundSize.height * 2) / 3;
+    double keyPart = 0.5 / (context.childCount - 1);
+    for (var i = 0; i < context.childCount; i++) {
+      var dx = space * (1 + i % 2) + backgroundSize.width * (i % 2);
+      var dy = vSpace * (1 + i ~/ 2) +
+          backgroundSize.height * (i ~/ 2) +
+          (1 - (1 - scrollFraction) / (0.5 + i * keyPart)).clamp(0, 1) *
+              vSpace *
+              5;
+      context.paintChild(
+        i,
+        transform: Transform.translate(offset: Offset(dx, dy)).transform,
+        opacity: ((1 - scrollFraction) / (0.5 + i * keyPart)).clamp(0, 1),
+      );
+    }
+  }
+
+  @override
+  bool shouldRepaint(ParallaxTabletFlowDelegate oldDelegate) {
+    return scrollable != oldDelegate.scrollable ||
+        listItemContext != oldDelegate.listItemContext ||
+        keys.hashCode != oldDelegate.keys.hashCode;
+  }
+}
+
+class ParallaxMobileFlowDelegate extends FlowDelegate {
+  ParallaxMobileFlowDelegate({
+    required this.scrollable,
+    required this.listItemContext,
+    required this.keys,
+    required this.sectionH,
+    required this.sectionW,
+  }) : super(repaint: scrollable.position);
+
+  final ScrollableState scrollable;
+  final BuildContext listItemContext;
+  final List<GlobalKey> keys;
+  final double sectionH;
+  final double sectionW;
+
+  @override
+  BoxConstraints getConstraintsForChild(int i, BoxConstraints constraints) {
+    return BoxConstraints.tightFor(
+      width: constraints.maxWidth,
+    );
+  }
+
+  @override
+  void paintChildren(FlowPaintingContext context) {
+    final scrollableBox = scrollable.context.findRenderObject() as RenderBox;
+    final listItemBox = listItemContext.findRenderObject() as RenderBox;
+    final listItemOffset = listItemBox.localToGlobal(
+      listItemBox.size.centerLeft(Offset.zero),
+      ancestor: scrollableBox,
+    );
+
+    // Determine the percent position of this list item within the
+    // scrollable area.
+    final viewportDimension = scrollable.position.viewportDimension;
+    final scrollFraction =
+        (listItemOffset.dy / viewportDimension - 0.5).clamp(0.0, 1.0);
+
+    // Convert the background alignment into a pixel offset for
+    // painting purposes.
+    final sizes = keys
+        .map((k) => (k.currentContext!.findRenderObject() as RenderBox).size)
+        .toList();
+    final backgroundSize = sizes[0];
+    final listItemSize = context.size;
+    double space = (listItemSize.width - backgroundSize.width) / 2;
+    double vSpace =
+        (listItemSize.height - backgroundSize.height * context.childCount) /
+            (context.childCount + 1);
+    double keyPart = 0.5 / (context.childCount - 1);
+    for (var i = 0; i < context.childCount; i++) {
+      context.paintChild(
+        i,
+        transform: Transform.translate(
+            offset: Offset(
+          space,
+          (vSpace * (1 + i) +
+              backgroundSize.height * i +
+              (1 - (1 - scrollFraction) / (0.5 + i * keyPart)).clamp(0, 1) *
+                  vSpace *
+                  6),
+        )).transform,
+        opacity: 1,
+      );
+    }
+  }
+
+  @override
+  bool shouldRepaint(ParallaxMobileFlowDelegate oldDelegate) {
+    return scrollable != oldDelegate.scrollable ||
+        listItemContext != oldDelegate.listItemContext ||
+        keys.hashCode != oldDelegate.keys.hashCode;
   }
 }
 
@@ -490,7 +716,7 @@ class MuiTrayectoryCard extends StatelessWidget {
     String familyB = "Comfortaa";
 
     return MuiCard(
-      heigth: 92,
+      heigth: 116,
       width: 294,
       decorated: true,
       active: active,
@@ -675,7 +901,5 @@ const _spacer = SizedBox(
   width: 20,
   height: 15,
 );
-
-const _duration = Duration(milliseconds: 200);
 
 const _slideDuration = Duration(milliseconds: 500);

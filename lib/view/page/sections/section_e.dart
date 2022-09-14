@@ -121,28 +121,14 @@ class _SectionFifth extends State<SectionFifth> {
             flex: 1,
             child: Row(
               children: [
-                Expanded(
+                const Spacer(
                   flex: 4,
-                  child: Container(
-                    height: 6,
-                    margin: const EdgeInsets.symmetric(
-                        vertical: 10, horizontal: 20),
-                    decoration: const ShapeDecoration(
-                        color: Color(0xFF8a6c94), shape: StadiumBorder()),
-                  ),
                 ),
                 AnimatedCubaStamp(
                     sectionHeight: widget.sectionH,
                     controller: widget.controller),
-                Expanded(
+                const Spacer(
                   flex: 1,
-                  child: Container(
-                    height: 6,
-                    margin: const EdgeInsets.symmetric(
-                        vertical: 10, horizontal: 20),
-                    decoration: const ShapeDecoration(
-                        color: Color(0xFF8a6c94), shape: StadiumBorder()),
-                  ),
                 ),
               ],
             ),
@@ -202,8 +188,8 @@ class _AnimatedCubaStampState extends State<AnimatedCubaStamp> {
           duration: const Duration(milliseconds: 3000),
           child: Image.asset(
             "assets/images/cuba_a.png",
-            height: 40,
-            width: 40,
+            height: 30,
+            width: 30,
           ),
         ),
       ),

@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:ricardomejiastravieso/utils/theming.dart';
+import 'package:ricardomejiastravieso/view/widgets/card.dart';
 
 class SectionZero extends StatefulWidget {
   const SectionZero({
@@ -31,28 +32,14 @@ class _SectionZero extends State<SectionZero> {
           Expanded(
             child: Row(
               children: [
-                Expanded(
+                const Spacer(
                   flex: 4,
-                  child: Container(
-                    height: 6,
-                    margin: const EdgeInsets.symmetric(
-                        vertical: 10, horizontal: 20),
-                    decoration: const ShapeDecoration(
-                        color: Color(0xFF8a6c94), shape: StadiumBorder()),
-                  ),
                 ),
                 AnimatedCubaStamp(
                     sectionHeight: widget.sectionH,
                     controller: widget.controller),
-                Expanded(
+                const Spacer(
                   flex: 1,
-                  child: Container(
-                    height: 6,
-                    margin: const EdgeInsets.symmetric(
-                        vertical: 10, horizontal: 20),
-                    decoration: const ShapeDecoration(
-                        color: Color(0xFF8a6c94), shape: StadiumBorder()),
-                  ),
                 ),
               ],
             ),
@@ -63,9 +50,19 @@ class _SectionZero extends State<SectionZero> {
               padding:
                   const EdgeInsets.symmetric(vertical: 14.0, horizontal: 20),
               child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Expanded(
-                      flex: 2, child: Image.asset("assets/images/cuba_a.png")),
+                  const Expanded(
+                    flex: 2,
+                    // child: Image.asset("assets/images/cuba_a.png"),
+                    child: AspectRatio(
+                      aspectRatio: 1,
+                      child: MuiCard(
+                        circular: true,
+                        insetShadow: true,
+                      ),
+                    ),
+                  ),
                   Expanded(
                     flex: 3,
                     child: AutoSizeText.rich(
@@ -141,28 +138,14 @@ class _SectionZero extends State<SectionZero> {
           Expanded(
             child: Row(
               children: [
-                Expanded(
+                const Spacer(
                   flex: 2,
-                  child: Container(
-                    height: 6,
-                    margin: const EdgeInsets.symmetric(
-                        vertical: 10, horizontal: 20),
-                    decoration: const ShapeDecoration(
-                        color: Color(0xFF8a6c94), shape: StadiumBorder()),
-                  ),
                 ),
                 AnimatedCubaStamp(
                     sectionHeight: widget.sectionH,
                     controller: widget.controller),
-                Expanded(
+                const Spacer(
                   flex: 4,
-                  child: Container(
-                    height: 6,
-                    margin: const EdgeInsets.symmetric(
-                        vertical: 10, horizontal: 20),
-                    decoration: const ShapeDecoration(
-                        color: Color(0xFF8a6c94), shape: StadiumBorder()),
-                  ),
                 ),
               ],
             ),
@@ -222,8 +205,8 @@ class _AnimatedCubaStampState extends State<AnimatedCubaStamp> {
           duration: const Duration(milliseconds: 3000),
           child: Image.asset(
             "assets/images/cuba_a.png",
-            height: 40,
-            width: 40,
+            height: 30,
+            width: 30,
           ),
         ),
       ),

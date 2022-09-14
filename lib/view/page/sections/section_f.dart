@@ -29,8 +29,13 @@ class _SectionLast extends State<SectionLast> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+          const Spacer(),
+          const Spacer(
+            flex: 4,
+          ),
+          const Spacer(),
           Container(
-            height: kToolbarHeight,
+            height: kToolbarHeight * 1.5,
             decoration: const BoxDecoration(
                 gradient: LinearGradient(
               begin: Alignment.topCenter,
@@ -40,17 +45,32 @@ class _SectionLast extends State<SectionLast> {
                 Color.fromARGB(255, 120, 89, 130)
               ],
             )),
-          ),
-          const Spacer(),
-          const Spacer(
-            flex: 4,
-          ),
-          const Spacer(),
-          Container(
-            height: widget.sectionH * 0.25,
-            decoration: const BoxDecoration(
-              color: Color.fromARGB(255, 113, 84, 123),
+            padding: const EdgeInsets.symmetric(horizontal: 36),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Row(
+                children: [
+                  Image.asset(
+                    "assets/images/Icon-192.png",
+                    width: 40,
+                    height: 40,
+                    color: AppColors.whitePrimary,
+                  ),
+                  // Text(
+                  //   "Ricardo",
+                  //   style: TextStyle(
+                  //     fontSize: 24,
+                  //     fontFamily: "Comfortaa",
+                  //     color: AppColors.whitePrimary,
+                  //   ),
+                  // )
+                ],
+              ),
             ),
+          ),
+          Container(
+            color: const Color(0xFF333333),
+            height: widget.sectionH * 0.25,
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(
@@ -69,7 +89,7 @@ class _SectionLast extends State<SectionLast> {
                               "YOU CAN FIND ME HERE",
                               style: TextStyle(
                                 color: AppColors.whitePrimary,
-                                fontFamily: "Comfortaa",
+                                fontFamily: "Montserrat",
                               ),
                             ),
                           ),
@@ -126,36 +146,36 @@ class _SectionLast extends State<SectionLast> {
                             "Ricardo Mejías Travieso",
                             textAlign: TextAlign.right,
                             style: TextStyle(
-                              fontFamily: "Montserrat",
-                            ),
+                                fontFamily: "Montserrat",
+                                color: Color(0xFF8A6C94)),
                           ),
                           Text(
                             "Fulstack & Mobile Developer",
                             textAlign: TextAlign.right,
                             style: TextStyle(
-                              fontFamily: "Montserrat",
-                            ),
+                                fontFamily: "Montserrat",
+                                color: Color(0xFF8A6C94)),
                           ),
                           Text(
                             "Cádiz, España",
                             textAlign: TextAlign.right,
                             style: TextStyle(
-                              fontFamily: "Montserrat",
-                            ),
+                                fontFamily: "Montserrat",
+                                color: Color(0xFF8A6C94)),
                           ),
                           Text(
                             "+34 644 096889",
                             textAlign: TextAlign.right,
                             style: TextStyle(
-                              fontFamily: "Montserrat",
-                            ),
+                                fontFamily: "Montserrat",
+                                color: Color(0xFF8A6C94)),
                           ),
                           Text(
                             "rikr2.mt@gmail.com",
                             textAlign: TextAlign.right,
                             style: TextStyle(
-                              fontFamily: "Montserrat",
-                            ),
+                                fontFamily: "Montserrat",
+                                color: Color(0xFF8A6C94)),
                           ),
                         ],
                       ),
@@ -178,19 +198,20 @@ class _SectionLast extends State<SectionLast> {
             )),
           ),
           Container(
+            color: const Color(0xFF333333),
             height: kToolbarHeight * 1.5,
-            decoration: const BoxDecoration(
-                gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [
-                Color.fromARGB(255, 113, 84, 123),
-                Color.fromARGB(255, 69, 47, 76),
-              ],
-            )),
+            // decoration: const BoxDecoration(
+            //     gradient: LinearGradient(
+            //   begin: Alignment.topCenter,
+            //   end: Alignment.bottomCenter,
+            //   colors: [
+            //     Color.fromARGB(255, 113, 84, 123),
+            //     Color.fromARGB(255, 69, 47, 76),
+            //   ],
+            // )),
             child: Center(
               child: Text(
-                "©2022 RICARDO MEJIAS TRAVIESO\nPOWERED BY FLUTTER",
+                "©2022 RICARDO MEJIAS TRAVIESO\nPOWERED WITH FLUTTER",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontFamily: "Montserrat",
@@ -263,10 +284,3 @@ class _AnimatedCubaStampState extends State<AnimatedCubaStamp> {
     );
   }
 }
-
-const _accentStyle = TextStyle(
-  fontFamily: "Montserrat",
-  fontSize: 40,
-  color: Color(0xFF8a6c94),
-  shadows: [],
-);
