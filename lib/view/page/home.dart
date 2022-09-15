@@ -259,8 +259,13 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
-            const Positioned(bottom: 5, right: 5, child: MuiSwitchTheme()),
-            const Positioned(bottom: 5, left: 5, child: MuiSwitchLang()),
+            Positioned(
+                bottom: 5,
+                left: 5,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: const [MuiSwitchLang(), MuiSwitchTheme()],
+                )),
           ],
         );
       }),

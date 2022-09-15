@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ricardomejiastravieso/utils/theming.dart';
+import 'package:ricardomejiastravieso/view/widgets/animated_icon/animated_icon.dart';
 import 'package:ricardomejiastravieso/view/widgets/card.dart';
 
 class SectionLast extends StatefulWidget {
@@ -34,6 +35,79 @@ class _SectionLast extends State<SectionLast> {
             flex: 4,
           ),
           const Spacer(),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(15),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: MuiCard(
+                    insetShadow: true,
+                    width: (_spacer.height ?? 1) * 2 + 40,
+                    heigth: (_spacer.height ?? 1) * 5 + 160,
+                    child: Column(
+                      children: [
+                        _spacer,
+                        MuiBadge(
+                          size: 40,
+                          child: Icon(
+                            Icons.facebook,
+                            color: AppColors.whitePrimary,
+                            size: 18,
+                          ),
+                        ),
+                        _spacer,
+                        MuiBadge(
+                          size: 40,
+                          child: Icon(
+                            Icons.whatsapp,
+                            color: AppColors.whitePrimary,
+                            size: 18,
+                          ),
+                        ),
+                        _spacer,
+                        MuiBadge(
+                          size: 40,
+                          child: Icon(
+                            Icons.email,
+                            color: AppColors.whitePrimary,
+                            size: 18,
+                          ),
+                        ),
+                        _spacer,
+                        MuiBadge(
+                          size: 40,
+                          child: Icon(
+                            Icons.link_outlined,
+                            color: AppColors.whitePrimary,
+                            size: 18,
+                          ),
+                        ),
+                        _spacer,
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              MouseRegion(
+                cursor: SystemMouseCursors.click,
+                child: GestureDetector(
+                  onTap: () => widget.controller.animateTo(0,
+                      duration: const Duration(seconds: 2),
+                      curve: Curves.fastOutSlowIn),
+                  child: const Align(
+                    alignment: Alignment.bottomRight,
+                    child: Padding(
+                      padding: EdgeInsets.all(15),
+                      child: MuiAnimatedIcon(),
+                    ),
+                  ),
+                ),
+              )
+            ],
+          ),
           Container(
             height: kToolbarHeight * 1.5,
             decoration: const BoxDecoration(
@@ -76,65 +150,7 @@ class _SectionLast extends State<SectionLast> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Flexible(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 8),
-                            child: Text(
-                              "YOU CAN FIND ME HERE",
-                              style: TextStyle(
-                                color: AppColors.whitePrimary,
-                                fontFamily: "Montserrat",
-                              ),
-                            ),
-                          ),
-                          Wrap(
-                            spacing: 5,
-                            runSpacing: 5,
-                            children: [
-                              MuiBadge(
-                                size: 40,
-                                child: Icon(
-                                  Icons.facebook,
-                                  color: AppColors.whitePrimary,
-                                  size: 18,
-                                ),
-                              ),
-                              MuiBadge(
-                                size: 40,
-                                child: Icon(
-                                  Icons.whatsapp,
-                                  color: AppColors.whitePrimary,
-                                  size: 18,
-                                ),
-                              ),
-                              MuiBadge(
-                                size: 40,
-                                child: Icon(
-                                  Icons.email,
-                                  color: AppColors.whitePrimary,
-                                  size: 18,
-                                ),
-                              ),
-                              MuiBadge(
-                                size: 40,
-                                child: Icon(
-                                  Icons.link_outlined,
-                                  color: AppColors.whitePrimary,
-                                  size: 18,
-                                ),
-                              ),
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
+                  const Spacer(),
                   Flexible(
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -284,3 +300,5 @@ class _AnimatedCubaStampState extends State<AnimatedCubaStamp> {
     );
   }
 }
+
+const _spacer = SizedBox(height: 10);

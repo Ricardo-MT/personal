@@ -6,7 +6,7 @@ import 'package:ricardomejiastravieso/utils/theming.dart';
 import 'package:ricardomejiastravieso/view/widgets/card.dart';
 import 'package:ricardomejiastravieso/view/widgets/custom_icons_icons.dart';
 
-class ThirdSection extends StatefulWidget {
+class ThirdSection extends StatelessWidget {
   const ThirdSection({
     Key? key,
     required this.controller,
@@ -22,218 +22,30 @@ class ThirdSection extends StatefulWidget {
   final double totalH;
 
   @override
-  State<ThirdSection> createState() => _ThirdSection();
-}
-
-class _ThirdSection extends State<ThirdSection> {
-  double _top = 0;
-  double _percent = 0;
-  double _opacityPercent = 0;
-  double _outPercent = 0;
-
-  @override
-  void initState() {
-    super.initState();
-    widget.controller.addListener(listener);
-  }
-
-  void listener() {
-    int pos = widget.controller.offset ~/ (widget.sectionH);
-    if (pos < 3) {
-      return;
-    }
-    if (pos < 4) {
-      setState(() {
-        _top = 0;
-        _percent = 0;
-        _opacityPercent =
-            min(1, (widget.controller.offset / (widget.sectionH * 1)) - 3);
-      });
-      return;
-    }
-    if (pos == 4) {
-      if (_outPercent != 0 || _opacityPercent != 1) {
-        setState(() {
-          _outPercent = 0;
-          _opacityPercent = 1;
-        });
-      }
-    }
-    if (pos > 4) {
-      if (_opacityPercent != 1) {
-        setState(() {
-          _opacityPercent = 1;
-        });
-      }
-      return;
-    }
-    double p = widget.controller.offset - widget.sectionH * pos;
-    setState(() {
-      _top = min(p, widget.sectionH);
-      _percent = _top / widget.sectionH;
-    });
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    widget.controller.removeListener(listener);
-  }
-
-  @override
   Widget build(BuildContext context) {
-    bool isMobile = widget.sectionW < 630;
-    // return RepaintBoundary(
-    //   child: Stack(
-    //     children: [
-    //       // AnimatedPositioned(
-    //       //     duration: const Duration(milliseconds: 0),
-    //       //     top: _top,
-    //       //     right: 0,
-    //       //     left: 0,
-    //       //     height: widget.sectionH,
-    //       //     child: Column(
-    //       //       mainAxisAlignment: MainAxisAlignment.spaceAround,
-    //       //       crossAxisAlignment: CrossAxisAlignment.center,
-    //       //       children: [
-    //       //         AnimatedOpacity(
-    //       //           opacity: _percent > 0.01 ? 1 : 0,
-    //       //           duration: const Duration(milliseconds: 200),
-    //       //           child: Text(
-    //       //             "PROGRAMMING LANGUAGES",
-    //       //             textAlign: TextAlign.center,
-    //       //             style: TextStyle(
-    //       //                 color: AppColors.whiteAccent.withOpacity(0.8),
-    //       //                 fontSize: 30,
-    //       //                 fontFamily: "Monoton"),
-    //       //           ),
-    //       //         ),
-    //       //         AnimatedOpacity(
-    //       //           opacity: _percent > 0.21 ? 1 : 0,
-    //       //           duration: const Duration(milliseconds: 200),
-    //       //           child: Text(
-    //       //             "Frameworks & libraries",
-    //       //             textAlign: TextAlign.center,
-    //       //             style: TextStyle(
-    //       //                 color: AppColors.whiteAccent.withOpacity(0.8),
-    //       //                 fontSize: 30,
-    //       //                 fontFamily: "Monoton"),
-    //       //           ),
-    //       //         ),
-    //       //         AnimatedOpacity(
-    //       //           opacity: _percent > 0.41 ? 1 : 0,
-    //       //           duration: const Duration(milliseconds: 200),
-    //       //           child: Text(
-    //       //             "Other tech",
-    //       //             textAlign: TextAlign.center,
-    //       //             style: TextStyle(
-    //       //                 color: AppColors.whiteAccent.withOpacity(0.8),
-    //       //                 fontSize: 30,
-    //       //                 fontFamily: "Monoton"),
-    //       //           ),
-    //       //         ),
-    //       //         AnimatedOpacity(
-    //       //           opacity: _percent > 0.61 ? 1 : 0,
-    //       //           duration: const Duration(milliseconds: 200),
-    //       //           child: Text(
-    //       //             "Dev tools",
-    //       //             textAlign: TextAlign.center,
-    //       //             style: TextStyle(
-    //       //                 color: AppColors.whiteAccent.withOpacity(0.8),
-    //       //                 fontSize: 30,
-    //       //                 fontFamily: "Monoton"),
-    //       //           ),
-    //       //         ),
-    //       //         AnimatedOpacity(
-    //       //           opacity: _percent > 0.81 ? 1 : 0,
-    //       //           duration: const Duration(milliseconds: 200),
-    //       //           child: Text(
-    //       //             "Team & management",
-    //       //             textAlign: TextAlign.center,
-    //       //             style: TextStyle(
-    //       //                 color: AppColors.whiteAccent.withOpacity(0.8),
-    //       //                 fontSize: 30,
-    //       //                 fontFamily: "Monoton"),
-    //       //           ),
-    //       //         ),
-    //       //       ],
-    //       //     )),
-    //       // AnimatedPositioned(
-    //       //   duration: const Duration(milliseconds: 0),
-    //       //   right: 0,
-    //       //   left: 0,
-    //       //   top: _top,
-    //       //   child: SizedBox(
-    //       //     width: widget.sectionW,
-    //       //     height: widget.sectionH,
-    //       //     child: Padding(
-    //       //       padding: const EdgeInsets.all(5.0),
-    //       //       child: Builder(builder: (context) {
-    //       //         return Wrap(
-    //       //           alignment: WrapAlignment.spaceEvenly,
-    //       //           runAlignment: WrapAlignment.spaceEvenly,
-    //       //           children: List.generate(
-    //       //               skills.length,
-    //       //               (index) => MuiSkillItem(
-    //       //                     skill: skills[index],
-    //       //                     active: _percent > index / skills.length,
-    //       //                   )),
-    //       //         );
-    //       //       }),
-    //       //     ),
-    //       //   ),
-    //       // )
-    //       AnimatedPositioned(
-    //           duration: const Duration(milliseconds: 0),
-    //           top: _top,
-    //           right: 0,
-    //           left: 0,
-    //           height: widget.sectionH,
-    //           child: Column(
-    //             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-    //             crossAxisAlignment: CrossAxisAlignment.center,
-    //             children: List.generate(
-    //                 sections.length,
-    //                 (index) => isMobile
-    //                     ? MuiSectionVerticalWidget(
-    //                         section: sections[index],
-    //                         progress: _opacityPercent,
-    //                         active: _opacityPercent >=
-    //                             ((1 / sections.length) * index + 0.32),
-    //                       )
-    //                     : MuiSectionWidget(
-    //                         section: sections[index],
-    //                         progress: _opacityPercent,
-    //                         inverted: index % 2 != 0,
-    //                         active: _opacityPercent >=
-    //                             ((1 / sections.length) * index + 0.32),
-    //                       )),
-    //           )),
-    //     ],
-    //   ),
-    // );
+    bool isMobile = sectionW < 630;
     return RepaintBoundary(
       child: SizedBox(
-        height: widget.sectionH,
-        width: widget.sectionW,
+        height: sectionH,
+        width: sectionW,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: List.generate(
-              sections.length,
+              techSections.length,
               (index) => isMobile
                   ? MuiSectionVerticalWidget(
-                      section: sections[index],
-                      progress: _opacityPercent,
-                      active: _opacityPercent >=
-                          ((1 / sections.length) * index + 0.32),
+                      controller: controller,
+                      section: techSections[index],
+                      sectionH: sectionH,
+                      index: index,
                     )
                   : MuiSectionWidget(
-                      section: sections[index],
-                      progress: _opacityPercent,
+                      controller: controller,
+                      section: techSections[index],
+                      sectionH: sectionH,
+                      index: index,
                       inverted: index % 2 != 0,
-                      active: _opacityPercent >=
-                          ((1 / sections.length) * index + 0.32),
                     )),
         ),
       ),
@@ -248,16 +60,55 @@ final Shader linearGradient = const LinearGradient(
   ],
 ).createShader(const Rect.fromLTWH(0.0, 0.0, 300.0, 60.0));
 
-class MuiSectionVerticalWidget extends StatelessWidget {
+class MuiSectionVerticalWidget extends StatefulWidget {
   const MuiSectionVerticalWidget({
     Key? key,
     required this.section,
-    this.active = false,
-    required this.progress,
+    required this.sectionH,
+    required this.index,
+    required this.controller,
   }) : super(key: key);
   final MuiSection section;
-  final bool active;
-  final double progress;
+  final double sectionH;
+  final int index;
+  final ScrollController controller;
+
+  @override
+  State<MuiSectionVerticalWidget> createState() =>
+      _MuiSectionVerticalWidgetState();
+}
+
+class _MuiSectionVerticalWidgetState extends State<MuiSectionVerticalWidget> {
+  late bool active;
+
+  @override
+  void initState() {
+    super.initState();
+    active = false;
+    widget.controller.addListener(listener);
+  }
+
+  void listener() {
+    int pos = widget.controller.offset ~/ (widget.sectionH);
+    if (pos != 3) {
+      return;
+    }
+    var opacityPercent =
+        min(1, (widget.controller.offset / (widget.sectionH * 1)) - 3);
+    var localActive =
+        opacityPercent >= ((1 / techSections.length) * widget.index + 0.32);
+    if (active != localActive) {
+      setState(() {
+        active = localActive;
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    widget.controller.removeListener(listener);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -276,10 +127,10 @@ class MuiSectionVerticalWidget extends StatelessWidget {
             child: SizedBox(
               width: 300,
               child: Align(
-                alignment: section.alignment,
+                alignment: widget.section.alignment,
                 child: MuiSectionTitle(
-                  title: section.title,
-                  alignment: getAlignment(section.alignment),
+                  title: widget.section.title,
+                  alignment: getAlignment(widget.section.alignment),
                   active: active,
                 ),
               ),
@@ -298,9 +149,9 @@ class MuiSectionVerticalWidget extends StatelessWidget {
                   alignment: WrapAlignment.start,
                   runAlignment: WrapAlignment.spaceEvenly,
                   children: List.generate(
-                      section.skills.length,
+                      widget.section.skills.length,
                       (index) => MuiSkillItem(
-                            skill: section.skills[index],
+                            skill: widget.section.skills[index],
                             active: active,
                             isMobile: true,
                           )),
@@ -314,18 +165,56 @@ class MuiSectionVerticalWidget extends StatelessWidget {
   }
 }
 
-class MuiSectionWidget extends StatelessWidget {
+class MuiSectionWidget extends StatefulWidget {
   const MuiSectionWidget({
     Key? key,
     required this.section,
-    this.active = false,
-    required this.progress,
+    required this.sectionH,
+    required this.index,
+    required this.controller,
     this.inverted = false,
   }) : super(key: key);
-  final MuiSection section;
-  final bool active;
-  final double progress;
   final bool inverted;
+  final MuiSection section;
+  final double sectionH;
+  final int index;
+  final ScrollController controller;
+
+  @override
+  State<MuiSectionWidget> createState() => _MuiSectionWidgetState();
+}
+
+class _MuiSectionWidgetState extends State<MuiSectionWidget> {
+  late bool active;
+
+  @override
+  void initState() {
+    super.initState();
+    active = false;
+    widget.controller.addListener(listener);
+  }
+
+  void listener() {
+    int pos = widget.controller.offset ~/ (widget.sectionH);
+    if (pos != 3) {
+      return;
+    }
+    var opacityPercent =
+        min(1, (widget.controller.offset / (widget.sectionH * 1)) - 3);
+    var localActive =
+        opacityPercent >= ((1 / techSections.length) * widget.index + 0.32);
+    if (active != localActive) {
+      setState(() {
+        active = localActive;
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    widget.controller.removeListener(listener);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -333,7 +222,7 @@ class MuiSectionWidget extends StatelessWidget {
       Expanded(
         child: Center(
           child: MuiSectionTitle(
-            title: section.title,
+            title: widget.section.title,
             alignment: TextAlign.center,
             active: active,
             isMobile: false,
@@ -355,9 +244,9 @@ class MuiSectionWidget extends StatelessWidget {
                 alignment: WrapAlignment.start,
                 runAlignment: WrapAlignment.spaceEvenly,
                 children: List.generate(
-                    section.skills.length,
+                    widget.section.skills.length,
                     (index) => MuiSkillItem(
-                          skill: section.skills[index],
+                          skill: widget.section.skills[index],
                           active: active,
                         )),
               ),
@@ -372,7 +261,7 @@ class MuiSectionWidget extends StatelessWidget {
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
-        children: inverted ? children.reversed.toList() : children,
+        children: widget.inverted ? children.reversed.toList() : children,
       ),
     );
   }
@@ -391,54 +280,93 @@ class MuiSkillItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        SizedBox(
-            height: isMobile ? 22 : 32,
-            width: isMobile ? 30 : 42,
-            child: Center(
-                child: AnimatedSwitcher(
-              duration: const Duration(milliseconds: 1000),
-              switchInCurve: Curves.fastOutSlowIn,
-              child: active
-                  ? Icon(
-                      key: Key('animatedSwitchedIconOn${skill.name}'),
-                      skill.icon,
-                      color: skill.color,
-                      size: isMobile ? 22 : 30,
-                      shadows: [
-                        for (int i = 1; i < 5; i++)
-                          Shadow(
-                              color: (skill.color ?? AppColors.whiteAccent)
-                                  .withOpacity(0.6),
-                              blurRadius: (8 * i).toDouble())
-                      ],
-                    )
-                  : Icon(
-                      key: Key('animatedSwitchedIconOff${skill.name}'),
-                      skill.icon,
-                      color: skill.color?.withOpacity(0.6),
-                      size: isMobile ? 20 : 28,
-                      shadows: const [],
+    return AnimatedSwitcher(
+      duration: const Duration(milliseconds: 1000),
+      switchInCurve: Curves.fastOutSlowIn,
+      child: active
+          ? Row(
+              key: Key('animatedSwitchedIconOn${skill.name}'),
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                SizedBox(
+                    height: isMobile ? 22 : 32,
+                    width: isMobile ? 30 : 42,
+                    child: Center(
+                        child: AnimatedSwitcher(
+                      duration: const Duration(milliseconds: 1000),
+                      switchInCurve: Curves.fastOutSlowIn,
+                      child: Icon(
+                        skill.icon,
+                        color: skill.color,
+                        size: isMobile ? 22 : 30,
+                        shadows: [
+                          for (int i = 1; i < 5; i++)
+                            Shadow(
+                                color: (skill.color ?? AppColors.whiteAccent)
+                                    .withOpacity(0.6),
+                                blurRadius: (8 * i).toDouble())
+                        ],
+                      ),
+                    ))),
+                SizedBox(
+                  height: isMobile ? 22 : 32,
+                  width: isMobile ? 100 : 136,
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      skill.name,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: isMobile ? 14 : 20,
+                        fontFamily: "Comfortaa",
+                        shadows: [
+                          for (int i = 1; i < 6; i++)
+                            Shadow(
+                                color: AppColors.whiteAccent.withOpacity(0.8),
+                                blurRadius: (5 * i).toDouble())
+                        ],
+                      ),
                     ),
-            ))),
-        SizedBox(
-          height: isMobile ? 22 : 32,
-          width: isMobile ? 100 : 136,
-          child: Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              skill.name,
-              style: TextStyle(
-                color: AppColors.whiteAccent,
-                fontSize: isMobile ? 14 : 20,
-                fontFamily: "Comfortaa",
-              ),
+                  ),
+                )
+              ],
+            )
+          : Row(
+              key: Key('animatedSwitchedIconOff${skill.name}'),
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                SizedBox(
+                    height: isMobile ? 22 : 32,
+                    width: isMobile ? 30 : 42,
+                    child: Center(
+                        child: AnimatedSwitcher(
+                            duration: const Duration(milliseconds: 1000),
+                            switchInCurve: Curves.fastOutSlowIn,
+                            child: Icon(
+                              key: Key('animatedSwitchedIconOff${skill.name}'),
+                              skill.icon,
+                              color: skill.color?.withOpacity(0.6),
+                              size: isMobile ? 20 : 28,
+                              shadows: const [],
+                            )))),
+                SizedBox(
+                  height: isMobile ? 22 : 32,
+                  width: isMobile ? 100 : 136,
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      skill.name,
+                      style: TextStyle(
+                        color: AppColors.whiteAccent,
+                        fontSize: isMobile ? 14 : 20,
+                        fontFamily: "Comfortaa",
+                        shadows: const [],
+                      ),
+                    ),
+                  ),
+                )
+              ],
             ),
-          ),
-        )
-      ],
     );
   }
 }
@@ -465,7 +393,7 @@ class MuiSectionTitle extends StatelessWidget {
         title,
         textAlign: alignment,
         style: TextStyle(
-            color: AppColors.whiteAccent.withOpacity(0.8),
+            color: Colors.white,
             fontSize: isMobile ? 16 : 24,
             fontFamily: "Monoton",
             shadows: active
@@ -491,7 +419,7 @@ TextAlign getAlignment(Alignment alignment) {
   return TextAlign.center;
 }
 
-List<MuiSection> sections = [
+List<MuiSection> techSections = [
   MuiSection(
     title: "PROGRAMMING\nLANGUAGES",
     alignment: Alignment.centerLeft,
@@ -633,34 +561,3 @@ List<Skill> skills = [
   //     color: const Color(0xFF5865F2)),
   // Skill(icon: CustomIcons.skype, name: "Skype", color: const Color(0xFF00AFF0)),
 ];
-
-const _duration = Duration(milliseconds: 200);
-
-const _slideDuration = Duration(milliseconds: 500);
-
-// children: List.generate(
-//                     sections.length,
-//                     (index) => AnimatedSlide(
-//                         offset: _opacityPercent >
-//                                 (1 / sections.length + 0.1) * index
-//                             ? (_outPercent > (1 / sections.length) * index
-//                                 ? const Offset(-1, 0)
-//                                 : const Offset(0, 0))
-//                             : const Offset(-1, 0),
-//                         duration: _slideDuration,
-//                         curve: Curves.fastOutSlowIn,
-//                         child: AnimatedOpacity(
-//                             opacity: _opacityPercent >
-//                                     (1 / sections.length + 0.1) * index
-//                                 ? (_outPercent > (1 / sections.length) * index
-//                                     ? 0
-//                                     : 1)
-//                                 : 0,
-//                             duration: _duration,
-//                             curve: Curves.linear,
-//                             child: MuiSectionWidget(
-//                               section: sections[index],
-//                               progress: _opacityPercent,
-//                               active: _opacityPercent >
-//                                   ((1 / sections.length) * index + 0.3),
-//                             )))),

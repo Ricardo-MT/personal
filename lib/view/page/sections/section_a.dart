@@ -29,21 +29,21 @@ class _SectionZero extends State<SectionZero> {
       width: w,
       child: Column(
         children: [
-          Expanded(
-            child: Row(
-              children: [
-                const Spacer(
-                  flex: 4,
-                ),
-                AnimatedCubaStamp(
-                    sectionHeight: widget.sectionH,
-                    controller: widget.controller),
-                const Spacer(
-                  flex: 1,
-                ),
-              ],
-            ),
-          ),
+          // Expanded(
+          //   child: Row(
+          //     children: [
+          //       const Spacer(
+          //         flex: 4,
+          //       ),
+          //       AnimatedCubaStamp(
+          //           sectionHeight: widget.sectionH,
+          //           controller: widget.controller),
+          //       const Spacer(
+          //         flex: 1,
+          //       ),
+          //     ],
+          //   ),
+          // ),
           Expanded(
             flex: 4,
             child: Padding(
