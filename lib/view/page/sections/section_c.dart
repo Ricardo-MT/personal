@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ricardomejiastravieso/utils/theming.dart';
@@ -87,7 +85,7 @@ class ThirdSection extends StatelessWidget {
   }
 }
 
-class MuiSectionVerticalWidget extends StatefulWidget {
+class MuiSectionVerticalWidget extends StatelessWidget {
   const MuiSectionVerticalWidget({
     Key? key,
     required this.section,
@@ -99,43 +97,6 @@ class MuiSectionVerticalWidget extends StatefulWidget {
   final double sectionH;
   final int index;
   final ScrollController controller;
-
-  @override
-  State<MuiSectionVerticalWidget> createState() =>
-      _MuiSectionVerticalWidgetState();
-}
-
-class _MuiSectionVerticalWidgetState extends State<MuiSectionVerticalWidget> {
-  late bool active;
-
-  @override
-  void initState() {
-    super.initState();
-    active = false;
-    widget.controller.addListener(listener);
-  }
-
-  void listener() {
-    int pos = widget.controller.offset ~/ (widget.sectionH);
-    if (pos != 3) {
-      return;
-    }
-    var opacityPercent =
-        min(1, (widget.controller.offset / (widget.sectionH * 1)) - 3);
-    var localActive =
-        opacityPercent >= ((1 / techSections.length) * widget.index + 0.32);
-    if (active != localActive) {
-      setState(() {
-        active = localActive;
-      });
-    }
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    widget.controller.removeListener(listener);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -154,18 +115,18 @@ class _MuiSectionVerticalWidgetState extends State<MuiSectionVerticalWidget> {
             child: SizedBox(
               width: 300,
               child: Align(
-                alignment: widget.section.alignment,
+                alignment: section.alignment,
                 child: MuiSectionTitle(
-                  title: widget.section.title,
-                  alignment: getAlignment(widget.section.alignment),
-                  active: active,
+                  title: section.title,
+                  alignment: getAlignment(section.alignment),
+                  active: true,
                 ),
               ),
             ),
           ),
           MuiCard(
-            insetShadow: active,
-            active: active,
+            insetShadow: true,
+            active: true,
             width: 300,
             heigth: 126,
             decorated: false,
@@ -176,10 +137,10 @@ class _MuiSectionVerticalWidgetState extends State<MuiSectionVerticalWidget> {
                   alignment: WrapAlignment.start,
                   runAlignment: WrapAlignment.spaceEvenly,
                   children: List.generate(
-                      widget.section.skills.length,
+                      section.skills.length,
                       (index) => MuiSkillItem(
-                            skill: widget.section.skills[index],
-                            active: active,
+                            skill: section.skills[index],
+                            active: true,
                             isMobile: true,
                           )),
                 ),
@@ -192,7 +153,7 @@ class _MuiSectionVerticalWidgetState extends State<MuiSectionVerticalWidget> {
   }
 }
 
-class MuiSectionWidget extends StatefulWidget {
+class MuiSectionWidget extends StatelessWidget {
   const MuiSectionWidget({
     Key? key,
     required this.section,
@@ -208,50 +169,14 @@ class MuiSectionWidget extends StatefulWidget {
   final ScrollController controller;
 
   @override
-  State<MuiSectionWidget> createState() => _MuiSectionWidgetState();
-}
-
-class _MuiSectionWidgetState extends State<MuiSectionWidget> {
-  late bool active;
-
-  @override
-  void initState() {
-    super.initState();
-    active = false;
-    widget.controller.addListener(listener);
-  }
-
-  void listener() {
-    int pos = widget.controller.offset ~/ (widget.sectionH);
-    if (pos != 3) {
-      return;
-    }
-    var opacityPercent =
-        min(1, (widget.controller.offset / (widget.sectionH * 1)) - 3);
-    var localActive =
-        opacityPercent >= ((1 / techSections.length) * widget.index + 0.32);
-    if (active != localActive) {
-      setState(() {
-        active = localActive;
-      });
-    }
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    widget.controller.removeListener(listener);
-  }
-
-  @override
   Widget build(BuildContext context) {
     var children = [
       Expanded(
         child: Center(
           child: MuiSectionTitle(
-            title: widget.section.title,
+            title: section.title,
             alignment: TextAlign.center,
-            active: active,
+            active: true,
             isMobile: false,
           ),
         ),
@@ -260,8 +185,8 @@ class _MuiSectionWidgetState extends State<MuiSectionWidget> {
         fit: FlexFit.loose,
         child: Center(
           child: MuiCard(
-            insetShadow: active,
-            active: active,
+            insetShadow: true,
+            active: true,
             width: 386,
             heigth: 240,
             decorated: true,
@@ -271,10 +196,10 @@ class _MuiSectionWidgetState extends State<MuiSectionWidget> {
                 alignment: WrapAlignment.start,
                 runAlignment: WrapAlignment.spaceEvenly,
                 children: List.generate(
-                    widget.section.skills.length,
+                    section.skills.length,
                     (index) => MuiSkillItem(
-                          skill: widget.section.skills[index],
-                          active: active,
+                          skill: section.skills[index],
+                          active: true,
                         )),
               ),
             ),
@@ -288,7 +213,7 @@ class _MuiSectionWidgetState extends State<MuiSectionWidget> {
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
-        children: widget.inverted ? children.reversed.toList() : children,
+        children: inverted ? children.reversed.toList() : children,
       ),
     );
   }
@@ -628,31 +553,37 @@ class ParallaxFlowDelegate extends FlowDelegate {
 
     // Convert the background alignment into a pixel offset for
     // painting purposes.
-    final sizes = keys
-        .map((k) => (k.currentContext!.findRenderObject() as RenderBox).size)
-        .toList();
+    // final sizes = keys
+    //     .map((k) => (k.currentContext!.findRenderObject() as RenderBox).size)
+    //     .toList();
+    final sizes = [];
+    for (var k in keys) {
+      sizes.add((k.currentContext!.findRenderObject() as RenderBox).size);
+    }
     final backgroundSize = sizes[0];
     final listItemSize = context.size;
     double space = backgroundSize.width;
     double vSpace =
         (listItemSize.height - backgroundSize.height * context.childCount) /
             (context.childCount + 1);
-    double keyPart = 0.5 / (context.childCount - 1);
-    // print(space);
-    // print(space * (1 + 0) * scrollFraction);
-    // print(space - space * (1 + 0) * scrollFraction);
+    var percent = 1 - scrollFraction;
+    var dx = space * 2 / 3;
     for (var i = 0; i < context.childCount; i++) {
       context.paintChild(
         i,
         transform: Transform.translate(
-            offset: Offset(
-          (i % 2 == 0 ? -1 : 1) * space * (1 + i) * scrollFraction,
-          // space -
-          //     (1 - (1 - scrollFraction) / (0.5 + i * keyPart)).clamp(0, 1) *
-          //         (backgroundSize.width / 2),
-          vSpace * (1 + i) + backgroundSize.height * i,
-        )).transform,
-        opacity: ((1 - scrollFraction) / (0.5 + i * keyPart)).clamp(0, 1),
+          offset: Offset(
+            0,
+            // (1 - (percent / (0.3 * (1 + i))).clamp(0, 1)) *
+            //     (i % 2 == 0 ? -1 : 1) *
+            //     (dx),
+            vSpace * (1 + i) +
+                backgroundSize.height * i +
+                (1 - (percent / (0.3 * (1 + i))).clamp(0, 1)) * (dx),
+          ),
+          transformHitTests: false,
+        ).transform,
+        opacity: 1,
       );
     }
   }
