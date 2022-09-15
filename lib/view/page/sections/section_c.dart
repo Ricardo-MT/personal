@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:ricardomejiastravieso/utils/theming.dart';
+import 'package:ricardomejiastravieso/utils/theme.dart';
 import 'package:ricardomejiastravieso/view/widgets/card.dart';
 import 'package:ricardomejiastravieso/view/widgets/custom_icons_icons.dart';
 
@@ -272,10 +272,10 @@ class MuiSkillItem extends StatelessWidget {
                         fontSize: isMobile ? 14 : 20,
                         fontFamily: "Comfortaa",
                         shadows: [
-                          for (int i = 1; i < 6; i++)
+                          for (int i = 1; i < 4; i++)
                             Shadow(
                                 color: AppColors.whiteAccent.withOpacity(0.8),
-                                blurRadius: (5 * i).toDouble())
+                                blurRadius: (4 * i).toDouble())
                         ],
                       ),
                     ),
@@ -291,16 +291,17 @@ class MuiSkillItem extends StatelessWidget {
                     height: isMobile ? 22 : 32,
                     width: isMobile ? 30 : 42,
                     child: Center(
-                        child: AnimatedSwitcher(
-                            duration: const Duration(milliseconds: 1000),
-                            switchInCurve: Curves.fastOutSlowIn,
-                            child: Icon(
-                              key: Key('animatedSwitchedIconOff${skill.name}'),
-                              skill.icon,
-                              color: skill.color?.withOpacity(0.6),
-                              size: isMobile ? 20 : 28,
-                              shadows: const [],
-                            )))),
+                      child: AnimatedSwitcher(
+                          duration: const Duration(milliseconds: 1000),
+                          switchInCurve: Curves.fastOutSlowIn,
+                          child: Icon(
+                            key: Key('animatedSwitchedIconOff${skill.name}'),
+                            skill.icon,
+                            color: skill.color?.withOpacity(0.6),
+                            size: isMobile ? 20 : 28,
+                            shadows: const [],
+                          )),
+                    )),
                 SizedBox(
                   height: isMobile ? 22 : 32,
                   width: isMobile ? 100 : 136,
@@ -350,10 +351,10 @@ class MuiSectionTitle extends StatelessWidget {
             fontFamily: "Monoton",
             shadows: active
                 ? [
-                    for (int i = 1; i < 6; i++)
+                    for (int i = 1; i < 4; i++)
                       Shadow(
                           color: AppColors.whiteAccent.withOpacity(0.8),
-                          blurRadius: (5 * i).toDouble())
+                          blurRadius: (4 * i).toDouble())
                   ]
                 : []),
       ),

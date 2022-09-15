@@ -1,6 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:ricardomejiastravieso/utils/theming.dart';
+import 'package:ricardomejiastravieso/utils/theme.dart';
 
 class SectionFifth extends StatefulWidget {
   const SectionFifth({

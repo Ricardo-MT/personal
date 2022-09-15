@@ -1,7 +1,6 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
-import 'package:ricardomejiastravieso/utils/theming.dart';
+import 'package:ricardomejiastravieso/utils/theme.dart';
 import 'package:ricardomejiastravieso/view/widgets/card.dart';
 
 class SecondSection extends StatefulWidget {
@@ -453,13 +452,6 @@ class _SecondSection extends State<SecondSection> {
     );
   }
 }
-
-final Shader linearGradient = const LinearGradient(
-  colors: <Color>[
-    Color.fromARGB(255, 150, 120, 160),
-    Color.fromARGB(255, 120, 89, 130)
-  ],
-).createShader(const Rect.fromLTWH(0.0, 0.0, 300.0, 60.0));
 
 class MuiTrayectoryCard extends StatelessWidget {
   const MuiTrayectoryCard({

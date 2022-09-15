@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ricardomejiastravieso/utils/theming.dart';
+import 'package:ricardomejiastravieso/utils/theme.dart';
 import 'package:ricardomejiastravieso/view/widgets/animated_icon/animated_icon.dart';
 import 'package:ricardomejiastravieso/view/widgets/card.dart';
 

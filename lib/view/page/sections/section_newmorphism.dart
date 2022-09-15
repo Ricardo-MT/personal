@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
-import 'package:ricardomejiastravieso/utils/theming.dart';
+import 'package:ricardomejiastravieso/utils/theme.dart';
 import 'package:ricardomejiastravieso/view/widgets/card.dart';
 
 class SectionInitialNewmorphism extends StatelessWidget {
@@ -25,7 +25,7 @@ class SectionInitialNewmorphism extends StatelessWidget {
         children: [
           NameLayer(sectionH: sectionH, sectionW: sectionW),
           const Padding(
-            padding: EdgeInsets.all(12.0),
+            padding: EdgeInsets.all(30.0),
             child: ScaleInLayer(),
           ),
           ProfessionLayer(sectionH: sectionH, sectionW: sectionW),

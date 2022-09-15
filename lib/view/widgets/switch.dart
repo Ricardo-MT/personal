@@ -1,66 +1,54 @@
 import 'package:flutter/material.dart';
-import 'package:ricardomejiastravieso/utils/theming.dart';
+import 'package:provider/provider.dart';
+import 'package:ricardomejiastravieso/providers/theme_provider.dart';
+import 'package:ricardomejiastravieso/utils/theme.dart';
 
-class MuiSwitchTheme extends StatefulWidget {
+class MuiSwitchTheme extends StatelessWidget {
   const MuiSwitchTheme({Key? key}) : super(key: key);
 
   @override
-  State<MuiSwitchTheme> createState() => _MuiSwitchTheme();
-}
-
-class _MuiSwitchTheme extends State<MuiSwitchTheme> {
-  late bool on;
-
-  @override
-  void initState() {
-    super.initState();
-    on = true;
-  }
-
-  void nextState() {
-    setState(() {
-      on = !on;
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 30,
-      width: 30,
-      child: MouseRegion(
-        cursor: SystemMouseCursors.click,
-        child: GestureDetector(
-          onTap: nextState,
-          child: Stack(
-            alignment: AlignmentDirectional.center,
-            children: [
-              AnimatedPositioned(
-                duration: const Duration(milliseconds: 200),
-                bottom: on ? 0 : -30,
-                child: SizedBox(
-                  width: 30,
-                  height: 60,
-                  child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Icon(
-                          Icons.nightlight_round,
-                          size: 20,
-                          color: AppColors.whitePrimary,
-                        ),
-                        Icon(
-                          Icons.wb_sunny_sharp,
-                          size: 20,
-                          color: AppColors.whitePrimary,
-                        ),
-                      ]),
-                ),
+    return Consumer<ThemeProvider>(
+      builder: (context, provider, child) {
+        double bottom = provider.mode == ThemeMode.dark ? 0 : -30;
+        return SizedBox(
+          height: 30,
+          width: 30,
+          child: MouseRegion(
+            cursor: SystemMouseCursors.click,
+            child: GestureDetector(
+              onTap: provider.toggleThemeMode,
+              child: Stack(
+                alignment: AlignmentDirectional.center,
+                children: [
+                  AnimatedPositioned(
+                    duration: const Duration(milliseconds: 200),
+                    bottom: bottom,
+                    child: SizedBox(
+                      width: 30,
+                      height: 60,
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Icon(
+                              Icons.nightlight_round,
+                              size: 20,
+                              color: AppColors.whitePrimary,
+                            ),
+                            Icon(
+                              Icons.wb_sunny_sharp,
+                              size: 20,
+                              color: AppColors.whitePrimary,
+                            ),
+                          ]),
+                    ),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

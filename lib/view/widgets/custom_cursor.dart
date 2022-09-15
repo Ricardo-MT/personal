@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ricardomejiastravieso/utils/theming.dart';
+import 'package:ricardomejiastravieso/utils/theme.dart';
 
 class CustomCursorLayer extends StatefulWidget {
   const CustomCursorLayer({Key? key}) : super(key: key);

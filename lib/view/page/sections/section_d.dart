@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:ricardomejiastravieso/utils/theming.dart';
+import 'package:ricardomejiastravieso/utils/theme.dart';
 import 'package:ricardomejiastravieso/view/widgets/card.dart';
 
 class SectionFourth extends StatelessWidget {
@@ -172,8 +172,8 @@ class MobileItem extends StatelessWidget {
 
   Widget _buildTitleAndSubtitle() {
     return Positioned(
-      left: 20,
-      bottom: 20,
+      left: 12,
+      bottom: 15,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -182,7 +182,7 @@ class MobileItem extends StatelessWidget {
             project.name,
             style: TextStyle(
               color: AppColors.whitePrimary,
-              fontSize: 18,
+              fontSize: 16,
               fontWeight: FontWeight.bold,
               fontFamily: "Montserrat",
             ),
