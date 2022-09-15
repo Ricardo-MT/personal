@@ -11,6 +11,7 @@ import 'package:ricardomejiastravieso/view/page/sections/section_d.dart';
 import 'package:ricardomejiastravieso/view/page/sections/section_e.dart';
 import 'package:ricardomejiastravieso/view/page/sections/section_f.dart';
 import 'package:ricardomejiastravieso/view/page/sections/section_newmorphism.dart';
+import 'package:ricardomejiastravieso/view/widgets/custom_cursor.dart';
 import 'package:ricardomejiastravieso/view/widgets/fade_out.dart';
 import 'package:ricardomejiastravieso/view/widgets/switch.dart';
 
@@ -165,23 +166,12 @@ class _HomePageState extends State<HomePage> {
                 image: AssetImage("assets/back.png"),
                 fit: BoxFit.cover,
                 alignment: Alignment.topCenter,
-                repeat: ImageRepeat.repeatY,
               )),
               child: SizedBox(
                 height: h,
                 width: w,
               ),
             ),
-            // SizedBox(
-            //   height: h,
-            //   width: w,
-            //   child: AnimatedBackgroundColor(
-            //     controller: _controllerPrimary,
-            //     sections: 6,
-            //     sectionHeight: h,
-            //     totalheight: tH,
-            //   ),
-            // ),
             SizedBox(
               height: h,
               width: w,
@@ -268,6 +258,11 @@ class _HomePageState extends State<HomePage> {
                   mainAxisSize: MainAxisSize.min,
                   children: const [MuiSwitchLang(), MuiSwitchTheme()],
                 )),
+            SizedBox(
+              height: h,
+              width: w,
+              child: const CustomCursorLayer(),
+            ),
             FadeOutLayer(
               child: Container(
                 width: w,
