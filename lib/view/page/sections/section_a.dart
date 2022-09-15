@@ -63,6 +63,9 @@ class _SectionZero extends State<SectionZero> {
                       ),
                     ),
                   ),
+                  const SizedBox(
+                    width: 15,
+                  ),
                   Expanded(
                     flex: 3,
                     child: AutoSizeText.rich(

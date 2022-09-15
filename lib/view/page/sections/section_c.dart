@@ -6,6 +6,8 @@ import 'package:ricardomejiastravieso/utils/theming.dart';
 import 'package:ricardomejiastravieso/view/widgets/card.dart';
 import 'package:ricardomejiastravieso/view/widgets/custom_icons_icons.dart';
 
+List<GlobalKey> _keys = [GlobalKey(), GlobalKey(), GlobalKey()];
+
 class ThirdSection extends StatelessWidget {
   const ThirdSection({
     Key? key,
@@ -28,37 +30,62 @@ class ThirdSection extends StatelessWidget {
       child: SizedBox(
         height: sectionH,
         width: sectionW,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: List.generate(
-              techSections.length,
-              (index) => isMobile
-                  ? MuiSectionVerticalWidget(
-                      controller: controller,
-                      section: techSections[index],
-                      sectionH: sectionH,
-                      index: index,
-                    )
-                  : MuiSectionWidget(
-                      controller: controller,
-                      section: techSections[index],
-                      sectionH: sectionH,
-                      index: index,
-                      inverted: index % 2 != 0,
-                    )),
+        child: Stack(
+          children: [
+            Flow(
+              delegate: ParallaxFlowDelegate(
+                scrollable: Scrollable.of(context)!,
+                sectionH: sectionH,
+                sectionW: sectionW,
+                listItemContext: context,
+                keys: _keys,
+              ),
+              children: List.generate(
+                  techSections.length,
+                  (index) => isMobile
+                      ? MuiSectionVerticalWidget(
+                          key: _keys[index],
+                          controller: controller,
+                          section: techSections[index],
+                          sectionH: sectionH,
+                          index: index,
+                        )
+                      : MuiSectionWidget(
+                          key: _keys[index],
+                          controller: controller,
+                          section: techSections[index],
+                          sectionH: sectionH,
+                          index: index,
+                          inverted: index % 2 != 0,
+                        )),
+            )
+          ],
+          // ),
         ),
+        // child: Column(
+        //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        //   crossAxisAlignment: CrossAxisAlignment.center,
+        //   children: List.generate(
+        //       techSections.length,
+        //       (index) => isMobile
+        //           ? MuiSectionVerticalWidget(
+        //               controller: controller,
+        //               section: techSections[index],
+        //               sectionH: sectionH,
+        //               index: index,
+        //             )
+        //           : MuiSectionWidget(
+        //               controller: controller,
+        //               section: techSections[index],
+        //               sectionH: sectionH,
+        //               index: index,
+        //               inverted: index % 2 != 0,
+        //             )),
+        // ),
       ),
     );
   }
 }
-
-final Shader linearGradient = const LinearGradient(
-  colors: <Color>[
-    Color.fromARGB(255, 150, 120, 160),
-    Color.fromARGB(255, 120, 89, 130)
-  ],
-).createShader(const Rect.fromLTWH(0.0, 0.0, 300.0, 60.0));
 
 class MuiSectionVerticalWidget extends StatefulWidget {
   const MuiSectionVerticalWidget({
@@ -561,3 +588,79 @@ List<Skill> skills = [
   //     color: const Color(0xFF5865F2)),
   // Skill(icon: CustomIcons.skype, name: "Skype", color: const Color(0xFF00AFF0)),
 ];
+
+class ParallaxFlowDelegate extends FlowDelegate {
+  ParallaxFlowDelegate({
+    required this.scrollable,
+    required this.listItemContext,
+    required this.keys,
+    required this.sectionH,
+    required this.sectionW,
+  }) : super(repaint: scrollable.position);
+
+  final ScrollableState scrollable;
+  final BuildContext listItemContext;
+  final List<GlobalKey> keys;
+  final double sectionH;
+  final double sectionW;
+
+  @override
+  BoxConstraints getConstraintsForChild(int i, BoxConstraints constraints) {
+    return BoxConstraints.tightFor(
+      width: constraints.maxWidth,
+    );
+  }
+
+  @override
+  void paintChildren(FlowPaintingContext context) {
+    final scrollableBox = scrollable.context.findRenderObject() as RenderBox;
+    final listItemBox = listItemContext.findRenderObject() as RenderBox;
+    final listItemOffset = listItemBox.localToGlobal(
+      listItemBox.size.centerLeft(Offset.zero),
+      ancestor: scrollableBox,
+    );
+
+    // Determine the percent position of this list item within the
+    // scrollable area.
+    final viewportDimension = scrollable.position.viewportDimension;
+    final scrollFraction =
+        (listItemOffset.dy / viewportDimension - 0.5).clamp(0.0, 1.0);
+
+    // Convert the background alignment into a pixel offset for
+    // painting purposes.
+    final sizes = keys
+        .map((k) => (k.currentContext!.findRenderObject() as RenderBox).size)
+        .toList();
+    final backgroundSize = sizes[0];
+    final listItemSize = context.size;
+    double space = backgroundSize.width;
+    double vSpace =
+        (listItemSize.height - backgroundSize.height * context.childCount) /
+            (context.childCount + 1);
+    double keyPart = 0.5 / (context.childCount - 1);
+    // print(space);
+    // print(space * (1 + 0) * scrollFraction);
+    // print(space - space * (1 + 0) * scrollFraction);
+    for (var i = 0; i < context.childCount; i++) {
+      context.paintChild(
+        i,
+        transform: Transform.translate(
+            offset: Offset(
+          (i % 2 == 0 ? -1 : 1) * space * (1 + i) * scrollFraction,
+          // space -
+          //     (1 - (1 - scrollFraction) / (0.5 + i * keyPart)).clamp(0, 1) *
+          //         (backgroundSize.width / 2),
+          vSpace * (1 + i) + backgroundSize.height * i,
+        )).transform,
+        opacity: ((1 - scrollFraction) / (0.5 + i * keyPart)).clamp(0, 1),
+      );
+    }
+  }
+
+  @override
+  bool shouldRepaint(ParallaxFlowDelegate oldDelegate) {
+    return scrollable != oldDelegate.scrollable ||
+        listItemContext != oldDelegate.listItemContext ||
+        keys.hashCode != oldDelegate.keys.hashCode;
+  }
+}

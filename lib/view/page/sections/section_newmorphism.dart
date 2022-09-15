@@ -2,7 +2,7 @@ import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
 import 'package:ricardomejiastravieso/utils/theming.dart';
 import 'package:ricardomejiastravieso/view/widgets/card.dart';
 
-class SectionInitialNewmorphism extends StatefulWidget {
+class SectionInitialNewmorphism extends StatelessWidget {
   const SectionInitialNewmorphism({
     Key? key,
     required this.controller,
@@ -18,61 +18,22 @@ class SectionInitialNewmorphism extends StatefulWidget {
   final double totalH;
 
   @override
-  State<SectionInitialNewmorphism> createState() =>
-      _SectionInitialNewmorphism();
-}
-
-class _SectionInitialNewmorphism extends State<SectionInitialNewmorphism>
-    with TickerProviderStateMixin {
-  late final AnimationController _controller = AnimationController(
-    duration: const Duration(milliseconds: 1500),
-    vsync: this,
-  );
-  late final Animation<double> _animation = CurvedAnimation(
-    parent: _controller,
-    curve: Curves.fastOutSlowIn,
-  );
-
-  @override
-  void initState() {
-    super.initState();
-    _controller.forward();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    _controller.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return SizedBox(
       child: Stack(
         alignment: Alignment.center,
         children: [
-          NameLayer(sectionH: widget.sectionH, sectionW: widget.sectionW),
-          ScaleTransition(
-            scale: _animation,
-            child: const MuiCard(
-              circular: true,
-              width: 400,
-              heigth: 400,
-            ),
+          NameLayer(sectionH: sectionH, sectionW: sectionW),
+          const Padding(
+            padding: EdgeInsets.all(12.0),
+            child: ScaleInLayer(),
           ),
-          ProfessionLayer(sectionH: widget.sectionH, sectionW: widget.sectionW),
+          ProfessionLayer(sectionH: sectionH, sectionW: sectionW),
         ],
       ),
     );
   }
 }
-
-final Shader linearGradient = const LinearGradient(
-  colors: <Color>[
-    Color.fromARGB(255, 150, 120, 160),
-    Color.fromARGB(255, 120, 89, 130)
-  ],
-).createShader(const Rect.fromLTWH(0.0, 0.0, 300.0, 60.0));
 
 var color = const Color(0xFF8a6c94);
 var style = const TextStyle(color: Colors.white, fontSize: 40);
@@ -191,7 +152,7 @@ class ProfessionLayer extends StatelessWidget {
             style: style.copyWith(
               fontFamily: "Monoton",
               fontSize: sectionW * 0.09,
-              foreground: Paint()..shader = linearGradient,
+              color: color,
             ),
           ),
         ),
@@ -353,5 +314,51 @@ class SlideNameFlowDelegate extends FlowDelegate {
     return scrollable != oldDelegate.scrollable ||
         listItemContext != oldDelegate.listItemContext ||
         nameKeyA != oldDelegate.nameKeyA;
+  }
+}
+
+class ScaleInLayer extends StatefulWidget {
+  const ScaleInLayer({Key? key}) : super(key: key);
+
+  @override
+  State<ScaleInLayer> createState() => _ScaleInLayer();
+}
+
+class _ScaleInLayer extends State<ScaleInLayer> with TickerProviderStateMixin {
+  late final AnimationController _controller = AnimationController(
+    duration: const Duration(milliseconds: 1800),
+    vsync: this,
+  );
+  late final Animation<double> _animation = CurvedAnimation(
+    parent: _controller,
+    curve: Curves.fastOutSlowIn,
+  );
+
+  @override
+  void initState() {
+    super.initState();
+    _controller.forward();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _controller.dispose();
+  }
+
+  void nextState() {
+    setState(() {});
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ScaleTransition(
+      scale: _animation,
+      child: const MuiCard(
+        circular: true,
+        width: 400,
+        heigth: 400,
+      ),
+    );
   }
 }

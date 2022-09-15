@@ -11,6 +11,7 @@ import 'package:ricardomejiastravieso/view/page/sections/section_d.dart';
 import 'package:ricardomejiastravieso/view/page/sections/section_e.dart';
 import 'package:ricardomejiastravieso/view/page/sections/section_f.dart';
 import 'package:ricardomejiastravieso/view/page/sections/section_newmorphism.dart';
+import 'package:ricardomejiastravieso/view/widgets/fade_out.dart';
 import 'package:ricardomejiastravieso/view/widgets/switch.dart';
 
 class HomePage extends StatefulWidget {
@@ -150,6 +151,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFF333333),
       body: LayoutBuilder(builder: (context, constraints) {
         final h = MediaQuery.of(context).size.height;
         final w = MediaQuery.of(context).size.width;
@@ -266,6 +268,13 @@ class _HomePageState extends State<HomePage> {
                   mainAxisSize: MainAxisSize.min,
                   children: const [MuiSwitchLang(), MuiSwitchTheme()],
                 )),
+            FadeOutLayer(
+              child: Container(
+                width: w,
+                height: h,
+                decoration: const BoxDecoration(color: Color(0xFF333333)),
+              ),
+            )
           ],
         );
       }),
