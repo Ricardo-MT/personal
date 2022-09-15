@@ -4,7 +4,7 @@ import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart'
     as shadow;
 
 class MuiCard extends StatelessWidget {
-  const MuiCard({
+  MuiCard({
     Key? key,
     this.active = true,
     this.insetShadow = false,
@@ -12,9 +12,12 @@ class MuiCard extends StatelessWidget {
     this.width = 300,
     this.heigth = 120,
     this.child,
-    this.backgroundColor = defaultBackgroundColor,
-    this.colorStart = defaultColorStart,
-    this.colorEnd = defaultColorEnd,
+    // this.backgroundColor = AppColors.defaultBackgroundColor,
+    // this.colorStart = AppColors.defaultColorStart,
+    // this.colorEnd = AppColors.defaultColorEnd,
+    this.backgroundColor,
+    this.colorStart,
+    this.colorEnd,
     this.curve = Curves.fastOutSlowIn,
     this.containerDuration = 300,
     this.decorated = false,
@@ -25,15 +28,21 @@ class MuiCard extends StatelessWidget {
   final double width;
   final double heigth;
   final Widget? child;
-  final Color backgroundColor;
-  final Color colorStart;
-  final Color colorEnd;
+  Color? backgroundColor;
+  Color? colorStart;
+  Color? colorEnd;
   final Curve curve;
   final int containerDuration;
   final bool decorated;
 
   @override
   Widget build(BuildContext context) {
+    var localBackgroundColor =
+        backgroundColor ?? Theme.of(context).colorScheme.onPrimary;
+    var localColorStart =
+        colorStart ?? Theme.of(context).colorScheme.onSecondary;
+    var localColorEnd = colorEnd ?? Theme.of(context).colorScheme.onTertiary;
+
     return AnimatedScale(
       scale: active ? (insetShadow ? 0.9 : 1) : (insetShadow ? 1 : 0.9),
       duration: const Duration(milliseconds: 300),
@@ -46,18 +55,18 @@ class MuiCard extends StatelessWidget {
         decoration: shadow.BoxDecoration(
           borderRadius: circular ? null : BorderRadius.circular(26),
           shape: circular ? BoxShape.circle : BoxShape.rectangle,
-          color: backgroundColor,
+          color: localBackgroundColor,
           boxShadow: active
               ? [
                   shadow.BoxShadow(
-                    color: colorStart,
+                    color: localColorStart,
                     offset: offset,
                     blurRadius: blurRadius,
                     spreadRadius: spreadRadius,
                     inset: insetShadow,
                   ),
                   shadow.BoxShadow(
-                    color: colorEnd,
+                    color: localColorEnd,
                     offset: Offset(-offset.dx, -offset.dy),
                     blurRadius: blurRadius,
                     spreadRadius: spreadRadius,
@@ -136,12 +145,8 @@ class MuiBadge extends StatelessWidget {
   }
 }
 
-const blurRadius = 18.0;
+const blurRadius = 15.0;
 const spreadRadius = 1.0;
-const offset = Offset(4, 4);
-
-const defaultBackgroundColor = Color(0xFF333333);
-const defaultColorStart = Color(0xFF010101);
-const defaultColorEnd = Color(0xFF555555);
+const offset = Offset(3, 3);
 
 enum MuiCardDecoration { vertical, horizontal }

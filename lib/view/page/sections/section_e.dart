@@ -35,12 +35,12 @@ class _SectionFifth extends State<SectionFifth> {
               padding:
                   const EdgeInsets.symmetric(vertical: 14.0, horizontal: 20),
               child: AutoSizeText.rich(
-                const TextSpan(text: "< I have always been ", children: [
+                TextSpan(text: "< I have always been ", children: [
                   TextSpan(
                     text: "HORIZONTALLY SCOPED ",
                     style: _accentStyle,
                   ),
-                  TextSpan(
+                  const TextSpan(
                       text:
                           "in regard to my abilities, and never had a specialised or well defined trade.\n\nFor the last 3 years I have worked very hard on"
                           " getting as good as I can in "),
@@ -48,7 +48,7 @@ class _SectionFifth extends State<SectionFifth> {
                     text: "SOFTWARE DEVELOPMENT",
                     style: _accentStyle,
                   ),
-                  TextSpan(
+                  const TextSpan(
                       text:
                           ", building a more vertically scoped profile in the field I love."
                           "\n\nI became to understand how mastering skills takes "),
@@ -56,12 +56,12 @@ class _SectionFifth extends State<SectionFifth> {
                     text: "TIME ",
                     style: _accentStyle,
                   ),
-                  TextSpan(text: "and "),
+                  const TextSpan(text: "and "),
                   TextSpan(
                     text: "DEDICATION",
                     style: _accentStyle,
                   ),
-                  TextSpan(
+                  const TextSpan(
                       text: ", but with the proper strategy, this journey "
                           "can be extremely fun and exciting. I learned to deal with impostor syndrome, to manage the overwhelming and "
                           "rapidly-blooming technologies, to overcome burnouts, to make the most out of my "),
@@ -69,7 +69,7 @@ class _SectionFifth extends State<SectionFifth> {
                     text: "PRODUCTIVITY PEAKS",
                     style: _accentStyle,
                   ),
-                  TextSpan(
+                  const TextSpan(
                       text:
                           ", and to push everyone working around me towards a better version of themselves."
                           "\n\nI am a supportive "),
@@ -77,22 +77,24 @@ class _SectionFifth extends State<SectionFifth> {
                     text: "TEAM PLAYER",
                     style: _accentStyle,
                   ),
-                  TextSpan(text: ", very proactive and always with a "),
+                  const TextSpan(text: ", very proactive and always with a "),
                   TextSpan(
                     text: "CAN-DO ",
                     style: _accentStyle,
                   ),
-                  TextSpan(text: "attitude. For the past 5 years I had a "),
+                  const TextSpan(
+                      text: "attitude. For the past 5 years I had a "),
                   TextSpan(
                     text: "CONTINUOUS ",
                     style: _accentStyle,
                   ),
-                  TextSpan(text: "improvement mindset as I strive to become "),
+                  const TextSpan(
+                      text: "improvement mindset as I strive to become "),
                   TextSpan(
                     text: "BETTER ",
                     style: _accentStyle,
                   ),
-                  TextSpan(
+                  const TextSpan(
                       text:
                           "everyday, reinforcing my lifelong learning eagerness."
                           "\n\nI now aspire to contribute to the community, increase my professional network and carry on following my "
@@ -102,7 +104,7 @@ class _SectionFifth extends State<SectionFifth> {
                     text: "VERTICAL",
                     style: _accentStyle,
                   ),
-                  TextSpan(text: " ./>"),
+                  const TextSpan(text: " ./>"),
                 ]),
                 textAlign: TextAlign.justify,
                 style: TextStyle(
@@ -124,9 +126,9 @@ class _SectionFifth extends State<SectionFifth> {
   }
 }
 
-const _accentStyle = TextStyle(
+final _accentStyle = TextStyle(
   fontFamily: "Montserrat",
   fontSize: 36,
-  color: Color(0xFF8a6c94),
-  shadows: [],
+  color: AppColors.lightPurple,
+  shadows: const [],
 );

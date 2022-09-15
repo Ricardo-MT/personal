@@ -35,8 +35,7 @@ class SectionInitialNewmorphism extends StatelessWidget {
   }
 }
 
-var color = const Color(0xFF8a6c94);
-var style = const TextStyle(color: Colors.white, fontSize: 40);
+var style = const TextStyle(fontSize: 40);
 
 class NameLayer extends StatelessWidget {
   NameLayer({
@@ -59,6 +58,7 @@ class NameLayer extends StatelessWidget {
   }
 
   Widget _buildParallaxBackground(BuildContext context) {
+    var color = Theme.of(context).colorScheme.primary;
     return Flow(
       delegate: SlideNameFlowDelegate(
         scrollable: Scrollable.of(context)!,
@@ -76,7 +76,7 @@ class NameLayer extends StatelessWidget {
             key: _nameKeyA,
             style: style.copyWith(
               fontFamily: "Comfortaa",
-              color: AppColors.whitePrimary,
+              color: color,
             ),
           ),
         ),
@@ -87,15 +87,10 @@ class NameLayer extends StatelessWidget {
             key: _nameKeyB,
             style: style.copyWith(
               fontFamily: "LibreBarcode",
-              color: AppColors.whitePrimary,
+              color: color,
             ),
           ),
         ),
-        // Image.asset(
-        //   project.imageUrl,
-        //   key: _backgroundImageKey,
-        //   fit: BoxFit.cover,
-        // )
       ],
     );
   }
@@ -140,7 +135,7 @@ class ProfessionLayer extends StatelessWidget {
             style: style.copyWith(
               fontFamily: "Monoton",
               fontSize: sectionW * 0.09,
-              color: color,
+              color: AppColors.lightPurple,
             ),
           ),
         ),
@@ -152,15 +147,10 @@ class ProfessionLayer extends StatelessWidget {
             style: style.copyWith(
               fontFamily: "Monoton",
               fontSize: sectionW * 0.09,
-              color: color,
+              color: AppColors.lightPurple,
             ),
           ),
         ),
-        // Image.asset(
-        //   project.imageUrl,
-        //   key: _backgroundImageKey,
-        //   fit: BoxFit.cover,
-        // )
       ],
     );
   }
@@ -354,7 +344,7 @@ class _ScaleInLayer extends State<ScaleInLayer> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return ScaleTransition(
       scale: _animation,
-      child: const MuiCard(
+      child: MuiCard(
         circular: true,
         width: 400,
         heigth: 400,

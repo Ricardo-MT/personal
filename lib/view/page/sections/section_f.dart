@@ -44,11 +44,10 @@ class _SectionLast extends State<SectionLast> {
                 child: Align(
                   alignment: Alignment.centerLeft,
                   child: MuiCard(
-                    insetShadow: true,
                     width: (_spacer.height ?? 1) * 2 + 40,
                     heigth: (_spacer.height ?? 1) * 5 + 160,
                     child: Column(
-                      children: [
+                      children: const [
                         _spacer,
                         MuiBadge(
                           size: 40,
@@ -119,7 +118,7 @@ class _SectionLast extends State<SectionLast> {
                 Color.fromARGB(255, 120, 89, 130)
               ],
             )),
-            padding: const EdgeInsets.symmetric(horizontal: 36),
+            padding: const EdgeInsets.symmetric(horizontal: 27),
             child: Align(
               alignment: Alignment.centerLeft,
               child: Row(
@@ -143,7 +142,7 @@ class _SectionLast extends State<SectionLast> {
             ),
           ),
           Container(
-            color: const Color(0xFF333333),
+            color: Theme.of(context).colorScheme.onPrimary,
             height: widget.sectionH * 0.25,
             child: Padding(
               padding: const EdgeInsets.all(8.0),
@@ -161,37 +160,27 @@ class _SectionLast extends State<SectionLast> {
                           Text(
                             "Ricardo Mejías Travieso",
                             textAlign: TextAlign.right,
-                            style: TextStyle(
-                                fontFamily: "Montserrat",
-                                color: Color(0xFF8A6C94)),
+                            style: _contactStyle,
                           ),
                           Text(
                             "Fulstack & Mobile Developer",
                             textAlign: TextAlign.right,
-                            style: TextStyle(
-                                fontFamily: "Montserrat",
-                                color: Color(0xFF8A6C94)),
+                            style: _contactStyle,
                           ),
                           Text(
                             "Cádiz, España",
                             textAlign: TextAlign.right,
-                            style: TextStyle(
-                                fontFamily: "Montserrat",
-                                color: Color(0xFF8A6C94)),
+                            style: _contactStyle,
                           ),
                           Text(
                             "+34 644 096889",
                             textAlign: TextAlign.right,
-                            style: TextStyle(
-                                fontFamily: "Montserrat",
-                                color: Color(0xFF8A6C94)),
+                            style: _contactStyle,
                           ),
                           Text(
                             "rikr2.mt@gmail.com",
                             textAlign: TextAlign.right,
-                            style: TextStyle(
-                                fontFamily: "Montserrat",
-                                color: Color(0xFF8A6C94)),
+                            style: _contactStyle,
                           ),
                         ],
                       ),
@@ -203,7 +192,7 @@ class _SectionLast extends State<SectionLast> {
           ),
           Container(
             height: 2,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
                 gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
@@ -214,7 +203,7 @@ class _SectionLast extends State<SectionLast> {
             )),
           ),
           Container(
-            color: const Color(0xFF333333),
+            color: Theme.of(context).colorScheme.onPrimary,
             height: kToolbarHeight * 1.5,
             // decoration: const BoxDecoration(
             //     gradient: LinearGradient(
@@ -232,7 +221,7 @@ class _SectionLast extends State<SectionLast> {
                 style: TextStyle(
                   fontFamily: "Montserrat",
                   fontSize: 12,
-                  color: AppColors.whitePrimary,
+                  color: Theme.of(context).colorScheme.primary,
                 ),
               ),
             ),
@@ -244,3 +233,5 @@ class _SectionLast extends State<SectionLast> {
 }
 
 const _spacer = SizedBox(height: 10);
+const _contactStyle =
+    TextStyle(fontFamily: "Montserrat", color: AppColors.lightPurple);

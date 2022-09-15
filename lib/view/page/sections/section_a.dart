@@ -91,8 +91,8 @@ class SectionZero extends StatelessWidget {
       child: isMobile
           ? Column(
               children: [
-                const Padding(
-                  padding: EdgeInsets.all(12),
+                Padding(
+                  padding: const EdgeInsets.all(12),
                   child: SizedBox(
                     width: 240,
                     child: AspectRatio(
@@ -114,7 +114,7 @@ class SectionZero extends StatelessWidget {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Expanded(
+                  Expanded(
                     flex: 3,
                     // child: Image.asset("assets/images/cuba_a.png"),
                     child: AspectRatio(
@@ -139,6 +139,6 @@ class SectionZero extends StatelessWidget {
 const _accentStyle = TextStyle(
   fontFamily: "Montserrat",
   fontSize: 36,
-  color: Color(0xFF8a6c94),
+  color: AppColors.lightPurple,
   shadows: [],
 );

@@ -25,8 +25,6 @@ class SecondSection extends StatefulWidget {
 class _SecondSection extends State<SecondSection> {
   double _top = 0;
   double _percent = 0;
-  final double _opacityPercent = 1;
-  double _outPercent = 0;
   late final List<GlobalKey> _keys;
 
   @override
@@ -39,28 +37,17 @@ class _SecondSection extends State<SecondSection> {
   void listener() {
     int pos = widget.controller.offset ~/ (widget.sectionH);
     if (pos > 3) {
-      if (_outPercent != 1) {
-        _outPercent = 1;
-      }
       return;
     }
     if (pos < 2) {
       return;
     }
-    if (pos == 2) {
-      if (_outPercent != 0 || _opacityPercent != 1) {
-        // setState(() {
-        //   _outPercent = 0;
-        //   _opacityPercent = 1;
-        // });
-      }
-    }
     if (pos > 2) {
       if (_top != widget.sectionH || _percent != 1) {
-        // setState(() {
-        //   _top = widget.sectionH;
-        //   _percent = 1;
-        // });
+        setState(() {
+          _top = widget.sectionH;
+          _percent = 1;
+        });
       }
       return;
     }
@@ -83,7 +70,6 @@ class _SecondSection extends State<SecondSection> {
     return RepaintBoundary(
       child: Stack(
         children: [
-          // item1,
           AnimatedPositioned(
             duration: const Duration(milliseconds: 0),
             right: 0,
@@ -101,114 +87,9 @@ class _SecondSection extends State<SecondSection> {
                         MuiTimeline(
                           sectionH: widget.sectionH,
                           height: widget.sectionH - 30,
-                          // progress: _percent,
                           controller: widget.controller,
                         ),
                         _spacer,
-                        // Expanded(
-                        //   child: Column(
-                        //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        //     children: [
-                        //       AnimatedSlide(
-                        //         offset: _opacityPercent > 0.4
-                        //             ? (_outPercent > 0.1
-                        //                 ? const Offset(1.5, 0)
-                        //                 : const Offset(0, 0))
-                        //             : const Offset(0, 0.2),
-                        //         duration: _slideDuration,
-                        //         curve: Curves.fastOutSlowIn,
-                        //         child: AnimatedOpacity(
-                        //           // opacity: min(1, _percent / 0.25 * 3),
-                        //           opacity: _opacityPercent > 0.4
-                        //               ? (_outPercent > 0.1 ? 0 : 1)
-                        //               : 0,
-                        //           duration: _duration,
-                        //           curve: Curves.linear,
-                        //           child: MuiTrayectoryCard(
-                        //             active: _percent > 0.16,
-                        //             insetShadow: _percent > 0.41,
-                        //             icon: Icons.local_library_outlined,
-                        //             title: "A-Levels",
-                        //             location: "IPVCE Lenin, Havana",
-                        //             time: "2009-2012",
-                        //           ),
-                        //         ),
-                        //       ),
-                        //       AnimatedSlide(
-                        //         offset: _opacityPercent > 0.6
-                        //             ? (_outPercent > 0.3
-                        //                 ? const Offset(1.5, 0)
-                        //                 : const Offset(0, 0))
-                        //             : const Offset(0, 0.2),
-                        //         duration: _slideDuration,
-                        //         curve: Curves.fastOutSlowIn,
-                        //         child: AnimatedOpacity(
-                        //           // opacity: min(
-                        //           //     1, max(0, (_percent - 0.25) / 0.25 * 3)),
-                        //           opacity: _opacityPercent > 0.6 ? 1 : 0,
-                        //           duration: _duration,
-                        //           curve: Curves.ease,
-                        //           child: MuiTrayectoryCard(
-                        //             active: _percent > 0.41,
-                        //             insetShadow: _percent > 0.66,
-                        //             icon: Icons.book_outlined,
-                        //             title: "2 years in CS",
-                        //             location: "University of Havana, Havana",
-                        //             time: "2013-2015",
-                        //           ),
-                        //         ),
-                        //       ),
-                        //       AnimatedSlide(
-                        //         offset: _opacityPercent > 0.8
-                        //             ? (_outPercent > 0.5
-                        //                 ? const Offset(1.5, 0)
-                        //                 : const Offset(0, 0))
-                        //             : const Offset(0, 0.2),
-                        //         duration: _slideDuration,
-                        //         curve: Curves.fastOutSlowIn,
-                        //         child: AnimatedOpacity(
-                        //           // opacity:
-                        //           //     min(1, max(0, (_percent - 0.5) / 0.25 * 3)),
-                        //           opacity: _opacityPercent > 0.8 ? 1 : 0,
-                        //           duration: _duration,
-                        //           curve: Curves.ease,
-                        //           child: MuiTrayectoryCard(
-                        //             active: _percent > 0.66,
-                        //             insetShadow: _percent > 0.84,
-                        //             icon: Icons.school_outlined,
-                        //             title: "HND Software Dev.",
-                        //             location: "IES Saladillo, Algeciras",
-                        //             time: "2020-2022",
-                        //           ),
-                        //         ),
-                        //       ),
-                        //       AnimatedSlide(
-                        //         offset: _opacityPercent > 0.95
-                        //             ? (_outPercent > 0.8
-                        //                 ? const Offset(1.5, 0)
-                        //                 : const Offset(0, 0))
-                        //             : const Offset(0, 0.2),
-                        //         duration: _slideDuration,
-                        //         curve: Curves.fastOutSlowIn,
-                        //         child: AnimatedOpacity(
-                        //           // opacity: min(
-                        //           //     1, max(0, (_percent - 0.70) / 0.25 * 3)),
-                        //           opacity: _opacityPercent > 0.95 ? 1 : 0,
-                        //           duration: _duration,
-                        //           curve: Curves.ease,
-                        //           child: MuiTrayectoryCard(
-                        //             active: _percent > 0.84,
-                        //             insetShadow: _percent > 0.98,
-                        //             icon: Icons.important_devices_rounded,
-                        //             title: "Fullstack Developer",
-                        //             location: "Boorpret, Cádiz",
-                        //             time: "2020-2022",
-                        //           ),
-                        //         ),
-                        //       ),
-                        //     ],
-                        //   ),
-                        // ),
                         Expanded(
                             child: Stack(
                           children: [
@@ -286,21 +167,6 @@ class _SecondSection extends State<SecondSection> {
                     location: "IPVCE Lenin, Havana",
                     time: "2009-2012",
                   );
-                  // var item2 = AnimatedOpacity(
-                  //   // opacity: min(1, max(0, (_percent - 0.25) / 0.25 * 3)),
-                  //   opacity:
-                  //       _opacityPercent > 0.6 ? (_outPercent > 0.1 ? 0 : 1) : 0,
-                  //   duration: _duration,
-                  //   curve: Curves.ease,
-                  //   child: MuiTrayectoryVerticalCard(
-                  //     active: _percent > 0.41,
-                  //     insetShadow: _percent > 0.66,
-                  //     icon: Icons.book_outlined,
-                  //     title: "2 years in CS",
-                  //     location: "University of Havana, Havana",
-                  //     time: "2013-2015",
-                  //   ),
-                  // );
                   var item2 = MuiTrayectoryVerticalCard(
                     key: _keys[1],
                     active: _percent > 0.41,
@@ -310,21 +176,6 @@ class _SecondSection extends State<SecondSection> {
                     location: "University of Havana, Havana",
                     time: "2013-2015",
                   );
-                  // var item3 = AnimatedOpacity(
-                  //   // opacity: min(1, max(0, (_percent - 0.5) / 0.25 * 3)),
-                  //   opacity:
-                  //       _opacityPercent > 0.8 ? (_outPercent > 0.1 ? 0 : 1) : 0,
-                  //   duration: _duration,
-                  //   curve: Curves.ease,
-                  //   child: MuiTrayectoryVerticalCard(
-                  //     active: _percent > 0.66,
-                  //     insetShadow: _percent > 0.84,
-                  //     icon: Icons.school_outlined,
-                  //     title: "HND Software Dev.",
-                  //     location: "IES Saladillo, Algeciras",
-                  //     time: "2020-2022",
-                  //   ),
-                  // );
                   var item3 = MuiTrayectoryVerticalCard(
                     key: _keys[2],
                     active: _percent > 0.66,
@@ -334,23 +185,6 @@ class _SecondSection extends State<SecondSection> {
                     location: "IES Saladillo, Algeciras",
                     time: "2020-2022",
                   );
-
-                  // var item4 = AnimatedOpacity(
-                  //   // opacity: min(1, max(0, (_percent - 0.70) / 0.25 * 3)),
-                  //   opacity: _opacityPercent > 0.95
-                  //       ? (_outPercent > 0.1 ? 0 : 1)
-                  //       : 0,
-                  //   duration: _duration,
-                  //   curve: Curves.ease,
-                  //   child: MuiTrayectoryVerticalCard(
-                  //     active: _percent > 0.84,
-                  //     insetShadow: _percent > 0.98,
-                  //     icon: Icons.important_devices_rounded,
-                  //     title: "Fullstack Developer",
-                  //     location: "Boorpret, Cádiz",
-                  //     time: "2020-2022",
-                  //   ),
-                  // );
                   var item4 = MuiTrayectoryVerticalCard(
                     key: _keys[3],
                     active: _percent > 0.84,
@@ -474,6 +308,8 @@ class MuiTrayectoryCard extends StatelessWidget {
   Widget build(BuildContext context) {
     String familyA = "Montserrat";
     String familyB = "Comfortaa";
+    Color textPrimaryColor = Theme.of(context).colorScheme.primary;
+    Color textSecondaryColor = Theme.of(context).colorScheme.secondary;
 
     return MuiCard(
       heigth: 116,
@@ -505,7 +341,7 @@ class MuiTrayectoryCard extends StatelessWidget {
                 Text(
                   title,
                   style: TextStyle(
-                    color: AppColors.whitePrimary,
+                    color: textPrimaryColor,
                     fontSize: 17,
                     fontFamily: familyA,
                     fontWeight: FontWeight.w700,
@@ -515,7 +351,7 @@ class MuiTrayectoryCard extends StatelessWidget {
                 Text(
                   location,
                   style: TextStyle(
-                    color: AppColors.whiteAccent,
+                    color: textSecondaryColor,
                     fontSize: 12,
                     fontFamily: familyB,
                   ),
@@ -523,7 +359,7 @@ class MuiTrayectoryCard extends StatelessWidget {
                 Text(
                   time,
                   style: TextStyle(
-                    color: AppColors.whiteAccent,
+                    color: textSecondaryColor,
                     fontSize: 12,
                     fontFamily: familyB,
                   ),
@@ -558,6 +394,8 @@ class MuiTrayectoryVerticalCard extends StatelessWidget {
   Widget build(BuildContext context) {
     String familyA = "Montserrat";
     String familyB = "Comfortaa";
+    Color textPrimaryColor = Theme.of(context).colorScheme.primary;
+    Color textSecondaryColor = Theme.of(context).colorScheme.secondary;
 
     return MuiCard(
       heigth: 300,
@@ -591,7 +429,7 @@ class MuiTrayectoryVerticalCard extends StatelessWidget {
                   Text(
                     title,
                     style: TextStyle(
-                      color: AppColors.whitePrimary,
+                      color: textPrimaryColor,
                       fontSize: 22,
                       fontFamily: familyA,
                       fontWeight: FontWeight.w700,
@@ -601,7 +439,7 @@ class MuiTrayectoryVerticalCard extends StatelessWidget {
                   Text(
                     location,
                     style: TextStyle(
-                      color: AppColors.whiteAccent,
+                      color: textSecondaryColor,
                       fontSize: 12,
                       fontFamily: familyB,
                     ),
@@ -609,7 +447,7 @@ class MuiTrayectoryVerticalCard extends StatelessWidget {
                   Text(
                     time,
                     style: TextStyle(
-                      color: AppColors.whiteAccent,
+                      color: textSecondaryColor,
                       fontSize: 12,
                       fontFamily: familyB,
                     ),

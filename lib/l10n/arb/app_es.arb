@@ -1,0 +1,541 @@
+{
+    "@@locale": "es",
+    "saveData": "Guardar cambios",
+    "@saveData": {
+        "description": "Texto para indicar que se guardarán los cambios"
+    },
+    "continueNext": "Continuar",
+    "@continueNext": {
+        "description": "Texto para solicitar confirmación antes de continuar"
+    },
+    "send": "Enviar",
+    "next": "Siguiente",
+    "@next": {
+        "description": "Texto para solicitar confirmación antes de continuar"
+    },
+    "enter": "Entrar",
+    "@enter": {
+        "description": "Texto para solicitar confirmación antes de continuar"
+    },
+    "exit": "Salir",
+    "@exit": {
+        "description": "Texto para solicitar confirmación antes de salir"
+    },
+    "done": "Finalizar",
+    "@done": {
+        "description": "Texto para solicitar confirmación antes de finalizar un proceso"
+    },
+    "cancel": "Cancelar",
+    "@cancel": {
+        "description": "Texto para solicitar confirmación antes de cancelar"
+    },
+    "location": "Lugar",
+    "@location": {
+        "description": "Texto para indicar un local o lugar"
+    },
+    "locationSelected": "Local seleccionado",
+    "@locationSelected": {
+        "description": "Texto para indicar que se ha seleccionado un local"
+    },
+    "claimEntity": "Reclamar",
+    "@claimEntity": {
+        "description": "Texto mostrado para que el usuario reclame un artista/local"
+    },
+    "requestEntity": "Solicitar",
+    "@requestEntity": {
+        "description": "Texto mostrado para que el usuario solicite un artista/local"
+    },
+    "willPopTitle": "¿Quieres salir?",
+    "@willPopTitle": {
+        "description": "Título de la alerta para solicitar confirmación antes de abandonar una pantalla con datos sin guardar"
+    },
+    "saveBeforePopTitle": "¿Quieres salir sin guardar los cambios?",
+    "@saveBeforePopTitle": {
+        "description": "Título de la alerta para solicitar confirmación antes de abandonar una pantalla con datos sin guardar"
+    },
+    "willPopText": "Al salir se perderán los datos guardados",
+    "@willPopText": {
+        "description": "Texto de la alerta para solicitar confirmación antes de abandonar una pantalla con datos sin guardar"
+    },
+    "imagePickerCallToAction": "Selecciona imagen",
+    "@imagePickerCallToAction": {
+        "description": "Texto en un controlador que permitirá al usuario seleccionar una imagen de su dispositivo"
+    },
+    "uploadImage": "Cambiar imagen",
+    "@uploadImage": {
+        "description": "Texto para permitirle al usuario cambiar una imagen"
+    },
+    "deleteImage": "Eliminar imagen",
+    "@deleteImage": {
+        "description": "Texto para permitirle al usuario eliminar una imagen"
+    },
+    "noEventResults": "No hay eventos futuros publicados",
+    "searchingEventResults": "Buscando eventos ...",
+    "noResults": "No hay resultados para tu búsqueda",
+    "@noResults": {
+        "description": "Texto mostrado en las respuestas de la API que no contengan datos"
+    },
+    "emailLabelAuth": "Continuar con email",
+    "@emailLabelAuth": {
+        "description": "Texto mostrado en los controladores que intenten autenticar/registrar con credenciales de email"
+    },
+    "appleLabelAuth": "Continuar con Apple",
+    "@appleLabelAuth": {
+        "description": "Texto mostrado en los controladores que intenten autenticar/registrar con credenciales de Apple"
+    },
+    "googleLabelAuth": "Continuar con Google",
+    "@googleLabelAuth": {
+        "description": "Texto mostrado en los controladores que intenten autenticar/registrar con credenciales de Google"
+    },
+    "facebookLabelAuth": "Continuar con Facebook",
+    "@facebookLabelAuth": {
+        "description": "Texto mostrado en los controladores que intenten autenticar/registrar con credenciales de Facebook"
+    },
+    "nameLabelFormField": "Nombre",
+    "@nameLabelFormField": {
+        "description": "Texto mostrado en el label del input del campo nombre en los formularios"
+    },
+    "familyNameLabelFormField": "Apellidos",
+    "@familyNameLabelFormField": {
+        "description": "Texto mostrado en el label del input del campo apellidos en los formularios"
+    },
+    "descriptionMainLabelFormField": "Sobre mí",
+    "@descriptionMainLabelFormField": {
+        "description": "Texto mostrado en el label del input del campo Sobre mí en los formularios"
+    },
+    "webLinkLabelFormField": "Web",
+    "@webLinkLabelFormField": {
+        "description": "Texto mostrado en el label del input del campo Link a Web en los formularios"
+    },
+    "facebookLinkLabelFormField": "Facebook",
+    "@facebookLinkLabelFormField": {
+        "description": "Texto mostrado en el label del input del campo Link a Facebook en los formularios"
+    },
+    "instagramLinkLabelFormField": "Instagram",
+    "@instagramLinkLabelFormField": {
+        "description": "Texto mostrado en el label del input del campo Link a Instagram en los formularios"
+    },
+    "youtubeLinkLabelFormField": "Youtube",
+    "@youtubeLinkLabelFormField": {
+        "description": "Texto mostrado en el label del input del campo Link a Youtube en los formularios"
+    },
+    "tiktokLinkLabelFormField": "TikTok",
+    "@tiktokLinkLabelFormField": {
+        "description": "Texto mostrado en el label del input del campo Link a TikTok en los formularios"
+    },
+    "telegramLinkLabelFormField": "Telegram",
+    "@telegramLinkLabelFormField": {
+        "description": "Texto mostrado en el label del input del campo Link a Telegram en los formularios"
+    },
+    "vimeoLinkLabelFormField": "Vimeo",
+    "@vimeoLinkLabelFormField": {
+        "description": "Texto mostrado en el label del input del campo Link a Vimeo en los formularios"
+    },
+    "spotifyLinkLabelFormField": "Spotify",
+    "@spotifyLinkLabelFormField": {
+        "description": "Texto mostrado en el label del input del campo Link a Spotify en los formularios"
+    },
+    "bandcampLinkLabelFormField": "Bandcamp",
+    "@bandcampLinkLabelFormField": {
+        "description": "Texto mostrado en el label del input del campo Link a Bandcamp en los formularios"
+    },
+    "soundcloudLinkLabelFormField": "Soundcloud",
+    "@soundcloudLinkLabelFormField": {
+        "description": "Texto mostrado en el label del input del campo Link a Soundcloud en los formularios"
+    },
+    "musicGenresLimitInfoFormField": "Máximo 4",
+    "@musicGenresLimitInfoFormField": {
+        "description": "Texto mostrado para indicar el máximo de estilos musicales seleccionables"
+    },
+    "emailLabelFormField": "Email",
+    "@emailLabelFormField": {
+        "description": "Texto mostrado en el label del input del campo email en los formularios"
+    },
+    "passLabelFormField": "Contraseña",
+    "@passLabelFormField": {
+        "description": "Texto mostrado en el label del input del campo contraseña en los formularios"
+    },
+    "confirmPassLabelFormField": "Confirmar contraseña",
+    "@confirmPassLabelFormField": {
+        "description": "Texto mostrado en el label del input del campo confirmarContraseña en los formularios"
+    },
+    "registerPageTitle": "Accede al primer radar de música en directo",
+    "@registerPageTitle": {
+        "description": "Título promocional mostrado en la primera pantalla de autenticación"
+    },
+    "registerUsersPageTitle": "Registro usuarios",
+    "@registerUsersPageTitle": {
+        "description": "Título promocional mostrado en la pantalla de registro"
+    },
+    "loginUsersPageTitle": "Login usuarios",
+    "@loginUsersPageTitle": {
+        "description": "Texto mostrado en la cabecera de la pantalla de autenticación"
+    },
+    "forgotPassword": "¿Olvidaste tu contraseña?",
+    "updatePasswordTitle": "Actualizar contraseña",
+    "updatePasswordText": "Introduce email y revisa tu bandeja de correo para actualizar contraseña",
+    "isFan": "¿Eres fan?",
+    "@isFan": {
+        "description": "Texto mostrado para identificar al usuario como FAN"
+    },
+    "isArtist": "¿Eres artista?",
+    "@isArtist": {
+        "description": "Texto mostrado para identificar al usuario como ARTISTA"
+    },
+    "isLocal": "¿Eres local?",
+    "@isLocal": {
+        "description": "Texto mostrado para identificar al usuario como LOCAL"
+    },
+    "isRegistered": "¿Estás registrado?",
+    "@isRegistered": {
+        "description": "Texto mostrado para indicar al usuario que puede iniciar sesión si ya dispone de una cuenta"
+    },
+    "checkEmailVerificationTitle": "Comprueba email de verificación",
+    "checkEmailVerificationText": "Revisa tu bandeja de correo y verifica dirección de email para iniciar sesión",
+    "checkEmailVerificationLogin": "Ok, iniciar sesión",
+    "@checkEmailVerificationLogin": {
+        "description": "Texto mostrado en el botón de iniciar sesión si el usuario ya ha verificado su email"
+    },
+    "verificationEmailSent": "Email de verificación enviado",
+    "emailSent": "Email enviado",
+    "noEmailReceived": "¿No lo has recibido?",
+    "resendVerificationEmailText": "Reenviar email de verificación",
+    "@resendVerificationEmailText": {
+        "description": "Texto mostrado en el botón para permitirle al usuario reenviar email de verificación de su cuenta una vez registrado"
+    },
+    "loginCallToAction": "INICIA SESIÓN",
+    "@loginCallToAction": {
+        "description": "Texto mostrado en el botón que navegará al usuario a la pantalla de inicio de sesión"
+    },
+    "onboardingStep1": "PASO 1",
+    "@onboardingStep1": {
+        "description": "Texto para indicar el primer paso de un proceso"
+    },
+    "onboardingStep2": "PASO 2",
+    "@onboardingStep2": {
+        "description": "Texto para indicar el segundo paso de un proceso"
+    },
+    "onboardingStep3": "PASO 3",
+    "@onboardingStep3": {
+        "description": "Texto para indicar el tercer paso de un proceso"
+    },
+    "onboardingStep4": "PASO 4",
+    "@onboardingStep4": {
+        "description": "Texto para indicar el cuarto paso de un proceso"
+    },
+    "onboardingStep5": "PASO 5",
+    "@onboardingStep5": {
+        "description": "Texto para indicar el quinto paso de un proceso"
+    },
+    "onboardingArtistStep1Title": "Nombre del artista",
+    "@onboardingArtistStep1Title": {
+        "description": "Texto de cabecera del primer paso del onboarding del artista"
+    },
+    "onboardingArtistStep2Title": "Imagen artista",
+    "@onboardingArtistStep2Title": {
+        "description": "Texto de cabecera del segundo paso del onboarding del artista"
+    },
+    "onboardingArtistStep3Title": "Estilos musicales",
+    "@onboardingArtistStep3Title": {
+        "description": "Texto de cabecera del tercer paso del onboarding del artista"
+    },
+    "onboardingArtistStep3Info": "Escoge todos los géneros que pueden corresponder con tu estilo de música. Máximo 4",
+    "@onboardingArtistStep3Info": {
+        "description": "Texto descriptivo para indicar al usuario qué debe hacer en esta pantalla"
+    },
+    "onboardingLocalStep1Title": "Nombre local",
+    "@onboardingLocalStep1Title": {
+        "description": "Texto de cabecera del primer paso del onboarding del local"
+    },
+    "onboardingLocalStep2Title": "Dirección de local",
+    "@onboardingLocalStep2Title": {
+        "description": "Texto de cabecera del segundo paso del onboarding del artista"
+    },
+    "onboardingLocalStep3Title": "Tipo de local",
+    "@onboardingLocalStep3Title": {
+        "description": "Texto de cabecera del tercer paso del onboarding del artista"
+    },
+    "onboardingLocalStep3Info": "Escoge la opción que mejor se ajusta a tu local",
+    "@onboardingLocalStep3Info": {
+        "description": "Texto descriptivo para indicar al usuario qué debe hacer en esta pantalla"
+    },
+    "onboardingLocalStep4Title": "Imagen de local",
+    "@onboardingLocalStep4Title": {
+        "description": "Texto de cabecera del cuarto paso del onboarding del local"
+    },
+    "onboardingLocalStep5Title": "Estilos musicales",
+    "@onboardingLocalStep5Title": {
+        "description": "Texto de cabecera del quinto paso del onboarding del local"
+    },
+    "onboardingLocalStep5Info": "Escoge todos los géneros que pueden corresponder con los estilos de tu local",
+    "@onboardingLocalStep5Info": {
+        "description": "Texto descriptivo para indicar al usuario qué debe hacer en esta pantalla"
+    },
+    "artistNameLabelFormField": "Nombre artista",
+    "@artistNameLabelFormField": {
+        "description": "Texto mostrado en el label del input del campo nombreArtista en los formularios"
+    },
+    "locationNameLabelFormField": "Nombre lugar",
+    "@locationNameLabelFormField": {
+        "description": "Texto mostrado en el label del input del campo nombreLugar en los formularios"
+    },
+    "createName": "Crear nombre",
+    "@createName": {
+        "description": "Texto en botón para solicitar la creación de un nombre"
+    },
+    "createEvent": "Crear evento",
+    "@createEvent": {
+        "description": "Texto en botón para solicitar la creación de un evento"
+    },
+    "localNameLabelFormField": "Nombre local",
+    "@localNameLabelFormField": {
+        "description": "Texto mostrado en el label del input del campo nombreLocal en los formularios"
+    },
+    "localAddressLabelFormField": "Dirección",
+    "@localAddressLabelFormField": {
+        "description": "Texto mostrado en el label del input del campo address en los formularios"
+    },
+    "localCityLabelFormField": "Ciudad",
+    "@localCityLabelFormField": {
+        "description": "Texto mostrado en el label del input del campo city en los formularios"
+    },
+    "localCityLabelFormPlaceholder": "Selecciona ciudad",
+    "@localCityLabelFormPlaceholder": {
+        "description": "Placeholder del input del campo city en los formularios"
+    },
+    "localCountryLabelFormField": "País",
+    "@localCountryLabelFormField": {
+        "description": "Texto mostrado en el label del input del campo país en los formularios"
+    },
+    "registerRequestUnsuscribedArtistAlert": "Live Music Radar gestionará tu solicitud, \nrecibirás noticias en breve",
+    "@registerRequestUnsuscribedArtistAlert": {
+        "description": "Texto mostrado en el bottom sheet cuando el usuario solicita o reclama un artista"
+    },
+    "allGenres": "Todos los estilos",
+    "@allGenres": {
+        "description": "Texto mostrado para permitirle al usuario seleccionar todos los estilos musicales"
+    },
+    "acceptTC_A": "Estoy de acuerdo con las ",
+    "@acceptTC_A": {
+        "description": "Texto mostrado para permitirle al usuario aceptar los términos y condiciones. Primera mitad del texto"
+    },
+    "acceptTC_B": "Condiciones de uso y Política de privacidad",
+    "@acceptTC_B": {
+        "description": "Texto mostrado para permitirle al usuario aceptar los términos y condiciones. Segunda mitad del texto"
+    },
+    "footerHomeLabel": "Inicio",
+    "@footerHomeLabel": {
+        "description": "Texto mostrado en el footer para navegar el usuario a la pantalla Inicio"
+    },
+    "mapLabel":"Mapa",
+    "footerMapLabel": "Mapa",
+    "@footerMapLabel": {
+        "description": "Texto mostrado en el footer para navegar el usuario a la pantalla Mapa"
+    },
+    "footerFavoritesLabel": "Favoritos",
+    "@footerFavoritesLabel": {
+        "description": "Texto mostrado en el footer para navegar el usuario a la pantalla Favoritos"
+    },
+    "footerSearchLabel": "Buscar",
+    "@footerSearchLabel": {
+        "description": "Texto mostrado en el footer para navegar el usuario a la pantalla Buscar"
+    },
+    "homeActivateRadarLabel": "Activa Radar",
+    "@homeActivateRadarLabel": {
+        "description": "Texto mostrado como cabecera del botón activa radar en la pantalla inicio"
+    },
+    "homeTodayFilterChip": "HOY",
+    "@homeTodayFilterChip": {
+        "description": "Texto mostrado para filtrar por aquellos eventos que sucedan hoy en la pantalla Inicio"
+    },
+    "homeWeekendFilterChip": "FIN DE SEMANA",
+    "@homeWeekendFilterChip": {
+        "description": "Texto mostrado para filtrar por aquellos eventos que sucedan el fin de semana en la pantalla Inicio"
+    },
+    "homeFiltersLabel": "Filtros",
+    "@homeFiltersLabel": {
+        "description": "Texto mostrado para permitirle al usuario personalizar los filtros de búsqueda de eventos"
+    },
+    "createEventPageTitle": "Nuevo evento",
+    "@createEventPageTitle": {
+        "description": "Texto mostrado en la cabecera de la pantalla Nuevo Evento"
+    },
+    "createEventArtistsLabel": "Artistas",
+    "@createEventArtistsLabel": {
+        "description": "Texto mostrado para indicarle al usuario la lista de los artistas asociados al evento"
+    },
+    "createEventAddArtistsLabel": "Añadir artista",
+    "@createEventAddArtistsLabel": {
+        "description": "Texto mostrado para indicarle al usuario que puede añadir artistas al evento"
+    },
+    "dateEventLabelFormField": "Día del evento",
+    "@dateEventLabelFormField": {
+        "description": "Texto mostrado en el label del input del campo eventDate en los formularios"
+    },
+    "timeEventLabelFormField": "Hora del evento",
+    "@timeLabelFormField": {
+        "description": "Texto mostrado en el label del input del campo eventTime en los formularios"
+    },
+    "descriptionLabelFormField": "Descripción",
+    "@descriptionLabelFormField": {
+        "description": "Texto mostrado en el label del input del campo Description en los formularios"
+    },
+    "descriptionEventLabelFormField": "Descripción del evento",
+    "@descriptionEventLabelFormField": {
+        "description": "Texto mostrado en el label del input del campo eventDescription en los formularios"
+    },
+    "linkEventTicketsLabelFormField": "Enlace venta de entradas",
+    "@linkEventTicketsLabelFormField": {
+        "description": "Texto mostrado en el label del input del campo eventLinkToTickets en los formularios"
+    },
+    "priceEntryLabelFormField": "Precio de entradas",
+    "@priceEntryLabelFormField": {
+        "description": "Texto mostrado en el label del input del campo price en los formularios"
+    },
+    "cartelLabelFormField": "Cartel",
+    "@cartelLabelFormField": {
+        "description": "Texto mostrado en el label del input de iamgen del campo cartel en los formularios"
+    },
+    "userPageTitle": "Mi cuenta",
+    "@userPageTitle": {
+        "description": "Texto mostrado en la cabecera del dashboard de usuario"
+    },
+    "userProfileTitle": "Mi perfil",
+    "@userProfileTitle": {
+        "description": "Texto mostrado en la cabecera de la pantalla de perfil usuario"
+    },
+    "fanTypeText": "Fan",
+    "@fanTypeText": {
+        "description": "Texto que define a un usuario como fan"
+    },
+    "artistTypeText": "Artista",
+    "@artistTypeText": {
+        "description": "Texto que define a un usuario como artista"
+    },
+    "localTypeText": "Local",
+    "@localTypeText": {
+        "description": "Texto que define a un usuario como local"
+    },
+    "eventsManage": "Gestionar eventos",
+    "profileManage": "Gestión de perfil",
+    "@profileManage": {
+        "description": "Texto mostrado para indicarle al usuario la gestión de su perfil"
+    },
+    "profileChange": "Cambiar perfil",
+    "@profileChange": {
+        "description": "Sección para cambiar de perfil"
+    },
+    "profileChangeDescription": "Live Music Radar te permite gestionar varios perfiles como artista o local.",
+    "@profileChangeDescription": {
+        "description": "Texto que describe cómo el usuario puede gestionar más de un perfil"
+    },
+    "profileChangeCallToAction": "¿Quieres cambiar tu perfil?",
+    "@profileChangeCallToAction": {
+        "description": "Texto que indica al usuario dónde puede cambiar su perfil"
+    },
+    "sectionTitleSocialMedia": "Redes sociales",
+    "@sectionTitleSocialMedia": {
+        "description": "Texto que delimita la sección de redes sociales"
+    },
+    "sectionTextSocialMedia": "Introduce url en cada campo",
+    "sectionTitleMusicGenres": "Estilos musicales",
+    "@sectionTitleMusicGenres": {
+        "description": "Texto que delimita la sección estilos musicales"
+    },
+    "sectionInfoArtistType": "Tipo de artista",
+    "@sectionInfoArtistType": {
+        "description": "Texto que delimita la sección Tipo de artista"
+    },
+    "artistTypeSolo": "Solista",
+    "@artistTypeSolo": {
+        "description": "Tipo de artista: solista"
+    },
+    "artistTypeGroup": "Grupo",
+    "@artistTypeGroup": {
+        "description": "Tipo de artista: grupo"
+    },
+    "sectionInfoLocalType": "Tipo de local",
+    "@sectionInfoLocalType": {
+        "description": "Texto que delimita la sección Tipo de local"
+    },
+    "dataProtectionGDPR": "Gestión protección de datos GDPR",
+    "@dataProtectionGDPR": {
+        "description": "Gestión protección de datos GDPR"
+    },
+    "knowPlace": "Conoce el lugar",
+    "ticketsPrice" : "{price, select, 0{Entradas gratis} other{Entradas {price}€}}",
+    "@ticketsPrice" : {
+        "placeholders": {
+            "price": {}
+        }
+    },
+    "buyTickets": "Compra entradas",
+    "formErrorMessage": "Se ha producido un error",
+    "genericError": "No pudimos completar la acción",
+    "formSuccessMessage": "Los datos se han guardado correctamente",
+    "eventSuccessMessage": "El evento se ha publicado correctamente",
+    "wrongCredentialsErrorMessage": "Email y/o contraseña incorrectos",
+    "invalidEmailErrorMessage": "Email no válido",
+    "noEmailFoundErrorMessage": "No hay usuario con este email",
+    "closeSession": "Cerrar Sesión",
+    "urlNotValid": "URL no válida",
+    "deleteUser": "Eliminar usuario",
+    "notificationsPageTitle": "Notificaciones",
+    "@notificationsPageTitle": {
+        "description": "Texto mostrado en la cabecera de la pantalla de notificaciones"
+    },
+    "deleteNotificationsButton": "Limpiar notificaciones",
+    "@deleteNotificationsButton": {
+        "description": "Texto mostrado en el botón que le permitirá al usuario borrar las notificaciones"
+    },
+    "support": "Soporte",
+    "contactUs": "Escríbenos",
+    "lmrCorporateTextFindLiveMusic": "Live Music Radar te ayudamos a descubrir música en vivo",
+    "eventLocationSetter": "Eventos en",
+    "dateFilterTitle": "Fechas",
+    "dateFilterFromLabel": "Desde",
+    "dateFilterToLabel": "Hasta",
+    "ticketTypeFilterTitle": "Tipo de entrada",
+    "ticketTypeFilterFree": "Gratuita",
+    "ticketTypeFilterPayed": "De pago",
+    "selectAll": "Todos",
+    "resetFilterLabel": "Reestablecer",
+    "willPopFiltersTitle": "¿Quieres salir sin aplicar los filtros?",
+    "willPopFiltersApplyFilter": "Aplicar filtros",
+    "applyFilterLabel": "Activar RADAR",
+    "myEventsPageTitle": "Mis eventos",
+    "editEventPageTitle": "Editar evento",
+    "cancelEventConfirmationTitle": "¿Seguro quieres cancelar evento?",
+    "cancelEventConfirmationText": "Si cancelas no se mostrará en el mapa y no estará visible información del evento",
+    "cancelEventConfirm": "Cancelar evento",
+    "cancelEventCancel": "No Cancelar",
+    "cancelEventConfirmationNotification": "Evento cancelado",
+    "cancelled": "Cancelado",
+    "locationLabel": "Lugar",
+    "info": "Información",
+    "noDescriptionForArtist": "No hay descripción disponible para este artista",
+    "noDescriptionForLocal": "No hay descripción disponible para este local",
+    "similarArtist": "Artistas similares",
+    "artistRelatedToLocal": "Artistas en este local",
+    "nextEvents": "Próximos eventos",
+    "noNextEventsForArtist": "No hay próximos eventos para este artista",
+    "noNextEventsForLocal": "No hay próximos eventos para este local",
+    "priceFormFiledHelper": "Introduce 0 para eventos gratuitos",
+    "failedLaunchLocalAddressLink": "No es posible abrir la dirección del local",
+    "seeThisEventInLMR": "Descubre este evento en Live Music Radar",
+    "infoLocationMap": "Información localizaciones mapa",
+    "futureEvent": "Evento futuro",
+    "immediate24hEvent": "Evento en menos de 24 horas",
+    "immediate4hEvent": "Evento en menos de 4 horas",
+    "ongoingEvent": "Evento comenzado",
+    "nextEventsIn": "Próximos eventos en",
+    "moreEventsHere": "Más eventos en este punto",
+    "youAreHere": "Aquí estás",
+    "enterUrlInEachField": "Introduce url en cada campo",
+    "deleteAccount": "Eliminar cuenta",
+    "okDelete": "Ok, eliminar",
+    "deleteAccountSubject": "Solicito eliminar mi cuenta de la app Live Music Radar",
+    "deleteUserMessage1": "Se procederá a enviar un email de solicitud de eliminación de cuenta.",
+    "deleteUserMessage2": "Todos tus datos serán eliminados de Live Music Radar en un plazo máximo de 7 días.",
+    "deleteUserMessage3": "'Informaremos a su dirección de email una vez finalizada la eliminación de todos los datos."
+}

@@ -158,7 +158,7 @@ class MobileItem extends StatelessWidget {
       child: DecoratedBox(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
-          border: Border.all(width: 4, color: defaultColorEnd),
+          border: Border.all(width: 4, color: AppColors.defaultColorEnd),
           gradient: LinearGradient(
             colors: [Colors.transparent, Colors.black.withOpacity(0.7)],
             begin: Alignment.topCenter,
@@ -180,7 +180,7 @@ class MobileItem extends StatelessWidget {
         children: [
           Text(
             project.name,
-            style: TextStyle(
+            style: const TextStyle(
               color: AppColors.whitePrimary,
               fontSize: 16,
               fontWeight: FontWeight.bold,
@@ -189,7 +189,7 @@ class MobileItem extends StatelessWidget {
           ),
           Text(
             project.country,
-            style: TextStyle(
+            style: const TextStyle(
               color: AppColors.whitePrimary,
               fontSize: 12,
               fontFamily: "Comfortaa",
@@ -334,7 +334,7 @@ class PCItem extends StatelessWidget {
       child: DecoratedBox(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
-          border: Border.all(width: 4, color: defaultColorEnd),
+          border: Border.all(width: 4, color: AppColors.defaultColorEnd),
           gradient: LinearGradient(
             colors: [Colors.transparent, Colors.black.withOpacity(0.7)],
             begin: Alignment.topCenter,
@@ -356,7 +356,7 @@ class PCItem extends StatelessWidget {
         children: [
           Text(
             project.name,
-            style: TextStyle(
+            style: const TextStyle(
               color: AppColors.whitePrimary,
               fontSize: 18,
               fontWeight: FontWeight.bold,
@@ -365,7 +365,7 @@ class PCItem extends StatelessWidget {
           ),
           Text(
             project.country,
-            style: TextStyle(
+            style: const TextStyle(
               color: AppColors.whitePrimary,
               fontSize: 12,
               fontFamily: "Comfortaa",
@@ -387,7 +387,7 @@ class PCItem extends StatelessWidget {
           bottomRight: Radius.circular(14),
         ),
         // border: Border.all(width: 4, color: defaultColorEnd),
-        color: defaultColorEnd,
+        color: AppColors.defaultColorEnd,
       ),
     );
   }

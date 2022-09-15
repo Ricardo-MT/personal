@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ricardomejiastravieso/providers/theme_provider.dart';
-import 'package:ricardomejiastravieso/utils/theme.dart';
 
 class MuiSwitchTheme extends StatelessWidget {
   const MuiSwitchTheme({Key? key}) : super(key: key);
@@ -10,7 +9,8 @@ class MuiSwitchTheme extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<ThemeProvider>(
       builder: (context, provider, child) {
-        double bottom = provider.mode == ThemeMode.dark ? 0 : -30;
+        double bottom = provider.mode == ThemeMode.light ? 0 : -30;
+        var color = Theme.of(context).colorScheme.primary;
         return SizedBox(
           height: 30,
           width: 30,
@@ -33,12 +33,12 @@ class MuiSwitchTheme extends StatelessWidget {
                             Icon(
                               Icons.nightlight_round,
                               size: 20,
-                              color: AppColors.whitePrimary,
+                              color: color,
                             ),
                             Icon(
                               Icons.wb_sunny_sharp,
                               size: 20,
-                              color: AppColors.whitePrimary,
+                              color: color,
                             ),
                           ]),
                     ),
@@ -77,6 +77,7 @@ class _MuiSwitchLang extends State<MuiSwitchLang> {
 
   @override
   Widget build(BuildContext context) {
+    var color = Theme.of(context).colorScheme.primary;
     return SizedBox(
       height: 30,
       width: 54,
@@ -89,14 +90,14 @@ class _MuiSwitchLang extends State<MuiSwitchLang> {
               Text(
                 "EN",
                 style: TextStyle(
-                  color: AppColors.whitePrimary,
+                  color: color,
                   fontSize: 12,
                 ),
               ),
               Text(
                 "ES",
                 style: TextStyle(
-                  color: AppColors.whitePrimary,
+                  color: color,
                   fontSize: 12,
                 ),
               ),
@@ -111,7 +112,9 @@ class _MuiSwitchLang extends State<MuiSwitchLang> {
                 width: 50,
                 decoration: ShapeDecoration(
                   shape: StadiumBorder(
-                      side: BorderSide(color: AppColors.whitePrimary)),
+                      side: BorderSide(
+                    color: color,
+                  )),
                 ),
                 child: AnimatedAlign(
                   alignment: on ? Alignment.centerLeft : Alignment.centerRight,
@@ -125,7 +128,7 @@ class _MuiSwitchLang extends State<MuiSwitchLang> {
                       width: 26,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: AppColors.whitePrimary,
+                        color: color,
                       ),
                     ),
                   ),

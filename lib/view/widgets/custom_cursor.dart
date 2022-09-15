@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:ricardomejiastravieso/utils/theme.dart';
 
 class CustomCursorLayer extends StatefulWidget {
   const CustomCursorLayer({Key? key}) : super(key: key);
@@ -21,6 +20,7 @@ class _CustomCursorLayer extends State<CustomCursorLayer> {
 
   @override
   Widget build(BuildContext context) {
+    var color = Theme.of(context).colorScheme.primary;
     return RepaintBoundary(
       child: MouseRegion(
         opaque: false,
@@ -41,8 +41,7 @@ class _CustomCursorLayer extends State<CustomCursorLayer> {
                 width: 100,
                 height: 100,
                 decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border: Border.all(color: AppColors.whitePrimary)),
+                    shape: BoxShape.circle, border: Border.all(color: color)),
               ),
             ),
             Positioned(
@@ -53,7 +52,7 @@ class _CustomCursorLayer extends State<CustomCursorLayer> {
                   height: 8,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: AppColors.whitePrimary,
+                    color: color,
                   ),
                 ))
           ],

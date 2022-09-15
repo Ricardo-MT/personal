@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:ricardomejiastravieso/utils/theme.dart';
 import 'package:ricardomejiastravieso/view/page/home.dart';
 import 'package:url_strategy/url_strategy.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'providers/theme_provider.dart';
 
@@ -20,7 +21,7 @@ class MyProviders extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => ThemeProvider()),
+        ChangeNotifierProvider(create: (_) => ThemeProvider()),
       ],
       child: const MyApp(),
     );
@@ -34,16 +35,33 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         title: 'Ricardo',
+        localizationsDelegates: const [
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: const [
+          Locale('en', ''),
+          Locale('es', ''),
+        ],
         scrollBehavior: MyCustomScrollBehavior().copyWith(scrollbars: false),
         debugShowCheckedModeBanner: false,
         theme: AppTheme.light,
         darkTheme: AppTheme.dark,
         themeMode: Provider.of<ThemeProvider>(context, listen: true).mode,
-        home: const HomePage(),
+        home: Consumer<ThemeProvider>(
+          builder: (context, provider, child) {
+            return const HomePage();
+          },
+        ),
         builder: (context, child) {
           return Consumer<ThemeProvider>(
             builder: (context, themeProvider, _) {
-              return Builder(builder: (context) {
+              print("EH");
+
+              return Builder(
+                  // key: Key('appThemeMode${themeProvider.mode.toString()}'),
+                  builder: (context) {
                 return child ?? const SizedBox.shrink();
               });
             },
