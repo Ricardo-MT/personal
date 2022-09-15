@@ -16,7 +16,7 @@ class _FadeOutLayer extends State<FadeOutLayer> with TickerProviderStateMixin {
     value: 1,
     lowerBound: 0,
     upperBound: 1,
-    duration: const Duration(milliseconds: 800),
+    duration: const Duration(milliseconds: 1000),
     vsync: this,
   );
   late final Animation<double> _animation = CurvedAnimation(
@@ -28,7 +28,7 @@ class _FadeOutLayer extends State<FadeOutLayer> with TickerProviderStateMixin {
   void initState() {
     super.initState();
 
-    Future.delayed(const Duration(milliseconds: 200))
+    Future.delayed(const Duration(milliseconds: 300))
         .then((value) => _controller.reverse());
   }
 

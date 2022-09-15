@@ -13,7 +13,10 @@ class _CustomCursorLayer extends State<CustomCursorLayer> {
   @override
   void initState() {
     super.initState();
-    offset = Offset.zero;
+    offset = const Offset(
+      -100,
+      -100,
+    );
   }
 
   @override

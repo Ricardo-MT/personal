@@ -199,6 +199,7 @@ class _HomePageState extends State<HomePage> {
                         sections: sections,
                         controller: _controllerPrimary,
                         sectionH: h,
+                        sectionW: w,
                       ),
                     ),
                     SizedBox(

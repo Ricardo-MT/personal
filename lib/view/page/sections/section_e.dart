@@ -117,81 +117,8 @@ class _SectionFifth extends State<SectionFifth> {
               ),
             ),
           ),
-          Expanded(
-            flex: 1,
-            child: Row(
-              children: [
-                const Spacer(
-                  flex: 4,
-                ),
-                AnimatedCubaStamp(
-                    sectionHeight: widget.sectionH,
-                    controller: widget.controller),
-                const Spacer(
-                  flex: 1,
-                ),
-              ],
-            ),
-          )
+          const Spacer()
         ],
-      ),
-    );
-  }
-}
-
-class AnimatedCubaStamp extends StatefulWidget {
-  const AnimatedCubaStamp({
-    Key? key,
-    required this.sectionHeight,
-    required this.controller,
-  }) : super(key: key);
-  final double sectionHeight;
-  final ScrollController controller;
-
-  @override
-  State<AnimatedCubaStamp> createState() => _AnimatedCubaStampState();
-}
-
-class _AnimatedCubaStampState extends State<AnimatedCubaStamp> {
-  double turns = 0.0;
-
-  @override
-  void initState() {
-    super.initState();
-    widget.controller.addListener(listener);
-  }
-
-  void listener() {
-    int pos = widget.controller.offset ~/ (widget.sectionHeight);
-    double p = widget.controller.offset - widget.sectionHeight * pos;
-
-    setState(() {
-      turns = pos + p / widget.sectionHeight;
-    });
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    widget.controller.removeListener(listener);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return RepaintBoundary(
-      key: const Key("BACKGROUND_CUBA_STAMP"),
-      child: Padding(
-        padding: const EdgeInsets.all(5.0),
-        child: AnimatedRotation(
-          turns: turns,
-          curve: Curves.elasticOut,
-          duration: const Duration(milliseconds: 3000),
-          child: Image.asset(
-            "assets/images/cuba_a.png",
-            height: 30,
-            width: 30,
-          ),
-        ),
       ),
     );
   }
