@@ -97,14 +97,18 @@ class SectionZero extends StatelessWidget {
                           circular: true,
                           insetShadow: true,
                           width: 240,
-                          child: const Padding(
-                            padding: EdgeInsets.all(2.0),
+                          child: Padding(
+                            padding: const EdgeInsets.all(2.0),
                             child: DecoratedBox(
                               decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                   image: DecorationImage(
-                                    image: AssetImage(
+                                    image: const AssetImage(
                                       "assets/images/me.png",
+                                    ),
+                                    colorFilter: ColorFilter.mode(
+                                      Theme.of(context).colorScheme.onPrimary,
+                                      BlendMode.hue,
                                     ),
                                     fit: BoxFit.cover,
                                     filterQuality: FilterQuality.high,
@@ -126,24 +130,29 @@ class SectionZero extends StatelessWidget {
                 children: [
                   Expanded(
                     flex: 3,
-                    // child: Image.asset("assets/images/cuba_a.png"),
                     child: AspectRatio(
                       aspectRatio: 1,
                       child: MuiCard(
                         circular: true,
-                        insetShadow: true,
-                        child: const Padding(
-                          padding: EdgeInsets.all(2.0),
-                          child: DecoratedBox(
-                            decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                image: DecorationImage(
-                                  image: AssetImage(
-                                    "assets/images/me.png",
-                                  ),
-                                  fit: BoxFit.cover,
-                                  filterQuality: FilterQuality.high,
-                                )),
+                        insetShadow: false,
+                        child: Padding(
+                          padding: const EdgeInsets.all(2.0),
+                          child: RepaintBoundary(
+                            child: DecoratedBox(
+                              decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  image: DecorationImage(
+                                    image: const AssetImage(
+                                      "assets/images/me.png",
+                                    ),
+                                    colorFilter: ColorFilter.mode(
+                                      Theme.of(context).colorScheme.onPrimary,
+                                      BlendMode.hue,
+                                    ),
+                                    fit: BoxFit.cover,
+                                    filterQuality: FilterQuality.high,
+                                  )),
+                            ),
                           ),
                         ),
                       ),
