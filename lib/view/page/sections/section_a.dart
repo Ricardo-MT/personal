@@ -97,6 +97,20 @@ class SectionZero extends StatelessWidget {
                           circular: true,
                           insetShadow: true,
                           width: 240,
+                          child: const Padding(
+                            padding: EdgeInsets.all(2.0),
+                            child: DecoratedBox(
+                              decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  image: DecorationImage(
+                                    image: AssetImage(
+                                      "assets/images/me.png",
+                                    ),
+                                    fit: BoxFit.cover,
+                                    filterQuality: FilterQuality.high,
+                                  )),
+                            ),
+                          ),
                         )),
                   ),
                 ),

@@ -350,20 +350,16 @@ class _ScaleInLayer extends State<ScaleInLayer> with TickerProviderStateMixin {
         heigth: 400,
         child: Transform.scale(
           scaleX: -1,
-          child: RepaintBoundary(
-            child: Container(
-              width: 400,
-              height: 400,
-              decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  image: DecorationImage(
-                    image: AssetImage(
-                      "assets/images/me.png",
-                    ),
-                    fit: BoxFit.cover,
-                    filterQuality: FilterQuality.high,
-                  )),
-            ),
+          child: const DecoratedBox(
+            decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                  image: AssetImage(
+                    "assets/images/me.png",
+                  ),
+                  fit: BoxFit.contain,
+                  filterQuality: FilterQuality.high,
+                )),
           ),
         ),
       ),
