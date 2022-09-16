@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:ricardomejiastravieso/l10n/l10n.dart';
 import 'package:ricardomejiastravieso/utils/theme.dart';
 
 class SectionFifth extends StatefulWidget {
@@ -20,6 +21,7 @@ class SectionFifth extends StatefulWidget {
 class _SectionFifth extends State<SectionFifth> {
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     final h = MediaQuery.of(context).size.height;
     final w = MediaQuery.of(context).size.width;
 
@@ -35,78 +37,59 @@ class _SectionFifth extends State<SectionFifth> {
               padding:
                   const EdgeInsets.symmetric(vertical: 14.0, horizontal: 20),
               child: AutoSizeText.rich(
-                TextSpan(text: "< I have always been ", children: [
+                TextSpan(text: l10n.sectionE1, children: [
                   TextSpan(
-                    text: "HORIZONTALLY SCOPED ",
+                    text: l10n.sectionE2,
                     style: _accentStyle,
                   ),
-                  const TextSpan(
-                      text:
-                          "in regard to my abilities, and never had a specialised or well defined trade.\n\nFor the last 3 years I have worked very hard on"
-                          " getting as good as I can in "),
+                  TextSpan(text: l10n.sectionE3),
                   TextSpan(
-                    text: "SOFTWARE DEVELOPMENT",
+                    text: l10n.sectionE4,
                     style: _accentStyle,
                   ),
-                  const TextSpan(
-                      text:
-                          ", building a more vertically scoped profile in the field I love."
-                          "\n\nI became to understand how mastering skills takes "),
+                  TextSpan(text: l10n.sectionE5),
                   TextSpan(
-                    text: "TIME ",
+                    text: l10n.sectionE6,
                     style: _accentStyle,
                   ),
-                  const TextSpan(text: "and "),
+                  TextSpan(text: l10n.sectionE7),
                   TextSpan(
-                    text: "DEDICATION",
+                    text: l10n.sectionE8,
                     style: _accentStyle,
                   ),
-                  const TextSpan(
-                      text: ", but with the proper strategy, this journey "
-                          "can be extremely fun and exciting. I learned to deal with impostor syndrome, to manage the overwhelming and "
-                          "rapidly-blooming technologies, to overcome burnouts, to make the most out of my "),
+                  TextSpan(text: l10n.sectionE9),
                   TextSpan(
-                    text: "PRODUCTIVITY PEAKS",
+                    text: l10n.sectionE10,
                     style: _accentStyle,
                   ),
-                  const TextSpan(
-                      text:
-                          ", and to push everyone working around me towards a better version of themselves."
-                          "\n\nI am a supportive "),
+                  TextSpan(text: l10n.sectionE11),
                   TextSpan(
-                    text: "TEAM PLAYER",
+                    text: l10n.sectionE12,
                     style: _accentStyle,
                   ),
-                  const TextSpan(text: ", very proactive and always with a "),
+                  TextSpan(text: l10n.sectionE13),
                   TextSpan(
-                    text: "CAN-DO ",
+                    text: l10n.sectionE14,
                     style: _accentStyle,
                   ),
-                  const TextSpan(
-                      text: "attitude. For the past 5 years I had a "),
+                  TextSpan(text: l10n.sectionE15),
                   TextSpan(
-                    text: "CONTINUOUS ",
+                    text: l10n.sectionE16,
                     style: _accentStyle,
                   ),
-                  const TextSpan(
-                      text: "improvement mindset as I strive to become "),
+                  TextSpan(text: l10n.sectionE17),
                   TextSpan(
-                    text: "BETTER ",
+                    text: l10n.sectionE18,
                     style: _accentStyle,
                   ),
-                  const TextSpan(
-                      text:
-                          "everyday, reinforcing my lifelong learning eagerness."
-                          "\n\nI now aspire to contribute to the community, increase my professional network and carry on following my "
-                          "carefully tailored career pathway."
-                          "\n\nStill horizontal, but propelling in "),
+                  TextSpan(text: l10n.sectionE19),
                   TextSpan(
-                    text: "VERTICAL",
+                    text: l10n.sectionE20,
                     style: _accentStyle,
                   ),
-                  const TextSpan(text: " ./>"),
+                  TextSpan(text: l10n.sectionE21),
                 ]),
-                textAlign: TextAlign.justify,
+                textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 30,
                   color: Colors.white,
@@ -126,9 +109,9 @@ class _SectionFifth extends State<SectionFifth> {
   }
 }
 
-final _accentStyle = TextStyle(
+const _accentStyle = TextStyle(
   fontFamily: "Montserrat",
   fontSize: 36,
   color: AppColors.lightPurple,
-  shadows: const [],
+  shadows: [],
 );

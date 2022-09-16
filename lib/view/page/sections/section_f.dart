@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:ricardomejiastravieso/utils/api_launch.dart';
 import 'package:ricardomejiastravieso/utils/theme.dart';
 import 'package:ricardomejiastravieso/view/widgets/animated_icon/animated_icon.dart';
 import 'package:ricardomejiastravieso/view/widgets/card.dart';
@@ -40,52 +42,37 @@ class _SectionLast extends State<SectionLast> {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Padding(
-                padding: const EdgeInsets.all(15),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: 5,
+                ),
                 child: Align(
                   alignment: Alignment.centerLeft,
                   child: MuiCard(
-                    width: (_spacer.height ?? 1) * 2 + 40,
-                    heigth: (_spacer.height ?? 1) * 5 + 160,
+                    width: 60,
+                    heigth:
+                        10 * (contacItems.length + 1) + contacItems.length * 40,
                     child: Column(
-                      children: const [
-                        _spacer,
-                        MuiBadge(
-                          size: 40,
-                          child: Icon(
-                            Icons.facebook,
-                            color: AppColors.whitePrimary,
-                            size: 18,
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: List.generate(contacItems.length, (index) {
+                        var item = contacItems[index];
+                        return GestureDetector(
+                          behavior: HitTestBehavior.opaque,
+                          onTap: () => ApiLaunch.launch(item.url),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 5),
+                            child: MuiBadge(
+                              size: 40,
+                              child: Icon(
+                                item.icon,
+                                color: AppColors.whitePrimary,
+                                size: 18,
+                              ),
+                            ),
                           ),
-                        ),
-                        _spacer,
-                        MuiBadge(
-                          size: 40,
-                          child: Icon(
-                            Icons.whatsapp,
-                            color: AppColors.whitePrimary,
-                            size: 18,
-                          ),
-                        ),
-                        _spacer,
-                        MuiBadge(
-                          size: 40,
-                          child: Icon(
-                            Icons.email,
-                            color: AppColors.whitePrimary,
-                            size: 18,
-                          ),
-                        ),
-                        _spacer,
-                        MuiBadge(
-                          size: 40,
-                          child: Icon(
-                            Icons.link_outlined,
-                            color: AppColors.whitePrimary,
-                            size: 18,
-                          ),
-                        ),
-                        _spacer,
-                      ],
+                        );
+                      }),
                     ),
                   ),
                 ),
@@ -129,14 +116,6 @@ class _SectionLast extends State<SectionLast> {
                     height: 40,
                     color: AppColors.whitePrimary,
                   ),
-                  // Text(
-                  //   "Ricardo",
-                  //   style: TextStyle(
-                  //     fontSize: 24,
-                  //     fontFamily: "Comfortaa",
-                  //     color: AppColors.whitePrimary,
-                  //   ),
-                  // )
                 ],
               ),
             ),
@@ -157,27 +136,27 @@ class _SectionLast extends State<SectionLast> {
                         crossAxisAlignment: CrossAxisAlignment.end,
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: const [
-                          Text(
+                          SelectableText(
                             "Ricardo Mejías Travieso",
                             textAlign: TextAlign.right,
                             style: _contactStyle,
                           ),
-                          Text(
+                          SelectableText(
                             "Fulstack & Mobile Developer",
                             textAlign: TextAlign.right,
                             style: _contactStyle,
                           ),
-                          Text(
+                          SelectableText(
                             "Cádiz, España",
                             textAlign: TextAlign.right,
                             style: _contactStyle,
                           ),
-                          Text(
+                          SelectableText(
                             "+34 644 096889",
                             textAlign: TextAlign.right,
                             style: _contactStyle,
                           ),
-                          Text(
+                          SelectableText(
                             "rikr2.mt@gmail.com",
                             textAlign: TextAlign.right,
                             style: _contactStyle,
@@ -205,15 +184,6 @@ class _SectionLast extends State<SectionLast> {
           Container(
             color: Theme.of(context).colorScheme.onPrimary,
             height: kToolbarHeight * 1.5,
-            // decoration: const BoxDecoration(
-            //     gradient: LinearGradient(
-            //   begin: Alignment.topCenter,
-            //   end: Alignment.bottomCenter,
-            //   colors: [
-            //     Color.fromARGB(255, 113, 84, 123),
-            //     Color.fromARGB(255, 69, 47, 76),
-            //   ],
-            // )),
             child: Center(
               child: Text(
                 "©2022 RICARDO MEJIAS TRAVIESO\nPOWERED WITH FLUTTER",
@@ -230,6 +200,31 @@ class _SectionLast extends State<SectionLast> {
       ),
     );
   }
+}
+
+List<ContactItem> contacItems = [
+  // linkedin://in/ricardo-mejias-77303513a/
+  ContactItem(
+      url: "https://www.linkedin.com/in/ricardo-mejias-77303513a/",
+      icon: FontAwesomeIcons.linkedinIn),
+  // tg://$telegram"
+  ContactItem(
+      url: "https://telegram.me/+34644096889", icon: FontAwesomeIcons.telegram),
+  ContactItem(
+      url: "https://github.com/Ricardo-MT", icon: FontAwesomeIcons.github),
+  ContactItem(url: "mailto:rikr2.mt@gmail.com", icon: Icons.mail_outline),
+  // whatsapp://send?phone=$whatsapp/
+  ContactItem(
+      url: "https://wa.me/+34644096889", icon: FontAwesomeIcons.whatsapp),
+];
+
+class ContactItem {
+  ContactItem({
+    required this.url,
+    required this.icon,
+  });
+  String url;
+  IconData icon;
 }
 
 const _spacer = SizedBox(height: 10);

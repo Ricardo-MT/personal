@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:ricardomejiastravieso/l10n/l10n.dart';
 import 'package:ricardomejiastravieso/utils/theme.dart';
 import 'package:ricardomejiastravieso/view/widgets/card.dart';
 
@@ -67,6 +68,7 @@ class _SecondSection extends State<SecondSection> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return RepaintBoundary(
       child: Stack(
         children: [
@@ -109,9 +111,9 @@ class _SecondSection extends State<SecondSection> {
                                     active: _percent > 0.16,
                                     insetShadow: _percent > 0.41,
                                     icon: Icons.local_library_outlined,
-                                    title: "A-Levels",
-                                    location: "IPVCE Lenin, Havana",
-                                    time: "2009-2012",
+                                    title: l10n.sectionBExp1Title,
+                                    location: l10n.sectionBExp1Location,
+                                    time: l10n.sectionBExp1Time,
                                   ),
                                 ),
                                 Align(
@@ -121,9 +123,9 @@ class _SecondSection extends State<SecondSection> {
                                     active: _percent > 0.41,
                                     insetShadow: _percent > 0.66,
                                     icon: Icons.book_outlined,
-                                    title: "2 years in CS",
-                                    location: "University of Havana, Havana",
-                                    time: "2013-2015",
+                                    title: l10n.sectionBExp2Title,
+                                    location: l10n.sectionBExp2Location,
+                                    time: l10n.sectionBExp2Time,
                                   ),
                                 ),
                                 Align(
@@ -133,9 +135,9 @@ class _SecondSection extends State<SecondSection> {
                                     active: _percent > 0.66,
                                     insetShadow: _percent > 0.84,
                                     icon: Icons.school_outlined,
-                                    title: "HND Software Dev.",
-                                    location: "IES Saladillo, Algeciras",
-                                    time: "2020-2022",
+                                    title: l10n.sectionBExp3Title,
+                                    location: l10n.sectionBExp3Location,
+                                    time: l10n.sectionBExp3Time,
                                   ),
                                 ),
                                 Align(
@@ -145,9 +147,9 @@ class _SecondSection extends State<SecondSection> {
                                     active: _percent > 0.84,
                                     insetShadow: _percent > 0.98,
                                     icon: Icons.important_devices_rounded,
-                                    title: "Fullstack Developer",
-                                    location: "Boorpret, Cádiz",
-                                    time: "2020-2022",
+                                    title: l10n.sectionBExp4Title,
+                                    location: l10n.sectionBExp4Location,
+                                    time: l10n.sectionBExp4Time,
                                   ),
                                 ),
                               ],
@@ -163,36 +165,36 @@ class _SecondSection extends State<SecondSection> {
                     active: _percent > 0.16,
                     insetShadow: _percent > 0.41,
                     icon: Icons.local_library_outlined,
-                    title: "A-Levels",
-                    location: "IPVCE Lenin, Havana",
-                    time: "2009-2012",
+                    title: l10n.sectionBExp1Title,
+                    location: l10n.sectionBExp1Location,
+                    time: l10n.sectionBExp1Time,
                   );
                   var item2 = MuiTrayectoryVerticalCard(
                     key: _keys[1],
                     active: _percent > 0.41,
                     insetShadow: _percent > 0.66,
                     icon: Icons.book_outlined,
-                    title: "2 years in CS",
-                    location: "University of Havana, Havana",
-                    time: "2013-2015",
+                    title: l10n.sectionBExp2Title,
+                    location: l10n.sectionBExp2Location,
+                    time: l10n.sectionBExp2Time,
                   );
                   var item3 = MuiTrayectoryVerticalCard(
                     key: _keys[2],
                     active: _percent > 0.66,
                     insetShadow: _percent > 0.84,
                     icon: Icons.school_outlined,
-                    title: "HND Software Dev.",
-                    location: "IES Saladillo, Algeciras",
-                    time: "2020-2022",
+                    title: l10n.sectionBExp3Title,
+                    location: l10n.sectionBExp3Location,
+                    time: l10n.sectionBExp3Time,
                   );
                   var item4 = MuiTrayectoryVerticalCard(
                     key: _keys[3],
                     active: _percent > 0.84,
                     insetShadow: _percent > 0.98,
                     icon: Icons.important_devices_rounded,
-                    title: "Fullstack Developer",
-                    location: "Boorpret, Cádiz",
-                    time: "2020-2022",
+                    title: l10n.sectionBExp4Title,
+                    location: l10n.sectionBExp4Location,
+                    time: l10n.sectionBExp4Time,
                   );
 
                   if (widget.sectionW < 1000) {

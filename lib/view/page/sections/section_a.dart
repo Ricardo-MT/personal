@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:ricardomejiastravieso/utils/theme.dart';
 import 'package:ricardomejiastravieso/view/widgets/card.dart';
+import 'package:ricardomejiastravieso/l10n/l10n.dart';
 
 class SectionZero extends StatelessWidget {
   const SectionZero({
@@ -18,65 +19,60 @@ class SectionZero extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     bool isMobile = sectionW <= 900;
     var item2 = Expanded(
       flex: 5,
       child: AutoSizeText.rich(
-        const TextSpan(text: "< I´m a Spain based ", children: [
-          TextSpan(
+        TextSpan(text: l10n.sectionA1, children: [
+          const TextSpan(
             text: "FULLSTACK ",
             style: _accentStyle,
           ),
-          TextSpan(
+          const TextSpan(
             text: "& ",
           ),
-          TextSpan(
+          const TextSpan(
             text: "MOBILE ",
             style: _accentStyle,
           ),
           TextSpan(
-            text:
-                "software developer, with 3 years of intensive experience in building ",
+            text: l10n.sectionA2,
           ),
           TextSpan(
-            text: "DIGITAL PRODUCTS ",
+            text: l10n.sectionA3,
+            style: _accentStyle,
+          ),
+          TextSpan(text: l10n.sectionA4),
+          TextSpan(
+            text: l10n.sectionA5,
+            style: _accentStyle,
+          ),
+          TextSpan(text: l10n.sectionA6),
+          TextSpan(text: l10n.sectionA7),
+          TextSpan(
+            text: l10n.sectionA8,
             style: _accentStyle,
           ),
           TextSpan(
-              text:
-                  "from the ground up, working closely with clients and managing small teams.\n\nI´ve also work in all phases of "),
+            text: l10n.sectionA9,
+          ),
           TextSpan(
-            text: "PRODUCT DESIGN",
+            text: l10n.sectionA10,
+            style: _accentStyle,
+          ),
+          TextSpan(text: l10n.sectionA11),
+          TextSpan(
+            text: l10n.sectionA12,
             style: _accentStyle,
           ),
           TextSpan(
-              text:
-                  ", from ideation and UX to high-fidelity UI and interactions."),
-          TextSpan(text: "\n\n I always strive for "),
-          TextSpan(
-            text: "SIMPLE ",
-            style: _accentStyle,
-          ),
-          TextSpan(
-            text: "and ",
-          ),
-          TextSpan(
-            text: "PRACTICAL ",
-            style: _accentStyle,
-          ),
-          TextSpan(text: "solutions in order to maximize the "),
-          TextSpan(
-            text: "RESULT",
-            style: _accentStyle,
-          ),
-          TextSpan(
-            text: " ./>",
+            text: l10n.sectionA13,
           ),
         ]),
-        textAlign: TextAlign.justify,
+        textAlign: TextAlign.center,
         style: TextStyle(
           fontSize: 30,
-          // color: AppColors.whitePrimary,
           color: Colors.white,
           fontFamily: "Comfortaa",
           shadows: [

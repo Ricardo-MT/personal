@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:ricardomejiastravieso/providers/locale_provider.dart';
 import 'package:ricardomejiastravieso/providers/theme_provider.dart';
 
 class MuiSwitchTheme extends StatelessWidget {
@@ -78,66 +79,74 @@ class _MuiSwitchLang extends State<MuiSwitchLang> {
   @override
   Widget build(BuildContext context) {
     var color = Theme.of(context).colorScheme.primary;
-    return SizedBox(
-      height: 30,
-      width: 54,
-      child: Stack(
-        alignment: AlignmentDirectional.center,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    return Consumer<LocaleProvider>(
+      builder: (context, provider, child) {
+        Locale myLocale = Localizations.localeOf(context);
+        return SizedBox(
+          height: 30,
+          width: 54,
+          child: Stack(
+            alignment: AlignmentDirectional.center,
             children: [
-              Text(
-                "EN",
-                style: TextStyle(
-                  color: color,
-                  fontSize: 12,
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Text(
+                    "EN",
+                    style: TextStyle(
+                      color: color,
+                      fontSize: 12,
+                    ),
+                  ),
+                  Text(
+                    "ES",
+                    style: TextStyle(
+                      color: color,
+                      fontSize: 12,
+                    ),
+                  ),
+                ],
               ),
-              Text(
-                "ES",
-                style: TextStyle(
-                  color: color,
-                  fontSize: 12,
-                ),
-              ),
-            ],
-          ),
-          MouseRegion(
-            cursor: SystemMouseCursors.click,
-            child: GestureDetector(
-              onTap: nextState,
-              child: Container(
-                height: 28,
-                width: 50,
-                decoration: ShapeDecoration(
-                  shape: StadiumBorder(
-                      side: BorderSide(
-                    color: color,
-                  )),
-                ),
-                child: AnimatedAlign(
-                  alignment: on ? Alignment.centerLeft : Alignment.centerRight,
-                  duration: const Duration(milliseconds: 200),
-                  curve: Curves.fastOutSlowIn,
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.symmetric(vertical: 2, horizontal: 1),
-                    child: Container(
-                      height: 24,
-                      width: 26,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
+              MouseRegion(
+                cursor: SystemMouseCursors.click,
+                child: GestureDetector(
+                  onTap: Provider.of<LocaleProvider>(context, listen: false)
+                      .toggleLocale,
+                  child: Container(
+                    height: 28,
+                    width: 50,
+                    decoration: ShapeDecoration(
+                      shape: StadiumBorder(
+                          side: BorderSide(
                         color: color,
+                      )),
+                    ),
+                    child: AnimatedAlign(
+                      alignment: provider.locale.languageCode == 'es'
+                          ? Alignment.centerLeft
+                          : Alignment.centerRight,
+                      duration: const Duration(milliseconds: 200),
+                      curve: Curves.fastOutSlowIn,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 2, horizontal: 1),
+                        child: Container(
+                          height: 24,
+                          width: 26,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: color,
+                          ),
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-            ),
-          )
-        ],
-      ),
+              )
+            ],
+          ),
+        );
+      },
     );
   }
 }

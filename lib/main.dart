@@ -2,10 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:ricardomejiastravieso/providers/locale_provider.dart';
 import 'package:ricardomejiastravieso/utils/theme.dart';
 import 'package:ricardomejiastravieso/view/page/home.dart';
 import 'package:url_strategy/url_strategy.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'providers/theme_provider.dart';
 
@@ -22,6 +24,9 @@ class MyProviders extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
+        ChangeNotifierProvider(
+            create: (_) =>
+                LocaleProvider(WidgetsBinding.instance.window.locale)),
       ],
       child: const MyApp(),
     );
@@ -34,48 +39,33 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Ricardo',
-        localizationsDelegates: const [
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-        ],
-        supportedLocales: const [
-          Locale('en', ''),
-          Locale('es', ''),
-        ],
-        scrollBehavior: MyCustomScrollBehavior().copyWith(scrollbars: false),
-        debugShowCheckedModeBanner: false,
-        theme: AppTheme.light,
-        darkTheme: AppTheme.dark,
-        themeMode: Provider.of<ThemeProvider>(context, listen: true).mode,
-        home: Consumer<ThemeProvider>(
-          builder: (context, provider, child) {
-            return const HomePage();
-          },
-        ),
-        builder: (context, child) {
-          return Consumer<ThemeProvider>(
-            builder: (context, themeProvider, _) {
-              print("EH");
-
-              return Builder(
-                  // key: Key('appThemeMode${themeProvider.mode.toString()}'),
-                  builder: (context) {
-                return child ?? const SizedBox.shrink();
-              });
-            },
-          );
-        });
+      title: 'Ricardo',
+      localizationsDelegates: const [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      locale: Provider.of<LocaleProvider>(context, listen: true).locale,
+      supportedLocales: AppLocalizations.supportedLocales,
+      scrollBehavior: MyCustomScrollBehavior().copyWith(scrollbars: false),
+      debugShowCheckedModeBanner: false,
+      theme: AppTheme.light,
+      darkTheme: AppTheme.dark,
+      themeMode: Provider.of<ThemeProvider>(context, listen: true).mode,
+      home: Consumer<ThemeProvider>(
+        builder: (context, provider, child) {
+          return const HomePage();
+        },
+      ),
+    );
   }
 }
 
 class MyCustomScrollBehavior extends CupertinoScrollBehavior {
-  // Override behavior methods and getters like dragDevices
   @override
   Set<PointerDeviceKind> get dragDevices => {
         PointerDeviceKind.touch,
         PointerDeviceKind.mouse,
-        // etc.
       };
 }

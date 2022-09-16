@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:ricardomejiastravieso/l10n/l10n.dart';
 import 'package:ricardomejiastravieso/utils/theme.dart';
 import 'package:ricardomejiastravieso/view/widgets/card.dart';
 import 'package:ricardomejiastravieso/view/widgets/custom_icons_icons.dart';
@@ -24,6 +25,12 @@ class ThirdSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool isMobile = sectionW < 630;
+    final l10n = context.l10n;
+    var sections = [
+      l10n.sectionCSection1,
+      l10n.sectionCSection2,
+      l10n.sectionCSection3,
+    ];
     return RepaintBoundary(
       child: SizedBox(
         height: sectionH,
@@ -39,47 +46,32 @@ class ThirdSection extends StatelessWidget {
                 keys: _keys,
               ),
               children: List.generate(
-                  techSections.length,
-                  (index) => isMobile
+                techSections.length,
+                (index) {
+                  var section = techSections[index];
+                  section.title = sections[index];
+
+                  return isMobile
                       ? MuiSectionVerticalWidget(
                           key: _keys[index],
                           controller: controller,
-                          section: techSections[index],
+                          section: section,
                           sectionH: sectionH,
                           index: index,
                         )
                       : MuiSectionWidget(
                           key: _keys[index],
                           controller: controller,
-                          section: techSections[index],
+                          section: section,
                           sectionH: sectionH,
                           index: index,
                           inverted: index % 2 != 0,
-                        )),
+                        );
+                },
+              ),
             )
           ],
-          // ),
         ),
-        // child: Column(
-        //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        //   crossAxisAlignment: CrossAxisAlignment.center,
-        //   children: List.generate(
-        //       techSections.length,
-        //       (index) => isMobile
-        //           ? MuiSectionVerticalWidget(
-        //               controller: controller,
-        //               section: techSections[index],
-        //               sectionH: sectionH,
-        //               index: index,
-        //             )
-        //           : MuiSectionWidget(
-        //               controller: controller,
-        //               section: techSections[index],
-        //               sectionH: sectionH,
-        //               index: index,
-        //               inverted: index % 2 != 0,
-        //             )),
-        // ),
       ),
     );
   }
@@ -252,11 +244,11 @@ class MuiSkillItem extends StatelessWidget {
                         color: skill.color,
                         size: isMobile ? 22 : 30,
                         shadows: [
-                          for (int i = 1; i < 5; i++)
+                          for (int i = 1; i < 4; i++)
                             Shadow(
                                 color: (skill.color ?? AppColors.whiteAccent)
                                     .withOpacity(0.6),
-                                blurRadius: (8 * i).toDouble())
+                                blurRadius: (6 * i).toDouble())
                         ],
                       ),
                     ))),
