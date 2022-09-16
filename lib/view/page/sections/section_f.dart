@@ -42,10 +42,7 @@ class _SectionLast extends State<SectionLast> {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 10,
-                  vertical: 5,
-                ),
+                padding: const EdgeInsets.all(15),
                 child: Align(
                   alignment: Alignment.centerLeft,
                   child: MuiCard(
@@ -77,25 +74,22 @@ class _SectionLast extends State<SectionLast> {
                   ),
                 ),
               ),
-              MouseRegion(
-                cursor: SystemMouseCursors.click,
-                child: GestureDetector(
-                  onTap: () => widget.controller.animateTo(0,
-                      duration: const Duration(seconds: 2),
-                      curve: Curves.fastOutSlowIn),
-                  child: const Align(
-                    alignment: Alignment.bottomRight,
-                    child: Padding(
-                      padding: EdgeInsets.all(15),
-                      child: MuiAnimatedIcon(),
-                    ),
+              GestureDetector(
+                onTap: () => widget.controller.animateTo(0,
+                    duration: const Duration(seconds: 2),
+                    curve: Curves.fastOutSlowIn),
+                child: const Align(
+                  alignment: Alignment.bottomRight,
+                  child: Padding(
+                    padding: EdgeInsets.all(15),
+                    child: MuiAnimatedIcon(),
                   ),
                 ),
               )
             ],
           ),
           Container(
-            height: kToolbarHeight * 1.5,
+            height: kToolbarHeight * 1.2,
             decoration: const BoxDecoration(
                 gradient: LinearGradient(
               begin: Alignment.topCenter,
@@ -120,53 +114,53 @@ class _SectionLast extends State<SectionLast> {
               ),
             ),
           ),
-          Container(
-            color: Theme.of(context).colorScheme.onPrimary,
-            height: widget.sectionH * 0.25,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Spacer(),
-                  Flexible(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: const [
-                          SelectableText(
-                            "Ricardo Mejías Travieso",
-                            textAlign: TextAlign.right,
-                            style: _contactStyle,
-                          ),
-                          SelectableText(
-                            "Fulstack & Mobile Developer",
-                            textAlign: TextAlign.right,
-                            style: _contactStyle,
-                          ),
-                          SelectableText(
-                            "Cádiz, España",
-                            textAlign: TextAlign.right,
-                            style: _contactStyle,
-                          ),
-                          SelectableText(
-                            "+34 644 096889",
-                            textAlign: TextAlign.right,
-                            style: _contactStyle,
-                          ),
-                          SelectableText(
-                            "rikr2.mt@gmail.com",
-                            textAlign: TextAlign.right,
-                            style: _contactStyle,
-                          ),
-                        ],
+          DecoratedBox(
+            decoration:
+                BoxDecoration(color: Theme.of(context).colorScheme.onPrimary),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Spacer(),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    mainAxisSize: MainAxisSize.min,
+                    children: const [
+                      SelectableText(
+                        "Ricardo Mejías Travieso",
+                        textAlign: TextAlign.right,
+                        style: _contactStyle,
                       ),
-                    ),
+                      _spacer,
+                      SelectableText(
+                        "Fulstack & Mobile Developer",
+                        textAlign: TextAlign.right,
+                        style: _contactStyle,
+                      ),
+                      _spacer,
+                      SelectableText(
+                        "Cádiz, España",
+                        textAlign: TextAlign.right,
+                        style: _contactStyle,
+                      ),
+                      _spacer,
+                      SelectableText(
+                        "+34 644 096889",
+                        textAlign: TextAlign.right,
+                        style: _contactStyle,
+                      ),
+                      _spacer,
+                      SelectableText(
+                        "rikr2.mt@gmail.com",
+                        textAlign: TextAlign.right,
+                        style: _contactStyle,
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
           Container(
@@ -183,7 +177,7 @@ class _SectionLast extends State<SectionLast> {
           ),
           Container(
             color: Theme.of(context).colorScheme.onPrimary,
-            height: kToolbarHeight * 1.5,
+            height: kToolbarHeight * 1.3,
             child: Center(
               child: Text(
                 "©2022 RICARDO MEJIAS TRAVIESO\nPOWERED WITH FLUTTER",

@@ -4,7 +4,8 @@ class ThemeProvider extends ChangeNotifier {
   late ThemeMode mode;
 
   ThemeProvider() {
-    mode = TimeOfDay.now().hour > 18 ? ThemeMode.dark : ThemeMode.light;
+    int hour = TimeOfDay.now().hour;
+    mode = (hour > 18 || hour < 6) ? ThemeMode.dark : ThemeMode.light;
   }
 
   void toggleThemeMode() {

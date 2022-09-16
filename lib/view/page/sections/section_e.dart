@@ -32,7 +32,7 @@ class _SectionFifth extends State<SectionFifth> {
         children: [
           const Spacer(),
           Expanded(
-            flex: 6,
+            flex: 12,
             child: Padding(
               padding:
                   const EdgeInsets.symmetric(vertical: 14.0, horizontal: 20),

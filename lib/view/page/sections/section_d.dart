@@ -1,6 +1,8 @@
 import 'dart:math';
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:ricardomejiastravieso/l10n/l10n.dart';
 import 'package:ricardomejiastravieso/utils/theme.dart';
 import 'package:ricardomejiastravieso/view/widgets/card.dart';
 
@@ -19,71 +21,191 @@ class SectionFourth extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
+        Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: SizedBox(
+            width: min(sectionW, 300) - 32,
+            child: AspectRatio(
+              aspectRatio: 1.6,
+              child: Center(
+                child: AutoSizeText(
+                  l10n.sectionProjects,
+                  maxLines: 1,
+                  style: TextStyle(
+                    fontFamily: "Monoton",
+                    fontSize: 80,
+                    color: AppColors.lightPurple,
+                    shadows: [
+                      for (int i = 1; i < 4; i++)
+                        Shadow(
+                            color: AppColors.lightPurple.withOpacity(0.8),
+                            blurRadius: (4 * i).toDouble())
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
         PCItem(
-          project: projectsA[0],
+          project: _ricardo,
           sectionH: sectionH,
           sectionW: sectionW,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Column(
               mainAxisSize: MainAxisSize.min,
-              children: List.generate(
-                  projectsA.length,
-                  (index) => MobileItem(
-                        sectionH: sectionH,
-                        sectionW: sectionW,
-                        project: projectsA[index],
-                      )),
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                MobileItem(
+                  sectionH: sectionH,
+                  sectionW: sectionW,
+                  project: _flanest,
+                )
+              ],
             ),
-            Padding(
-              padding: EdgeInsets.only(top: (sectionH - 32) * 0.25),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: List.generate(
-                    projectsB.length,
-                    (index) => MobileItem(
-                          sectionH: sectionH,
-                          sectionW: sectionW,
-                          project: projectsB[index],
-                        )),
-              ),
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                const LabelItem(),
+                MobileItem(
+                  sectionH: sectionH,
+                  sectionW: sectionW,
+                  project: _lmr,
+                )
+              ],
             )
           ],
+        ),
+        PCItem(
+          project: _aberasManager,
+          sectionH: sectionH,
+          sectionW: sectionW,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                const LabelItem(),
+                MobileItem(
+                  sectionH: sectionH,
+                  sectionW: sectionW,
+                  project: _egresado,
+                )
+              ],
+            ),
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                MobileItem(
+                  sectionH: sectionH,
+                  sectionW: sectionW,
+                  project: _aberasApp,
+                )
+              ],
+            ),
+          ],
+        ),
+        PCItem(
+          project: _eppicWeb,
+          sectionH: sectionH,
+          sectionW: sectionW,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                MobileItem(
+                  sectionH: sectionH,
+                  sectionW: sectionW,
+                  project: _eppicApp,
+                )
+              ],
+            ),
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                const LabelItem(),
+                MobileItem(
+                  sectionH: sectionH,
+                  sectionW: sectionW,
+                  project: _ponina,
+                )
+              ],
+            ),
+          ],
+        ),
+        PCItem(
+          project: _skycove,
+          sectionH: sectionH,
+          sectionW: sectionW,
         ),
       ],
     );
   }
 }
 
-List<MuiProject> projectsA = [
-  MuiProject(
-      imageUrl: "assets/app/aberas.png",
-      name: "ABERAS",
-      country: "React Native, MERN"),
-  MuiProject(
-      imageUrl: "assets/app/egresado.png",
-      name: "EGRESADO",
-      country: "Flutter, Node"),
-  MuiProject(
-      imageUrl: "assets/app/flanest.png",
-      name: "Flanest",
-      country: "React Native, MERN"),
-];
-List<MuiProject> projectsB = [
-  MuiProject(
-      imageUrl: "assets/app/lmr.png",
-      name: "LiveMusicRadar",
-      country: "Flutter"),
-  MuiProject(
-      imageUrl: "assets/app/ponina.png",
-      name: "Ponina",
-      country: "React Native, MERN"),
-];
+final _aberasApp = MuiProject(
+    imageUrl: "assets/app/aberas.png",
+    name: "ABERAS",
+    country: "React Native, MERN");
+
+final _aberasManager = MuiProject(
+    imageUrl: "assets/app/aberasManager.png",
+    name: "Aberas Manager",
+    country: "Flutter, Node");
+
+final _flanest = MuiProject(
+    imageUrl: "assets/app/flanest.png",
+    name: "Flanest",
+    country: "React Native, MERN");
+
+final _egresado = MuiProject(
+    imageUrl: "assets/app/egresado.png",
+    name: "EGRESADO",
+    country: "Flutter, Node");
+
+final _lmr = MuiProject(
+    imageUrl: "assets/app/lmr.png", name: "LiveMusicRadar", country: "Flutter");
+
+final _ponina = MuiProject(
+    imageUrl: "assets/app/ponina.png",
+    name: "Ponina",
+    country: "React Native, MERN");
+
+final _skycove = MuiProject(
+    imageUrl: "assets/app/skycove.png", name: "SkyCove", country: "React");
+
+final _eppicWeb = MuiProject(
+    imageUrl: "assets/app/eppicweb.png",
+    name: "Eppic Web",
+    country: "Flutter, MERN");
+
+final _eppicApp = MuiProject(
+    imageUrl: "assets/app/eppicApp.jpeg",
+    name: "Eppic App",
+    country: "Flutter");
+
+final _ricardo = MuiProject(
+    imageUrl: "assets/app/personal.png", name: "Ricardo", country: "Flutter");
 
 class MuiProject {
   MuiProject({
@@ -198,63 +320,6 @@ class MobileItem extends StatelessWidget {
         ],
       ),
     );
-  }
-}
-
-class ParallaxFlowDelegate extends FlowDelegate {
-  ParallaxFlowDelegate({
-    required this.scrollable,
-    required this.listItemContext,
-    required this.backgroundImageKey,
-  }) : super(repaint: scrollable.position);
-
-  final ScrollableState scrollable;
-  final BuildContext listItemContext;
-  final GlobalKey backgroundImageKey;
-  @override
-  BoxConstraints getConstraintsForChild(int i, BoxConstraints constraints) {
-    return BoxConstraints.tightFor(
-      width: constraints.maxWidth,
-    );
-  }
-
-  @override
-  void paintChildren(FlowPaintingContext context) {
-    final scrollableBox = scrollable.context.findRenderObject() as RenderBox;
-    final listItemBox = listItemContext.findRenderObject() as RenderBox;
-    final listItemOffset = listItemBox.localToGlobal(
-      listItemBox.size.centerLeft(Offset.zero),
-      ancestor: scrollableBox,
-    );
-
-    // Determine the percent position of this list item within the
-    // scrollable area.
-    final viewportDimension = scrollable.position.viewportDimension;
-    final scrollFraction =
-        (listItemOffset.dy / viewportDimension).clamp(0.0, 1.0);
-
-    final verticalAlignment = Alignment(0.0, scrollFraction * 2 - 1);
-
-    // Convert the background alignment into a pixel offset for
-    // painting purposes.
-    final backgroundSize =
-        (backgroundImageKey.currentContext!.findRenderObject() as RenderBox)
-            .size;
-    final listItemSize = context.size;
-    final childRect =
-        verticalAlignment.inscribe(backgroundSize, Offset.zero & listItemSize);
-    context.paintChild(
-      0,
-      transform:
-          Transform.translate(offset: Offset(0.0, childRect.top)).transform,
-    );
-  }
-
-  @override
-  bool shouldRepaint(ParallaxFlowDelegate oldDelegate) {
-    return scrollable != oldDelegate.scrollable ||
-        listItemContext != oldDelegate.listItemContext ||
-        backgroundImageKey != oldDelegate.backgroundImageKey;
   }
 }
 
@@ -390,5 +455,88 @@ class PCItem extends StatelessWidget {
         color: AppColors.defaultColorEnd,
       ),
     );
+  }
+}
+
+class LabelItem extends StatelessWidget {
+  const LabelItem({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n;
+    double w = min((MediaQuery.of(context).size.width / 2 - 32), 300);
+    return SizedBox(
+      width: w,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+        child: AspectRatio(
+          aspectRatio: 1,
+          child: AutoSizeText(
+            l10n.sectionProjectsBreakWord,
+            style: const TextStyle(
+              fontFamily: "Monoton",
+              fontSize: 80,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class ParallaxFlowDelegate extends FlowDelegate {
+  ParallaxFlowDelegate({
+    required this.scrollable,
+    required this.listItemContext,
+    required this.backgroundImageKey,
+  }) : super(repaint: scrollable.position);
+
+  final ScrollableState scrollable;
+  final BuildContext listItemContext;
+  final GlobalKey backgroundImageKey;
+  @override
+  BoxConstraints getConstraintsForChild(int i, BoxConstraints constraints) {
+    return BoxConstraints.tightFor(
+      width: constraints.maxWidth,
+    );
+  }
+
+  @override
+  void paintChildren(FlowPaintingContext context) {
+    final scrollableBox = scrollable.context.findRenderObject() as RenderBox;
+    final listItemBox = listItemContext.findRenderObject() as RenderBox;
+    final listItemOffset = listItemBox.localToGlobal(
+      listItemBox.size.centerLeft(Offset.zero),
+      ancestor: scrollableBox,
+    );
+
+    // Determine the percent position of this list item within the
+    // scrollable area.
+    final viewportDimension = scrollable.position.viewportDimension;
+    final scrollFraction =
+        (listItemOffset.dy / viewportDimension).clamp(0.0, 1.0);
+
+    final verticalAlignment = Alignment(0.0, scrollFraction * 2 - 1);
+
+    // Convert the background alignment into a pixel offset for
+    // painting purposes.
+    final backgroundSize =
+        (backgroundImageKey.currentContext!.findRenderObject() as RenderBox)
+            .size;
+    final listItemSize = context.size;
+    final childRect =
+        verticalAlignment.inscribe(backgroundSize, Offset.zero & listItemSize);
+    context.paintChild(
+      0,
+      transform:
+          Transform.translate(offset: Offset(0.0, childRect.top)).transform,
+    );
+  }
+
+  @override
+  bool shouldRepaint(ParallaxFlowDelegate oldDelegate) {
+    return scrollable != oldDelegate.scrollable ||
+        listItemContext != oldDelegate.listItemContext ||
+        backgroundImageKey != oldDelegate.backgroundImageKey;
   }
 }
