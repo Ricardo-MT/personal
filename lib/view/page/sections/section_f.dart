@@ -32,62 +32,94 @@ class _SectionLast extends State<SectionLast> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const Spacer(),
-          const Spacer(
-            flex: 4,
-          ),
-          const Spacer(),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.end,
+          Expanded(
+              child: Stack(
             children: [
-              Padding(
-                padding: const EdgeInsets.all(15),
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: MuiCard(
-                    width: 60,
-                    heigth:
-                        10 * (contacItems.length + 1) + contacItems.length * 40,
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: List.generate(contacItems.length, (index) {
-                        var item = contacItems[index];
-                        return GestureDetector(
-                          behavior: HitTestBehavior.opaque,
-                          onTap: () => ApiLaunch.launch(item.url),
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 5),
-                            child: MuiBadge(
-                              size: 40,
-                              child: Icon(
-                                item.icon,
-                                color: AppColors.whitePrimary,
-                                size: 18,
+              Center(
+                child: MuiCard(
+                  circular: true,
+                  width: 300,
+                  heigth: 300,
+                  child: Transform.scale(
+                    scaleX: -1,
+                    child: RepaintBoundary(
+                      child: Container(
+                        width: 300,
+                        height: 300,
+                        decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                            image: DecorationImage(
+                              image: AssetImage(
+                                "assets/images/me.png",
                               ),
-                            ),
-                          ),
-                        );
-                      }),
+                              fit: BoxFit.cover,
+                              filterQuality: FilterQuality.high,
+                            )),
+                      ),
                     ),
                   ),
                 ),
               ),
-              GestureDetector(
-                onTap: () => widget.controller.animateTo(0,
-                    duration: const Duration(seconds: 2),
-                    curve: Curves.fastOutSlowIn),
-                child: const Align(
-                  alignment: Alignment.bottomRight,
-                  child: Padding(
-                    padding: EdgeInsets.all(15),
-                    child: MuiAnimatedIcon(),
-                  ),
+              Positioned(
+                right: 0,
+                left: 0,
+                bottom: 0,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(15),
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: MuiCard(
+                          width: 60,
+                          heigth: 10 * (contacItems.length + 1) +
+                              contacItems.length * 40,
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children:
+                                List.generate(contacItems.length, (index) {
+                              var item = contacItems[index];
+                              return GestureDetector(
+                                behavior: HitTestBehavior.opaque,
+                                onTap: () => ApiLaunch.launch(item.url),
+                                child: Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 5),
+                                  child: MuiBadge(
+                                    size: 40,
+                                    child: Icon(
+                                      item.icon,
+                                      color: AppColors.whitePrimary,
+                                      size: 18,
+                                    ),
+                                  ),
+                                ),
+                              );
+                            }),
+                          ),
+                        ),
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () => widget.controller.animateTo(0,
+                          duration: const Duration(seconds: 2),
+                          curve: Curves.fastOutSlowIn),
+                      child: const Align(
+                        alignment: Alignment.bottomRight,
+                        child: Padding(
+                          padding: EdgeInsets.all(15),
+                          child: MuiAnimatedIcon(),
+                        ),
+                      ),
+                    )
+                  ],
                 ),
               )
             ],
-          ),
+          )),
           Container(
             height: kToolbarHeight * 1.2,
             decoration: const BoxDecoration(

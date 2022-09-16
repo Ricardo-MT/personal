@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
+import 'package:flutter/material.dart';
 import 'package:ricardomejiastravieso/utils/theme.dart';
 import 'package:ricardomejiastravieso/view/widgets/card.dart';
 
@@ -348,6 +348,24 @@ class _ScaleInLayer extends State<ScaleInLayer> with TickerProviderStateMixin {
         circular: true,
         width: 400,
         heigth: 400,
+        child: Transform.scale(
+          scaleX: -1,
+          child: RepaintBoundary(
+            child: Container(
+              width: 400,
+              height: 400,
+              decoration: const BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                    image: AssetImage(
+                      "assets/images/me.png",
+                    ),
+                    fit: BoxFit.cover,
+                    filterQuality: FilterQuality.high,
+                  )),
+            ),
+          ),
+        ),
       ),
     );
   }

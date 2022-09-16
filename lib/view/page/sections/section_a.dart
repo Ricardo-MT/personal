@@ -96,7 +96,7 @@ class SectionZero extends StatelessWidget {
                         child: MuiCard(
                           circular: true,
                           insetShadow: true,
-                          width: 300,
+                          width: 240,
                         )),
                   ),
                 ),
@@ -118,6 +118,20 @@ class SectionZero extends StatelessWidget {
                       child: MuiCard(
                         circular: true,
                         insetShadow: true,
+                        child: const Padding(
+                          padding: EdgeInsets.all(2.0),
+                          child: DecoratedBox(
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                image: DecorationImage(
+                                  image: AssetImage(
+                                    "assets/images/me.png",
+                                  ),
+                                  fit: BoxFit.cover,
+                                  filterQuality: FilterQuality.high,
+                                )),
+                          ),
+                        ),
                       ),
                     ),
                   ),
