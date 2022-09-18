@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html style="background-color: #333333;">
 
 <head>
   <!--
@@ -32,6 +32,48 @@
 
   <title>Ricardo</title>
   <link rel="manifest" href="manifest.json">
+  <style>
+    #personalparent {
+      position: absolute;
+      margin: 0px;
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      inset: 0px;
+    }
+
+    #personalsplashicon {
+      inset: 0px;
+      animation: splashFadeMe 3s cubic-bezier(0, 1.8, 1, 2);
+      -webkit-animation: splashFadeMe 3s cubic-bezier(0, 1.8, 1, 2);
+    }
+
+    @keyframes splashFadeMe {
+      from {
+        opacity: 0;
+        transform: scale(0.65);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+    @-webkit-keyframes splashFadeMe {
+      from {
+        -webkit-opacity: 0;
+        -webkit-transform: scale(0.65);
+      }
+
+      to {
+        -webkit-opacity: 1;
+        -webkit-transform: scale(1);
+      }
+    }
+  </style>
 
   <script>
     // The value below is injected by flutter build, do not touch.
@@ -42,6 +84,9 @@
 </head>
 
 <body style="background-color: #333333;">
+  <div id="personalparent">
+    <img id="personalsplashicon" src="icons/Icon-192.png" />
+  </div>
   <script>
     window.addEventListener('load', function (ev) {
       // Download main.dart.js

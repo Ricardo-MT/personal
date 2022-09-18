@@ -144,34 +144,12 @@ class HomePage extends StatelessWidget {
               child: Container(
                 width: w,
                 height: h,
-                decoration: const BoxDecoration(color: Color(0xFF333333)),
+                decoration: BoxDecoration(color: Theme.of(context).colorScheme.onPrimary),
               ),
             )
           ],
         );
       }),
-    );
-  }
-}
-
-void moveTo(ScrollController controller, double dy) {
-  if (defaultTargetPlatform == TargetPlatform.iOS ||
-      defaultTargetPlatform == TargetPlatform.android) {
-    controller.animateTo(
-      dy,
-      duration: const Duration(milliseconds: 600),
-      curve: Curves.linearToEaseOut,
-    );
-  }
-  if (defaultTargetPlatform == TargetPlatform.macOS) {
-    controller.jumpTo(dy);
-  }
-  if (defaultTargetPlatform == TargetPlatform.linux ||
-      defaultTargetPlatform == TargetPlatform.windows) {
-    controller.animateTo(
-      dy,
-      duration: const Duration(milliseconds: 600),
-      curve: Curves.linearToEaseOut,
     );
   }
 }

@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:ricardomejiastravieso/l10n/l10n.dart';
+import 'package:ricardomejiastravieso/utils/api_launch.dart';
 import 'package:ricardomejiastravieso/utils/theme.dart';
 import 'package:ricardomejiastravieso/view/widgets/card.dart';
 
@@ -114,6 +115,7 @@ class _SecondSection extends State<SecondSection> {
                                     title: l10n.sectionBExp1Title,
                                     location: l10n.sectionBExp1Location,
                                     time: l10n.sectionBExp1Time,
+                                    url: _targets[0],
                                   ),
                                 ),
                                 Align(
@@ -126,6 +128,7 @@ class _SecondSection extends State<SecondSection> {
                                     title: l10n.sectionBExp2Title,
                                     location: l10n.sectionBExp2Location,
                                     time: l10n.sectionBExp2Time,
+                                    url: _targets[1],
                                   ),
                                 ),
                                 Align(
@@ -138,6 +141,7 @@ class _SecondSection extends State<SecondSection> {
                                     title: l10n.sectionBExp3Title,
                                     location: l10n.sectionBExp3Location,
                                     time: l10n.sectionBExp3Time,
+                                    url: _targets[2],
                                   ),
                                 ),
                                 Align(
@@ -150,6 +154,7 @@ class _SecondSection extends State<SecondSection> {
                                     title: l10n.sectionBExp4Title,
                                     location: l10n.sectionBExp4Location,
                                     time: l10n.sectionBExp4Time,
+                                    url: _targets[3],
                                   ),
                                 ),
                               ],
@@ -168,6 +173,7 @@ class _SecondSection extends State<SecondSection> {
                     title: l10n.sectionBExp1Title,
                     location: l10n.sectionBExp1Location,
                     time: l10n.sectionBExp1Time,
+                                    url: _targets[0],
                   );
                   var item2 = MuiTrayectoryVerticalCard(
                     key: _keys[1],
@@ -177,6 +183,7 @@ class _SecondSection extends State<SecondSection> {
                     title: l10n.sectionBExp2Title,
                     location: l10n.sectionBExp2Location,
                     time: l10n.sectionBExp2Time,
+                                    url: _targets[1],
                   );
                   var item3 = MuiTrayectoryVerticalCard(
                     key: _keys[2],
@@ -186,6 +193,7 @@ class _SecondSection extends State<SecondSection> {
                     title: l10n.sectionBExp3Title,
                     location: l10n.sectionBExp3Location,
                     time: l10n.sectionBExp3Time,
+                                    url: _targets[2],
                   );
                   var item4 = MuiTrayectoryVerticalCard(
                     key: _keys[3],
@@ -195,6 +203,7 @@ class _SecondSection extends State<SecondSection> {
                     title: l10n.sectionBExp4Title,
                     location: l10n.sectionBExp4Location,
                     time: l10n.sectionBExp4Time,
+                                    url: _targets[3],
                   );
 
                   if (widget.sectionW < 1000) {
@@ -298,6 +307,7 @@ class MuiTrayectoryCard extends StatelessWidget {
     required this.title,
     required this.location,
     required this.time,
+    required this.url,
   }) : super(key: key);
   final bool active;
   final bool insetShadow;
@@ -305,6 +315,7 @@ class MuiTrayectoryCard extends StatelessWidget {
   final String title;
   final String location;
   final String time;
+  final String url;
 
   @override
   Widget build(BuildContext context) {
@@ -313,106 +324,20 @@ class MuiTrayectoryCard extends StatelessWidget {
     Color textPrimaryColor = Theme.of(context).colorScheme.primary;
     Color textSecondaryColor = Theme.of(context).colorScheme.secondary;
 
-    return MuiCard(
-      heigth: 116,
-      width: 294,
-      decorated: true,
-      active: active,
-      insetShadow: insetShadow,
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Center(
-              child: Padding(
-            padding: const EdgeInsets.all(16.0).copyWith(left: 20),
-            child: MuiBadge(
-                child: Icon(
-              icon,
-              size: 28,
-              color: AppColors.whitePrimary,
-            )),
-          )),
-          Expanded(
-              child: Padding(
-            padding:
-                const EdgeInsets.symmetric(vertical: 20).copyWith(right: 12),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  title,
-                  style: TextStyle(
-                    color: textPrimaryColor,
-                    fontSize: 17,
-                    fontFamily: familyA,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-                const Spacer(),
-                Text(
-                  location,
-                  style: TextStyle(
-                    color: textSecondaryColor,
-                    fontSize: 12,
-                    fontFamily: familyB,
-                  ),
-                ),
-                Text(
-                  time,
-                  style: TextStyle(
-                    color: textSecondaryColor,
-                    fontSize: 12,
-                    fontFamily: familyB,
-                  ),
-                ),
-              ],
-            ),
-          ))
-        ],
-      ),
-    );
-  }
-}
-
-class MuiTrayectoryVerticalCard extends StatelessWidget {
-  const MuiTrayectoryVerticalCard({
-    Key? key,
-    this.active = true,
-    this.insetShadow = false,
-    required this.icon,
-    required this.title,
-    required this.location,
-    required this.time,
-  }) : super(key: key);
-  final bool active;
-  final bool insetShadow;
-  final IconData icon;
-  final String title;
-  final String location;
-  final String time;
-
-  @override
-  Widget build(BuildContext context) {
-    String familyA = "Montserrat";
-    String familyB = "Comfortaa";
-    Color textPrimaryColor = Theme.of(context).colorScheme.primary;
-    Color textSecondaryColor = Theme.of(context).colorScheme.secondary;
-
-    return MuiCard(
-      heigth: 300,
-      width: 220,
-      decorated: true,
-      active: active,
-      insetShadow: insetShadow,
-      child: Padding(
-        padding: const EdgeInsets.all(24.0),
-        child: Column(
+    return GestureDetector(
+      onTap: () => ApiLaunch.launch(url),
+      child: MuiCard(
+        heigth: 116,
+        width: 294,
+        decorated: true,
+        active: active,
+        insetShadow: insetShadow,
+        child: Row(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Center(
                 child: Padding(
-              padding: const EdgeInsets.only(bottom: 24),
+              padding: const EdgeInsets.all(16.0).copyWith(left: 20),
               child: MuiBadge(
                   child: Icon(
                 icon,
@@ -432,7 +357,7 @@ class MuiTrayectoryVerticalCard extends StatelessWidget {
                     title,
                     style: TextStyle(
                       color: textPrimaryColor,
-                      fontSize: 22,
+                      fontSize: 17,
                       fontFamily: familyA,
                       fontWeight: FontWeight.w700,
                     ),
@@ -458,6 +383,100 @@ class MuiTrayectoryVerticalCard extends StatelessWidget {
               ),
             ))
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class MuiTrayectoryVerticalCard extends StatelessWidget {
+  const MuiTrayectoryVerticalCard({
+    Key? key,
+    this.active = true,
+    this.insetShadow = false,
+    required this.icon,
+    required this.title,
+    required this.location,
+    required this.time,
+    required this.url,
+  }) : super(key: key);
+  final bool active;
+  final bool insetShadow;
+  final IconData icon;
+  final String title;
+  final String location;
+  final String time;
+  final String url;
+
+  @override
+  Widget build(BuildContext context) {
+    String familyA = "Montserrat";
+    String familyB = "Comfortaa";
+    Color textPrimaryColor = Theme.of(context).colorScheme.primary;
+    Color textSecondaryColor = Theme.of(context).colorScheme.secondary;
+
+    return GestureDetector(
+      onTap: () => ApiLaunch.launch(url),
+      child: MuiCard(
+        heigth: 300,
+        width: 220,
+        decorated: true,
+        active: active,
+        insetShadow: insetShadow,
+        child: Padding(
+          padding: const EdgeInsets.all(24.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Center(
+                  child: Padding(
+                padding: const EdgeInsets.only(bottom: 24),
+                child: MuiBadge(
+                    child: Icon(
+                  icon,
+                  size: 28,
+                  color: AppColors.whitePrimary,
+                )),
+              )),
+              Expanded(
+                  child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 20).copyWith(right: 12),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      title,
+                      style: TextStyle(
+                        color: textPrimaryColor,
+                        fontSize: 22,
+                        fontFamily: familyA,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    const Spacer(),
+                    Text(
+                      location,
+                      style: TextStyle(
+                        color: textSecondaryColor,
+                        fontSize: 12,
+                        fontFamily: familyB,
+                      ),
+                    ),
+                    Text(
+                      time,
+                      style: TextStyle(
+                        color: textSecondaryColor,
+                        fontSize: 12,
+                        fontFamily: familyB,
+                      ),
+                    ),
+                  ],
+                ),
+              ))
+            ],
+          ),
         ),
       ),
     );
@@ -774,6 +793,9 @@ class ParallaxMobileFlowDelegate extends FlowDelegate {
         keys.hashCode != oldDelegate.keys.hashCode;
   }
 }
+
+List<String> _targets = ["https://www.ecured.cu/Instituto_Preuniversitario_Vocacional_de_Ciencias_Exactas_Vladimir_Ilich_Lenin",
+"https://matcom.uh.cu/pregrado/carrera/","http://www.iessaladillo.es/web/oferta-educativa/cfgs-dam/","https://boorpret.com/",];
 
 const _spacer = SizedBox(
   width: 20,
