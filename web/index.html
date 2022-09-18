@@ -44,11 +44,10 @@
       justify-content: center;
       inset: 0px;
     }
-
     #personalsplashicon {
       inset: 0px;
-      animation: splashFadeMe 3s cubic-bezier(0, 1.8, 1, 2);
-      -webkit-animation: splashFadeMe 3s cubic-bezier(0, 1.8, 1, 2);
+      animation: splashFadeMe 3s cubic-bezier(0, 1.8, 1, 1.5);
+      -webkit-animation: splashFadeMe 3s cubic-bezier(0, 1.8, 1, 1.5);
     }
 
     @keyframes splashFadeMe {
@@ -81,11 +80,12 @@
   </script>
   <!-- This script adds the flutter initialization JS code -->
   <script src="flutter.js" defer></script>
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
 </head>
 
 <body style="background-color: #333333;">
   <div id="personalparent">
-    <img id="personalsplashicon" src="icons/Icon-192.png" />
+    <img id="personalsplashicon" src="icons/Icon-192.png" style="width: 180px; height: 180px;" aria-hidden="true" alt="">
   </div>
   <script>
     window.addEventListener('load', function (ev) {
@@ -94,13 +94,11 @@
         serviceWorker: {
           serviceWorkerVersion: serviceWorkerVersion,
         }
-      }).then(function (engineInitializer) {
-        return engineInitializer.initializeEngine();
-      }).then(function (appRunner) {
-        return appRunner.runApp();
-      });
+      }).then(function(engineInitializer) {
+  return engineInitializer.autoStart();
+});
     });
   </script>
-</body>
 
-</html>
+
+</body></html>

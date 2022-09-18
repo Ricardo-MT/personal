@@ -144,7 +144,7 @@ class HomePage extends StatelessWidget {
               child: Container(
                 width: w,
                 height: h,
-                decoration: BoxDecoration(color: Theme.of(context).colorScheme.onPrimary),
+                decoration: const BoxDecoration(color: Color(0xFF333333)),
               ),
             )
           ],

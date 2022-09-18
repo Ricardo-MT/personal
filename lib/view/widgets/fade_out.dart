@@ -14,8 +14,6 @@ class FadeOutLayer extends StatefulWidget {
 class _FadeOutLayer extends State<FadeOutLayer> with TickerProviderStateMixin {
   late final AnimationController _controller = AnimationController(
     value: 1,
-    lowerBound: 0,
-    upperBound: 1,
     duration: const Duration(milliseconds: 1200),
     vsync: this,
   );
@@ -27,9 +25,11 @@ class _FadeOutLayer extends State<FadeOutLayer> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-
+    WidgetsBinding.instance.addPostFrameCallback((_) {
     Future.delayed(const Duration(milliseconds: 400))
-        .then((value) => _controller.reverse());
+        .then((value) => 
+        _controller.reverse());
+  });
   }
 
   @override
