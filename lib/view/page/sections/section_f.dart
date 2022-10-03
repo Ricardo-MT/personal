@@ -235,7 +235,7 @@ class _SectionLast extends State<SectionLast> {
 List<ContactItem> contacItems = [
   // linkedin://in/ricardo-mejias-77303513a/
   ContactItem(
-      url: "https://www.linkedin.com/in/ricardo-mejias-77303513a/",
+      url: "https://www.linkedin.com/in/ricardo-mejias-travieso-77303513a/",
       icon: FontAwesomeIcons.linkedinIn),
   // tg://$telegram"
   ContactItem(

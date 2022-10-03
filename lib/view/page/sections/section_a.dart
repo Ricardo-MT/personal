@@ -130,11 +130,13 @@ class SectionZero extends StatelessWidget {
                 children: [
                   Expanded(
                     flex: 3,
-                    child: AspectRatio(
-                      aspectRatio: 1,
+                    child: Align(
+                      alignment: Alignment.topCenter,
                       child: MuiCard(
                         circular: true,
                         insetShadow: false,
+                        width: 240,
+                        heigth: 240,
                         child: Padding(
                           padding: const EdgeInsets.all(2.0),
                           child: RepaintBoundary(
