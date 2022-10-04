@@ -137,20 +137,20 @@ class SectionZero extends StatelessWidget {
                         insetShadow: false,
                         width: 240,
                         heigth: 240,
-                        child: Padding(
-                          padding: const EdgeInsets.all(2.0),
+                        child: const Padding(
+                          padding: EdgeInsets.all(2.0),
                           child: RepaintBoundary(
                             child: DecoratedBox(
                               decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                   image: DecorationImage(
-                                    image: const AssetImage(
-                                      "assets/images/me.png",
+                                    image: AssetImage(
+                                      "assets/images/abajo.png",
                                     ),
-                                    colorFilter: ColorFilter.mode(
-                                      Theme.of(context).colorScheme.onPrimary,
-                                      BlendMode.hue,
-                                    ),
+                                    // colorFilter: ColorFilter.mode(
+                                    //   Theme.of(context).colorScheme.onPrimary,
+                                    //   BlendMode.hue,
+                                    // ),
                                     fit: BoxFit.cover,
                                     filterQuality: FilterQuality.high,
                                   )),

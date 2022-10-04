@@ -46,16 +46,16 @@ class _SectionLast extends State<SectionLast> {
                       child: Container(
                         width: 300,
                         height: 300,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                             shape: BoxShape.circle,
                             image: DecorationImage(
-                              image: const AssetImage(
-                                "assets/images/me.png",
+                              image: AssetImage(
+                                "assets/images/arriba.png",
                               ),
-                              colorFilter: ColorFilter.mode(
-                                Theme.of(context).colorScheme.onPrimary,
-                                BlendMode.hue,
-                              ),
+                              // colorFilter: ColorFilter.mode(
+                              //   Theme.of(context).colorScheme.onPrimary,
+                              //   BlendMode.hue,
+                              // ),
                               fit: BoxFit.cover,
                               filterQuality: FilterQuality.high,
                             )),
