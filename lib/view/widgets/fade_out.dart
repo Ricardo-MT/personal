@@ -25,11 +25,17 @@ class _FadeOutLayer extends State<FadeOutLayer> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-    Future.delayed(const Duration(milliseconds: 400))
-        .then((value) => 
-        _controller.reverse());
-  });
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await Future.wait([
+        precacheImage(const AssetImage("assets/backLight.png"), context),
+        precacheImage(const AssetImage("assets/back.png"), context),
+        precacheImage(const AssetImage("assets/images/front.png"), context),
+        precacheImage(const AssetImage("assets/images/abajo.png"), context),
+        precacheImage(const AssetImage("assets/images/arriba.png"), context),
+      ]);
+      await Future.delayed(const Duration(milliseconds: 300));
+      _controller.reverse();
+    });
   }
 
   @override

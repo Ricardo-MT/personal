@@ -97,23 +97,20 @@ class SectionZero extends StatelessWidget {
                           circular: true,
                           insetShadow: true,
                           width: 240,
-                          child: Padding(
-                            padding: const EdgeInsets.all(2.0),
-                            child: DecoratedBox(
-                              decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  image: DecorationImage(
-                                    image: const AssetImage(
-                                      "assets/images/me.png",
-                                    ),
-                                    colorFilter: ColorFilter.mode(
-                                      Theme.of(context).colorScheme.onPrimary,
-                                      BlendMode.hue,
-                                    ),
-                                    fit: BoxFit.cover,
-                                    filterQuality: FilterQuality.high,
-                                  )),
-                            ),
+                          child: const DecoratedBox(
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                image: DecorationImage(
+                                  image: AssetImage(
+                                    "assets/images/abajo.png",
+                                  ),
+                                  // colorFilter: ColorFilter.mode(
+                                  //   Theme.of(context).colorScheme.onPrimary,
+                                  //   BlendMode.hue,
+                                  // ),
+                                  fit: BoxFit.cover,
+                                  filterQuality: FilterQuality.high,
+                                )),
                           ),
                         )),
                   ),
@@ -137,24 +134,21 @@ class SectionZero extends StatelessWidget {
                         insetShadow: false,
                         width: 240,
                         heigth: 240,
-                        child: const Padding(
-                          padding: EdgeInsets.all(2.0),
-                          child: RepaintBoundary(
-                            child: DecoratedBox(
-                              decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  image: DecorationImage(
-                                    image: AssetImage(
-                                      "assets/images/abajo.png",
-                                    ),
-                                    // colorFilter: ColorFilter.mode(
-                                    //   Theme.of(context).colorScheme.onPrimary,
-                                    //   BlendMode.hue,
-                                    // ),
-                                    fit: BoxFit.cover,
-                                    filterQuality: FilterQuality.high,
-                                  )),
-                            ),
+                        child: const RepaintBoundary(
+                          child: DecoratedBox(
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                image: DecorationImage(
+                                  image: AssetImage(
+                                    "assets/images/abajo.png",
+                                  ),
+                                  // colorFilter: ColorFilter.mode(
+                                  //   Theme.of(context).colorScheme.onPrimary,
+                                  //   BlendMode.hue,
+                                  // ),
+                                  fit: BoxFit.cover,
+                                  filterQuality: FilterQuality.high,
+                                )),
                           ),
                         ),
                       ),

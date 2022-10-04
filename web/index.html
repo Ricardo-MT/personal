@@ -44,32 +44,46 @@
       justify-content: center;
       inset: 0px;
     }
+
     #personalsplashicon {
       inset: 0px;
-      animation: splashFadeMe 3s cubic-bezier(0, 1.8, 1, 1.5);
-      -webkit-animation: splashFadeMe 3s cubic-bezier(0, 1.8, 1, 1.5);
+      /* animation: splashFadeMe 4s cubic-bezier(0, 1.8, 1, 1.5);
+      -webkit-animation: splashFadeMe 4s cubic-bezier(0, 1.8, 1, 1.5); */
+      animation: splashFadeMe 4s;
+      -webkit-animation: splashFadeMe 4s;
     }
 
     @keyframes splashFadeMe {
-      from {
+      0% {
         opacity: 0;
-        transform: scale(0.65);
+        transform: scale(0.8);
       }
 
-      to {
+      20% {
         opacity: 1;
         transform: scale(1);
       }
+
+      100% {
+        opacity: 0;
+        transform: scale(0.8);
+      }
     }
+
     @-webkit-keyframes splashFadeMe {
-      from {
+      0% {
         -webkit-opacity: 0;
-        -webkit-transform: scale(0.65);
+        -webkit-transform: scale(0.8);
       }
 
-      to {
+      20% {
         -webkit-opacity: 1;
         -webkit-transform: scale(1);
+      }
+
+      100% {
+        -webkit-opacity: 0;
+        -webkit-transform: scale(0.8);
       }
     }
   </style>
@@ -85,7 +99,8 @@
 
 <body style="background-color: #333333;">
   <div id="personalparent">
-    <img id="personalsplashicon" src="icons/Icon-192.png" style="width: 180px; height: 180px;" aria-hidden="true" alt="">
+    <img id="personalsplashicon" src="icons/Icon-192.png" style="width: 180px; height: 180px;" aria-hidden="true"
+      alt="">
   </div>
   <script>
     window.addEventListener('load', function (ev) {
@@ -94,11 +109,13 @@
         serviceWorker: {
           serviceWorkerVersion: serviceWorkerVersion,
         }
-      }).then(function(engineInitializer) {
-  return engineInitializer.autoStart();
-});
+      }).then(function (engineInitializer) {
+        return engineInitializer.autoStart();
+      });
     });
   </script>
 
 
-</body></html>
+</body>
+
+</html>

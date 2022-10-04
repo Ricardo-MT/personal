@@ -3,7 +3,6 @@
 // ignore: unnecessary_import
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
 import 'package:provider/provider.dart';
 import 'package:ricardomejiastravieso/providers/theme_provider.dart';
 import 'package:ricardomejiastravieso/view/page/sections/section_a.dart';
