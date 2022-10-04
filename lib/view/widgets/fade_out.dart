@@ -33,7 +33,7 @@ class _FadeOutLayer extends State<FadeOutLayer> with TickerProviderStateMixin {
         precacheImage(const AssetImage("assets/images/abajo.png"), context),
         precacheImage(const AssetImage("assets/images/arriba.png"), context),
       ]);
-      await Future.delayed(const Duration(milliseconds: 300));
+      await Future.delayed(const Duration(milliseconds: 200));
       _controller.reverse();
     });
   }

@@ -316,7 +316,7 @@ class ScaleInLayer extends StatefulWidget {
 
 class _ScaleInLayer extends State<ScaleInLayer> with TickerProviderStateMixin {
   late final AnimationController _controller = AnimationController(
-    duration: const Duration(milliseconds: 1800),
+    duration: const Duration(milliseconds: 3000),
     vsync: this,
   );
   late final Animation<double> _animation = CurvedAnimation(
