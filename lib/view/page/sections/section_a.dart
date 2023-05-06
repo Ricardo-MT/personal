@@ -26,7 +26,7 @@ class SectionZero extends StatelessWidget {
       child: AutoSizeText.rich(
         TextSpan(text: l10n.sectionA1, children: [
           const TextSpan(
-            text: "FULLSTACK ",
+            text: "FULL STACK ",
             style: _accentStyle,
           ),
           const TextSpan(
