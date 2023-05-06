@@ -87,8 +87,8 @@ class SectionZero extends StatelessWidget {
       child: isMobile
           ? Column(
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(12),
+                const Padding(
+                  padding: EdgeInsets.all(12),
                   child: SizedBox(
                     width: 240,
                     child: AspectRatio(
@@ -97,7 +97,7 @@ class SectionZero extends StatelessWidget {
                           circular: true,
                           insetShadow: true,
                           width: 240,
-                          child: const DecoratedBox(
+                          child: DecoratedBox(
                             decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                                 image: DecorationImage(
@@ -125,7 +125,7 @@ class SectionZero extends StatelessWidget {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Expanded(
+                  const Expanded(
                     flex: 3,
                     child: Align(
                       alignment: Alignment.topCenter,
@@ -134,7 +134,7 @@ class SectionZero extends StatelessWidget {
                         insetShadow: false,
                         width: 240,
                         heigth: 240,
-                        child: const RepaintBoundary(
+                        child: RepaintBoundary(
                           child: DecoratedBox(
                             decoration: BoxDecoration(
                                 shape: BoxShape.circle,

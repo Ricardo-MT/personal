@@ -61,7 +61,7 @@ class NameLayer extends StatelessWidget {
     var color = Theme.of(context).colorScheme.primary;
     return Flow(
       delegate: SlideNameFlowDelegate(
-        scrollable: Scrollable.of(context)!,
+        scrollable: Scrollable.of(context),
         listItemContext: context,
         nameKeyA: _nameKeyA,
         nameKeyB: _nameKeyB,
@@ -119,7 +119,7 @@ class ProfessionLayer extends StatelessWidget {
   Widget _buildParallaxBackground(BuildContext context) {
     return Flow(
       delegate: SlideProfessionFlowDelegate(
-        scrollable: Scrollable.of(context)!,
+        scrollable: Scrollable.of(context),
         listItemContext: context,
         nameKeyA: _nameKeyA,
         nameKeyB: _nameKeyB,

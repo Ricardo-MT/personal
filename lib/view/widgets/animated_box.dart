@@ -46,8 +46,6 @@ class _MuiAnimatedBox extends State<MuiAnimatedBox> {
     int bit3 = _h % 2 == 0 ? 1 : 0;
 
     res = 4 * bit3 + 2 * bit2 + bit1;
-    print(res);
-
     switch (res) {
       case 1:
         return Alignment.bottomCenter;

@@ -39,7 +39,7 @@ class ThirdSection extends StatelessWidget {
           children: [
             Flow(
               delegate: ParallaxFlowDelegate(
-                scrollable: Scrollable.of(context)!,
+                scrollable: Scrollable.of(context),
                 sectionH: sectionH,
                 sectionW: sectionW,
                 listItemContext: context,

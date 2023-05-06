@@ -4,6 +4,9 @@ import 'package:ricardomejiastravieso/utils/api_launch.dart';
 import 'package:ricardomejiastravieso/utils/theme.dart';
 import 'package:ricardomejiastravieso/view/widgets/animated_icon/animated_icon.dart';
 import 'package:ricardomejiastravieso/view/widgets/card.dart';
+import 'package:seo_renderer/renderers/link_renderer/link_renderer_vm.dart';
+import 'package:seo_renderer/renderers/text_renderer/text_renderer_vm.dart';
+import 'package:url_launcher/link.dart';
 
 class SectionLast extends StatefulWidget {
   const SectionLast({
@@ -86,20 +89,30 @@ class _SectionLast extends State<SectionLast> {
                             children:
                                 List.generate(contacItems.length, (index) {
                               var item = contacItems[index];
-                              return GestureDetector(
-                                behavior: HitTestBehavior.opaque,
-                                onTap: () => ApiLaunch.launch(item.url),
-                                child: Padding(
-                                  padding:
-                                      const EdgeInsets.symmetric(vertical: 5),
-                                  child: MuiBadge(
-                                    size: 40,
-                                    child: Icon(
-                                      item.icon,
-                                      color: AppColors.whitePrimary,
-                                      size: 18,
-                                    ),
-                                  ),
+                              return LinkRenderer(
+                                href: item.url,
+                                text: item.url,
+                                child: Link(
+                                  uri: Uri.parse(item.url),
+                                  builder: (BuildContext context,
+                                      Future<void> Function()? followLink) {
+                                    return GestureDetector(
+                                      behavior: HitTestBehavior.opaque,
+                                      onTap: () => ApiLaunch.launch(item.url),
+                                      child: Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            vertical: 5),
+                                        child: MuiBadge(
+                                          size: 40,
+                                          child: Icon(
+                                            item.icon,
+                                            color: AppColors.whitePrimary,
+                                            size: 18,
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  },
                                 ),
                               );
                             }),
@@ -163,35 +176,61 @@ class _SectionLast extends State<SectionLast> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     mainAxisSize: MainAxisSize.min,
-                    children: const [
-                      SelectableText(
-                        "Ricardo Mejías Travieso",
-                        textAlign: TextAlign.right,
-                        style: _contactStyle,
+                    children: [
+                      Semantics(
+                        label: "Ricardo Mejías Travieso",
+                        hint: "Ricardo Mejías Travieso",
+                        value: "Ricardo Mejías Travieso",
+                        child: const TextRenderer(
+                          child: SelectableText(
+                            "Ricardo Mejías Travieso",
+                            textAlign: TextAlign.right,
+                            style: _contactStyle,
+                          ),
+                        ),
                       ),
                       _spacer,
-                      SelectableText(
-                        "Fulstack & Mobile Developer",
-                        textAlign: TextAlign.right,
-                        style: _contactStyle,
+                      Semantics(
+                        label: "Fulstack & Mobile Developer",
+                        hint: "Fulstack & Mobile Developer",
+                        value: "Fulstack & Mobile Developer",
+                        child: const TextRenderer(
+                          child: SelectableText(
+                            "Fulstack & Mobile Developer",
+                            textAlign: TextAlign.right,
+                            style: _contactStyle,
+                          ),
+                        ),
                       ),
                       _spacer,
-                      SelectableText(
-                        "Cádiz, España",
-                        textAlign: TextAlign.right,
-                        style: _contactStyle,
+                      Semantics(
+                        label: "Cádiz, España",
+                        hint: "Cádiz, España",
+                        value: "Cádiz, España",
+                        child: const TextRenderer(
+                          child: SelectableText(
+                            "Cádiz, España",
+                            textAlign: TextAlign.right,
+                            style: _contactStyle,
+                          ),
+                        ),
                       ),
                       _spacer,
-                      SelectableText(
+                      const SelectableText(
                         "+34 644 096889",
                         textAlign: TextAlign.right,
                         style: _contactStyle,
                       ),
                       _spacer,
-                      SelectableText(
-                        "rikr2.mt@gmail.com",
-                        textAlign: TextAlign.right,
-                        style: _contactStyle,
+                      Semantics(
+                        label: "rikr2.mt@gmail.com",
+                        hint: "rikr2.mt@gmail.com",
+                        value: "rikr2.mt@gmail.com",
+                        child: const SelectableText(
+                          "rikr2.mt@gmail.com",
+                          textAlign: TextAlign.right,
+                          style: _contactStyle,
+                        ),
                       ),
                     ],
                   ),
@@ -215,13 +254,15 @@ class _SectionLast extends State<SectionLast> {
             color: Theme.of(context).colorScheme.onPrimary,
             height: kToolbarHeight * 1.3,
             child: Center(
-              child: Text(
-                "©2022 RICARDO MEJIAS TRAVIESO\nPOWERED WITH FLUTTER",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontFamily: "Montserrat",
-                  fontSize: 12,
-                  color: Theme.of(context).colorScheme.primary,
+              child: TextRenderer(
+                child: Text(
+                  "©2023 RICARDO MEJIAS TRAVIESO\nPOWERED WITH FLUTTER",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontFamily: "Montserrat",
+                    fontSize: 12,
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
                 ),
               ),
             ),

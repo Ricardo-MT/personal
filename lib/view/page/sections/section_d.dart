@@ -261,7 +261,7 @@ class MobileItem extends StatelessWidget {
   Widget _buildParallaxBackground(BuildContext context) {
     return Flow(
       delegate: ParallaxFlowDelegate(
-        scrollable: Scrollable.of(context)!,
+        scrollable: Scrollable.of(context),
         listItemContext: context,
         backgroundImageKey: _backgroundImageKey,
       ),
@@ -380,7 +380,7 @@ class PCItem extends StatelessWidget {
   Widget _buildParallaxBackground(BuildContext context) {
     return Flow(
       delegate: ParallaxFlowDelegate(
-        scrollable: Scrollable.of(context)!,
+        scrollable: Scrollable.of(context),
         listItemContext: context,
         backgroundImageKey: _backgroundImageKey,
       ),

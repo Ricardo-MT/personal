@@ -98,7 +98,7 @@ class _SecondSection extends State<SecondSection> {
                           children: [
                             Flow(
                               delegate: ParallaxMobileFlowDelegate(
-                                scrollable: Scrollable.of(context)!,
+                                scrollable: Scrollable.of(context),
                                 sectionH: widget.sectionH,
                                 sectionW: widget.sectionW,
                                 listItemContext: context,
@@ -173,7 +173,7 @@ class _SecondSection extends State<SecondSection> {
                     title: l10n.sectionBExp1Title,
                     location: l10n.sectionBExp1Location,
                     time: l10n.sectionBExp1Time,
-                                    url: _targets[0],
+                    url: _targets[0],
                   );
                   var item2 = MuiTrayectoryVerticalCard(
                     key: _keys[1],
@@ -183,7 +183,7 @@ class _SecondSection extends State<SecondSection> {
                     title: l10n.sectionBExp2Title,
                     location: l10n.sectionBExp2Location,
                     time: l10n.sectionBExp2Time,
-                                    url: _targets[1],
+                    url: _targets[1],
                   );
                   var item3 = MuiTrayectoryVerticalCard(
                     key: _keys[2],
@@ -193,7 +193,7 @@ class _SecondSection extends State<SecondSection> {
                     title: l10n.sectionBExp3Title,
                     location: l10n.sectionBExp3Location,
                     time: l10n.sectionBExp3Time,
-                                    url: _targets[2],
+                    url: _targets[2],
                   );
                   var item4 = MuiTrayectoryVerticalCard(
                     key: _keys[3],
@@ -203,7 +203,7 @@ class _SecondSection extends State<SecondSection> {
                     title: l10n.sectionBExp4Title,
                     location: l10n.sectionBExp4Location,
                     time: l10n.sectionBExp4Time,
-                                    url: _targets[3],
+                    url: _targets[3],
                   );
 
                   if (widget.sectionW < 1000) {
@@ -215,7 +215,7 @@ class _SecondSection extends State<SecondSection> {
                             children: [
                               Flow(
                                 delegate: ParallaxTabletFlowDelegate(
-                                  scrollable: Scrollable.of(context)!,
+                                  scrollable: Scrollable.of(context),
                                   sectionH: widget.sectionH,
                                   sectionW: widget.sectionW,
                                   listItemContext: context,
@@ -258,7 +258,7 @@ class _SecondSection extends State<SecondSection> {
                           children: [
                             Flow(
                               delegate: ParallaxDesktopFlowDelegate(
-                                scrollable: Scrollable.of(context)!,
+                                scrollable: Scrollable.of(context),
                                 sectionH: widget.sectionH,
                                 sectionW: widget.sectionW,
                                 listItemContext: context,
@@ -440,8 +440,8 @@ class MuiTrayectoryVerticalCard extends StatelessWidget {
               )),
               Expanded(
                   child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 20).copyWith(right: 12),
+                padding: const EdgeInsets.symmetric(vertical: 20)
+                    .copyWith(right: 12),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -794,8 +794,12 @@ class ParallaxMobileFlowDelegate extends FlowDelegate {
   }
 }
 
-List<String> _targets = ["https://www.ecured.cu/Instituto_Preuniversitario_Vocacional_de_Ciencias_Exactas_Vladimir_Ilich_Lenin",
-"https://matcom.uh.cu/pregrado/carrera/","http://www.iessaladillo.es/web/oferta-educativa/cfgs-dam/","https://boorpret.com/",];
+List<String> _targets = [
+  "https://www.ecured.cu/Instituto_Preuniversitario_Vocacional_de_Ciencias_Exactas_Vladimir_Ilich_Lenin",
+  "https://matcom.uh.cu/pregrado/carrera/",
+  "http://www.iessaladillo.es/web/oferta-educativa/cfgs-dam/",
+  "https://boorpret.com/",
+];
 
 const _spacer = SizedBox(
   width: 20,

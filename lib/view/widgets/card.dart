@@ -4,7 +4,7 @@ import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart'
     as shadow;
 
 class MuiCard extends StatelessWidget {
-  MuiCard({
+  const MuiCard({
     Key? key,
     this.active = true,
     this.insetShadow = false,
@@ -28,9 +28,9 @@ class MuiCard extends StatelessWidget {
   final double width;
   final double heigth;
   final Widget? child;
-  Color? backgroundColor;
-  Color? colorStart;
-  Color? colorEnd;
+  final Color? backgroundColor;
+  final Color? colorStart;
+  final Color? colorEnd;
   final Curve curve;
   final int containerDuration;
   final bool decorated;

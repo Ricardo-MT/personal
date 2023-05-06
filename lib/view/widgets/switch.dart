@@ -81,7 +81,6 @@ class _MuiSwitchLang extends State<MuiSwitchLang> {
     var color = Theme.of(context).colorScheme.primary;
     return Consumer<LocaleProvider>(
       builder: (context, provider, child) {
-        Locale myLocale = Localizations.localeOf(context);
         return SizedBox(
           height: 30,
           width: 54,
