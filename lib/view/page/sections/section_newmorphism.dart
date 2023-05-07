@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:ricardomejiastravieso/providers/device_provider.dart';
 import 'package:ricardomejiastravieso/utils/theme.dart';
 import 'package:ricardomejiastravieso/view/widgets/card.dart';
 
@@ -74,9 +72,7 @@ class NameLayer extends StatelessWidget {
         Align(
           alignment: Alignment.topLeft,
           child: Text(
-            Provider.of<DeviceProvider>(context, listen: false)
-                .isWebMobile
-                .toString(),
+            "Ricardo",
             key: _nameKeyA,
             style: style.copyWith(
               fontFamily: "Comfortaa",

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:ricardomejiastravieso/providers/device_provider.dart';
 import 'package:ricardomejiastravieso/providers/theme_provider.dart';
 import 'package:ricardomejiastravieso/view/page/sections/section_a.dart';
 import 'package:ricardomejiastravieso/view/page/sections/section_b.dart';
@@ -133,7 +134,10 @@ class HomePage extends StatelessWidget {
             SizedBox(
               height: h,
               width: w,
-              child: const CustomCursorLayer(),
+              child:
+                  Provider.of<DeviceProvider>(context, listen: true).isWebMobile
+                      ? null
+                      : const CustomCursorLayer(),
             ),
             FadeOutLayer(
               child: Container(
