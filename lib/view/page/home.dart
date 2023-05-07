@@ -1,7 +1,3 @@
-// ignore_for_file: non_constant_identifier_names
-
-// ignore: unnecessary_import
-import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ricardomejiastravieso/providers/theme_provider.dart';

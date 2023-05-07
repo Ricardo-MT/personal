@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:ricardomejiastravieso/providers/device_provider.dart';
 import 'package:ricardomejiastravieso/providers/locale_provider.dart';
 import 'package:ricardomejiastravieso/utils/theme.dart';
 import 'package:ricardomejiastravieso/view/page/home.dart';
@@ -25,6 +26,7 @@ class MyProviders extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider(create: (_) => DeviceProvider()),
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
         ChangeNotifierProvider(
             create: (_) =>
