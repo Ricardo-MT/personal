@@ -16,21 +16,19 @@ class AppColors {
 abstract class AppTheme {
   static ThemeData get light {
     return ThemeData.light().copyWith(
-      backgroundColor: Colors.white,
       scaffoldBackgroundColor: Colors.white,
       brightness: Brightness.light,
       primaryColor: AppColors.whitePrimary,
-      colorScheme: lightColorScheme,
+      colorScheme: lightColorScheme.copyWith(background: Colors.white),
     );
   }
 
   static ThemeData get dark {
     return ThemeData.dark().copyWith(
-      backgroundColor: Colors.white,
       scaffoldBackgroundColor: AppColors.whitePrimary,
       brightness: Brightness.dark,
       primaryColor: AppColors.whitePrimary,
-      colorScheme: darkColorScheme,
+      colorScheme: darkColorScheme.copyWith(background: Colors.white),
     );
   }
 

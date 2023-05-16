@@ -124,12 +124,12 @@ class HomePage extends StatelessWidget {
                 ),
               ),
             ),
-            Positioned(
+            const Positioned(
                 bottom: 5,
                 left: 5,
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
-                  children: const [MuiSwitchLang(), MuiSwitchTheme()],
+                  children: [MuiSwitchLang(), MuiSwitchTheme()],
                 )),
             SizedBox(
               height: h,
