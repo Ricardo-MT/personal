@@ -39,9 +39,9 @@ flutter:
     - assets/app/
 
   fonts:
-    - family: CustomIcons
+    - family: BrandIcons
       fonts:
-       - asset: assets/fonts/CustomIcons.ttf
+       - asset: assets/fonts/BrandIcons.ttf
     - family: LibreBarcode
       fonts:
         - asset: assets/fonts/LibreBarcode128Text-Regular.ttf

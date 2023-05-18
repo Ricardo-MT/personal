@@ -3,7 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ricardomejiastravieso/l10n/l10n.dart';
 import 'package:ricardomejiastravieso/utils/theme.dart';
 import 'package:ricardomejiastravieso/view/widgets/card.dart';
-import 'package:ricardomejiastravieso/view/widgets/custom_icons_icons.dart';
+import 'package:ricardomejiastravieso/view/widgets/brand_icons_icons.dart';
 
 List<GlobalKey> _keys = [GlobalKey(), GlobalKey(), GlobalKey()];
 
@@ -370,24 +370,28 @@ List<MuiSection> techSections = [
     alignment: Alignment.centerLeft,
     skills: [
       Skill(
-          icon: CustomIcons.dart, name: "Dart", color: const Color(0xFF0175C2)),
-      Skill(
-          icon: CustomIcons.java, name: "Java", color: const Color(0xFFED2126)),
-      Skill(
-          icon: CustomIcons.javascript,
+          icon: BrandIcons.javascript,
           name: "Javascript",
           color: const Color(0xFFF7DF1E)),
       Skill(
-          icon: CustomIcons.typescript,
+          icon: BrandIcons.typescript,
           name: "Typescript",
           color: const Color(0xFF3178C6)),
       Skill(
-          icon: CustomIcons.csharp, name: "C#", color: const Color(0xFF6264A7)),
+          icon: BrandIcons.dart, name: "Dart", color: const Color(0xFF0175C2)),
       Skill(
-          icon: CustomIcons.kotlin,
+          icon: BrandIcons.java, name: "Java", color: const Color(0xFFED2126)),
+      Skill(
+          icon: BrandIcons.csharp, name: "C#", color: const Color(0xFF6264A7)),
+      Skill(
+          icon: BrandIcons.python,
+          name: "Python",
+          color: const Color(0xFF6BD20B)),
+      Skill(
+          icon: BrandIcons.kotlin,
           name: "Kotlin",
           color: const Color(0xFF7F52FF)),
-      Skill(icon: CustomIcons.php, name: "PHP", color: const Color(0xFF00D8FF)),
+      Skill(icon: BrandIcons.php, name: "PHP", color: const Color(0xFF00D8FF)),
     ],
   ),
   MuiSection(
@@ -395,25 +399,29 @@ List<MuiSection> techSections = [
     alignment: Alignment.center,
     skills: [
       Skill(
-          icon: CustomIcons.flutter,
+          icon: BrandIcons.flutter,
           name: "Flutter",
           color: const Color(0xFF02569B)),
       Skill(
-          icon: CustomIcons.react,
+          icon: BrandIcons.react,
           name: "React Native",
           color: const Color(0xFF61DAFB)),
       Skill(
-          icon: CustomIcons.react,
+          icon: BrandIcons.react,
           name: "React",
           color: const Color(0xFF0088CC)),
       Skill(
-          icon: CustomIcons.android,
-          name: "Android",
-          color: const Color(0xFF3DDC84)),
+          icon: BrandIcons.python,
+          name: "Flask",
+          color: const Color(0xFF6BD20B)),
       Skill(
           icon: FontAwesomeIcons.node,
           name: "Node",
           color: const Color(0xFF339933)),
+      Skill(
+          icon: BrandIcons.android,
+          name: "Android",
+          color: const Color(0xFF3DDC84)),
     ],
   ),
   MuiSection(
@@ -421,23 +429,24 @@ List<MuiSection> techSections = [
     alignment: Alignment.centerRight,
     skills: [
       Skill(
-          icon: CustomIcons.html5,
-          name: "HTML",
-          color: const Color(0xFFE34F26)),
+          icon: BrandIcons.figma,
+          name: "Figma",
+          color: const Color(0xFFBB0597)),
       Skill(
-          icon: CustomIcons.css3, name: "CSS", color: const Color(0xFF1572B6)),
+          icon: BrandIcons.firebase,
+          name: "Firebase",
+          color: const Color(0xFFFFCA28)),
       Skill(
-          icon: CustomIcons.mongodb,
+          icon: BrandIcons.html5, name: "HTML", color: const Color(0xFFE34F26)),
+      Skill(icon: BrandIcons.css3, name: "CSS", color: const Color(0xFF1572B6)),
+      Skill(
+          icon: BrandIcons.mongodb,
           name: "Mongo",
           color: const Color(0xFF47A248)),
       Skill(
-          icon: CustomIcons.mysql,
+          icon: BrandIcons.mysql,
           name: "MySQL",
           color: const Color(0xFF4479A1)),
-      Skill(
-          icon: CustomIcons.firebase,
-          name: "Firebase",
-          color: const Color(0xFFFFCA28)),
     ],
   ),
 ];
@@ -470,41 +479,41 @@ List<Skill> skills = [
   // OTHER TECH
   // DEV TOOLS
   // Skill(
-  //     icon: CustomIcons.github, name: "GitHub", color: const Color(0xFF800080)),
+  //     icon: BrandIcons.github, name: "GitHub", color: const Color(0xFF800080)),
   // Skill(
-  //     icon: CustomIcons.digitalocean,
+  //     icon: BrandIcons.digitalocean,
   //     name: "Dig.Ocean",
   //     color: const Color(0xFF0080FF)),
-  // Skill(icon: CustomIcons.ionos, name: "IONOS", color: const Color(0xFF003D8F)),
+  // Skill(icon: BrandIcons.ionos, name: "IONOS", color: const Color(0xFF003D8F)),
   // Skill(
-  //     icon: CustomIcons.visualstudiocode,
+  //     icon: BrandIcons.visualstudiocode,
   //     name: "VSCode",
   //     color: const Color(0xFF007ACC)),
-  // Skill(icon: CustomIcons.xcode, name: "XCode", color: const Color(0xFF147EFB)),
+  // Skill(icon: BrandIcons.xcode, name: "XCode", color: const Color(0xFF147EFB)),
   // Skill(
-  //     icon: CustomIcons.postman,
+  //     icon: BrandIcons.postman,
   //     name: "Postman",
   //     color: const Color(0xFFFF6C37)),
   // Skill(
-  //     icon: CustomIcons.adobexd,
+  //     icon: BrandIcons.adobexd,
   //     name: "AdobeXD",
   //     color: const Color(0xFFFF61F6)),
-  // Skill(icon: CustomIcons.figma, name: "Figma", color: const Color(0xFFF24E1E)),
+  // Skill(icon: BrandIcons.figma, name: "Figma", color: const Color(0xFFF24E1E)),
   // TEAM & MANAGEMENT
   // Skill(
-  //     icon: CustomIcons.clickup,
+  //     icon: BrandIcons.clickup,
   //     name: "Clickup",
   //     color: const Color(0xFF7B68EE)),
-  // Skill(icon: CustomIcons.slack, name: "Slack", color: const Color(0xFF4A154B)),
+  // Skill(icon: BrandIcons.slack, name: "Slack", color: const Color(0xFF4A154B)),
   // Skill(
-  //     icon: CustomIcons.microsoftteams,
+  //     icon: BrandIcons.microsoftteams,
   //     name: "Teams",
   //     color: const Color(0xFF6264A7)),
   // Skill(
-  //     icon: CustomIcons.discord,
+  //     icon: BrandIcons.discord,
   //     name: "Discord",
   //     color: const Color(0xFF5865F2)),
-  // Skill(icon: CustomIcons.skype, name: "Skype", color: const Color(0xFF00AFF0)),
+  // Skill(icon: BrandIcons.skype, name: "Skype", color: const Color(0xFF00AFF0)),
 ];
 
 class ParallaxFlowDelegate extends FlowDelegate {
