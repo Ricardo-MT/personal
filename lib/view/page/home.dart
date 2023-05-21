@@ -28,6 +28,8 @@ class HomePage extends StatelessWidget {
         return Stack(
           alignment: Alignment.topCenter,
           children: [
+            // Layer que decora el fondo de la web con una imagen
+            // en dependencia del theme.
             DecoratedBox(
               decoration: BoxDecoration(
                   image: DecorationImage(
@@ -44,6 +46,7 @@ class HomePage extends StatelessWidget {
                 width: w,
               ),
             ),
+            // Layer encargada de mostrar el contenido real de la web.
             SizedBox(
               height: h,
               width: w,
@@ -124,6 +127,8 @@ class HomePage extends StatelessWidget {
                 ),
               ),
             ),
+            // Layer encargada de posicionar los controladores de idioma
+            // y theme.
             const Positioned(
                 bottom: 5,
                 left: 5,
@@ -131,6 +136,8 @@ class HomePage extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [MuiSwitchLang(), MuiSwitchTheme()],
                 )),
+            // Layer encargada de mostrar el custom cursor si está en web,
+            // lo esconde si es mobile.
             SizedBox(
               height: h,
               width: w,
@@ -139,6 +146,8 @@ class HomePage extends StatelessWidget {
                       ? null
                       : const CustomCursorLayer(),
             ),
+            // Layer encargada de cargar en la cache todas las imágenes,
+            // luego transiciona de 0xFF333333 al contenido real de la web.
             FadeOutLayer(
               child: Container(
                 width: w,

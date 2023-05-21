@@ -216,12 +216,6 @@ class _SectionLast extends State<SectionLast> {
                         ),
                       ),
                       _spacer,
-                      const SelectableText(
-                        "+34 644 096889",
-                        textAlign: TextAlign.right,
-                        style: _contactStyle,
-                      ),
-                      _spacer,
                       Semantics(
                         label: "rikr2.mt@gmail.com",
                         hint: "rikr2.mt@gmail.com",
@@ -259,8 +253,9 @@ class _SectionLast extends State<SectionLast> {
                   "©2023 RICARDO MEJIAS TRAVIESO\nPOWERED WITH FLUTTER",
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontFamily: "Montserrat",
+                    fontFamily: "Comfortaa",
                     fontSize: 12,
+                    fontWeight: FontWeight.bold,
                     color: Theme.of(context).colorScheme.primary,
                   ),
                 ),
@@ -278,15 +273,9 @@ List<ContactItem> contacItems = [
   ContactItem(
       url: "https://www.linkedin.com/in/ricardo-mejias-travieso-77303513a/",
       icon: FontAwesomeIcons.linkedinIn),
-  // tg://$telegram"
-  ContactItem(
-      url: "https://telegram.me/+34644096889", icon: FontAwesomeIcons.telegram),
   ContactItem(
       url: "https://github.com/Ricardo-MT", icon: FontAwesomeIcons.github),
   ContactItem(url: "mailto:rikr2.mt@gmail.com", icon: Icons.mail_outline),
-  // whatsapp://send?phone=$whatsapp/
-  ContactItem(
-      url: "https://wa.me/+34644096889", icon: FontAwesomeIcons.whatsapp),
 ];
 
 class ContactItem {
@@ -299,5 +288,7 @@ class ContactItem {
 }
 
 const _spacer = SizedBox(height: 10);
-const _contactStyle =
-    TextStyle(fontFamily: "Montserrat", color: AppColors.lightPurple);
+const _contactStyle = TextStyle(
+    fontFamily: "Comfortaa",
+    fontWeight: FontWeight.bold,
+    color: AppColors.lightPurple);

@@ -6,17 +6,20 @@
 
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="Ricardo Mejías Travieso, software developer orientado a tecnologías web y de dispositivos móbiles en La Línea de la Concepción, Cádiz.">
-  <meta name="keywords" content="Ricardo, Mejias, Travieso, programador, programmer, software, developer, desarrollador, react, reactjs, react native, flutter, cadiz, la linea de la concepcion, gibraltar" />
+  <meta name="description"
+    content="Ricardo Mejías Travieso, software developer orientado a tecnologías web y de dispositivos móbiles en La Línea de la Concepción, Cádiz.">
+  <meta name="keywords"
+    content="Ricardo, Mejias, Travieso, programador, programmer, software, developer, desarrollador, react, reactjs, react native, flutter, cadiz, la linea de la concepcion, gibraltar" />
 
   <link rel="canonical" href="https://ricardomejiastravieso.com/" />
 
   <!-- OG tags support-->
-  <meta name="og:site_name" content="Ricardo Mejías Travieso" >
-  <meta name="og:title" content="Ricardo Mejías Travieso | Full Stack & Mobile Developer" >
-  <meta name="og:description" content="Ricardo Mejías Travieso, software developer orientado a tecnologías web y de dispositivos móbiles en La Línea de la Concepción, Cádiz.">
-  <meta name="og:type" content="website" >
-  <meta name="og:url" content="https://ricardomejiastravieso.com/" >
+  <meta name="og:site_name" content="Ricardo Mejías Travieso">
+  <meta name="og:title" content="Ricardo Mejías Travieso | Full Stack & Mobile Developer">
+  <meta name="og:description"
+    content="Ricardo Mejías Travieso, software developer orientado a tecnologías web y de dispositivos móbiles en La Línea de la Concepción, Cádiz.">
+  <meta name="og:type" content="website">
+  <meta name="og:url" content="https://ricardomejiastravieso.com/">
   <meta property="og:image" content="https://ricardomejiastravieso.com/profile.png" />
 
   <!-- iOS meta tags & icons -->
@@ -31,9 +34,18 @@
   <title>Ricardo Mejías Travieso | Full Stack & Mobile Developer</title>
   <link rel="manifest" href="manifest.json">
   <style>
-    #personalparent {
-      position: absolute;
+    body {
+      background-color: #333333;
+      height: 100vh;
+      width: 100vw;
       margin: 0px;
+      padding: 0px;
+      overflow: hidden;
+    }
+
+    #personalparent {
+      margin: 0px;
+      padding: 0px;
       height: 100vh;
       width: 100vw;
       display: flex;
@@ -41,10 +53,13 @@
       align-items: center;
       justify-content: center;
       inset: 0px;
+      transition: opacity .6s ease-out;
     }
 
     #personalsplashicon {
       inset: 0px;
+      opacity: 1;
+      transform: scale(0.8);
       /* animation: splashFadeMe 4s cubic-bezier(0, 1.8, 1, 1.5);
       -webkit-animation: splashFadeMe 4s cubic-bezier(0, 1.8, 1, 1.5); */
       animation: splashFadeMe 3s;
@@ -63,7 +78,7 @@
       }
 
       100% {
-        opacity: 0;
+        opacity: 1;
         transform: scale(0.8);
       }
     }
@@ -80,7 +95,7 @@
       }
 
       100% {
-        -webkit-opacity: 0;
+        -webkit-opacity: 1;
         -webkit-transform: scale(0.8);
       }
     }
@@ -92,21 +107,21 @@
   </script>
   <!-- This script adds the flutter initialization JS code -->
   <script src="flutter.js" defer></script>
-  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
 </head>
 
-<body style="background-color: #333333;">
+<body>
   <div id="personalparent">
     <img id="personalsplashicon" src="icons/Icon-192.png" style="width: 180px; height: 180px;" aria-hidden="true"
       alt="Ricardo Mejias Travieso logo" title="Ricardo Mejías Travieso | Full Stack & Mobile Developer">
   </div>
   <script>
-    const regExp = new RegExp("bot|google|baidu|bing|msn|teoma|slurp|yandex", "i");
+    const regExp = /bot|google|baidu|bing|msn|teoma|slurp|yandex/i;
     if (regExp.test(navigator.userAgent)) {
       window.flutterWebRenderer = "html";
     }
   </script>
   <script>
+    var personalparent = document.querySelector('#personalparent');
     window.addEventListener('load', function (ev) {
       // Download main.dart.js
       _flutter.loader.loadEntrypoint({
@@ -114,7 +129,9 @@
           serviceWorkerVersion: serviceWorkerVersion,
         }
       }).then(function (engineInitializer) {
-        return engineInitializer.autoStart();
+        return engineInitializer.autoStart().then(async function () {
+          personalparent.style.opacity = "0";
+        });
       });
     });
   </script>

@@ -14,7 +14,7 @@ class FadeOutLayer extends StatefulWidget {
 class _FadeOutLayer extends State<FadeOutLayer> with TickerProviderStateMixin {
   late final AnimationController _controller = AnimationController(
     value: 1,
-    duration: const Duration(milliseconds: 1200),
+    duration: const Duration(milliseconds: 1000),
     vsync: this,
   );
   late final Animation<double> _animation = CurvedAnimation(
@@ -33,7 +33,7 @@ class _FadeOutLayer extends State<FadeOutLayer> with TickerProviderStateMixin {
         precacheImage(const AssetImage("assets/images/abajo.png"), context),
         precacheImage(const AssetImage("assets/images/arriba.png"), context),
       ]);
-      await Future.delayed(const Duration(milliseconds: 200));
+      await Future.delayed(const Duration(milliseconds: 100));
       _controller.reverse();
     });
   }
