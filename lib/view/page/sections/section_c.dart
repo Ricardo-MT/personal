@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
+import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ricardomejiastravieso/l10n/l10n.dart';
 import 'package:ricardomejiastravieso/utils/theme.dart';
-import 'package:ricardomejiastravieso/view/widgets/card.dart';
 import 'package:ricardomejiastravieso/view/widgets/brand_icons_icons.dart';
+import 'package:ricardomejiastravieso/view/widgets/card.dart';
 
 List<GlobalKey> _keys = [GlobalKey(), GlobalKey(), GlobalKey()];
 
@@ -203,9 +203,15 @@ class MuiSectionWidget extends StatelessWidget {
       padding: const EdgeInsets.symmetric(
         horizontal: 10,
       ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: inverted ? children.reversed.toList() : children,
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: AppColors.lightPurple,
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: inverted ? children.reversed.toList() : children,
+        ),
       ),
     );
   }
@@ -419,9 +425,9 @@ List<MuiSection> techSections = [
           name: "Node",
           color: const Color(0xFF339933)),
       Skill(
-          icon: BrandIcons.android,
-          name: "Android",
-          color: const Color(0xFF3DDC84)),
+          icon: BrandIcons.python,
+          name: "FastAPI",
+          color: const Color(0xFF6BD20B)),
     ],
   ),
   MuiSection(

@@ -1,4 +1,5 @@
 import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:ricardomejiastravieso/l10n/l10n.dart';
 import 'package:ricardomejiastravieso/utils/theme.dart';
@@ -308,7 +309,7 @@ class MuiTrayectoryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String familyA = "Montserrat";
+    String familyA = "Comfortaa";
     String familyB = "Comfortaa";
     Color textPrimaryColor = Theme.of(context).colorScheme.primary;
     Color textSecondaryColor = Theme.of(context).colorScheme.secondary;
@@ -394,7 +395,7 @@ class MuiTrayectoryVerticalCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String familyA = "Montserrat";
+    String familyA = "Comfortaa";
     String familyB = "Comfortaa";
     Color textPrimaryColor = Theme.of(context).colorScheme.primary;
     Color textSecondaryColor = Theme.of(context).colorScheme.secondary;

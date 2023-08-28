@@ -306,7 +306,7 @@ class MobileItem extends StatelessWidget {
               color: AppColors.whitePrimary,
               fontSize: 16,
               fontWeight: FontWeight.bold,
-              fontFamily: "Montserrat",
+              fontFamily: "Comfortaa",
             ),
           ),
           Text(
@@ -425,7 +425,7 @@ class PCItem extends StatelessWidget {
               color: AppColors.whitePrimary,
               fontSize: 18,
               fontWeight: FontWeight.bold,
-              fontFamily: "Montserrat",
+              fontFamily: "Comfortaa",
             ),
           ),
           Text(

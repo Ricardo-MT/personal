@@ -1,8 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:ricardomejiastravieso/l10n/l10n.dart';
 import 'package:ricardomejiastravieso/utils/theme.dart';
 import 'package:ricardomejiastravieso/view/widgets/card.dart';
-import 'package:ricardomejiastravieso/l10n/l10n.dart';
 
 class SectionZero extends StatelessWidget {
   const SectionZero({
@@ -25,14 +25,14 @@ class SectionZero extends StatelessWidget {
       flex: 5,
       child: AutoSizeText.rich(
         TextSpan(text: l10n.sectionA1, children: [
-          const TextSpan(
+          TextSpan(
             text: "FULL STACK ",
             style: _accentStyle,
           ),
           const TextSpan(
             text: "& ",
           ),
-          const TextSpan(
+          TextSpan(
             text: "MOBILE ",
             style: _accentStyle,
           ),
@@ -70,7 +70,7 @@ class SectionZero extends StatelessWidget {
             text: l10n.sectionA13,
           ),
         ]),
-        textAlign: TextAlign.center,
+        textAlign: isMobile ? TextAlign.left : TextAlign.right,
         style: TextStyle(
           fontSize: 30,
           color: Colors.white,
@@ -87,33 +87,26 @@ class SectionZero extends StatelessWidget {
       child: isMobile
           ? Column(
               children: [
-                const Padding(
-                  padding: EdgeInsets.all(12),
-                  child: SizedBox(
-                    width: 240,
-                    child: AspectRatio(
-                        aspectRatio: 1,
-                        child: MuiCard(
-                          circular: true,
-                          insetShadow: true,
-                          width: 240,
-                          child: DecoratedBox(
-                            decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                image: DecorationImage(
-                                  image: AssetImage(
-                                    "assets/images/abajo.png",
-                                  ),
-                                  // colorFilter: ColorFilter.mode(
-                                  //   Theme.of(context).colorScheme.onPrimary,
-                                  //   BlendMode.hue,
-                                  // ),
-                                  fit: BoxFit.cover,
-                                  filterQuality: FilterQuality.high,
-                                )),
-                          ),
-                        )),
-                  ),
+                const SizedBox(
+                  width: 240,
+                  child: AspectRatio(
+                      aspectRatio: 1,
+                      child: MuiCard(
+                        circular: true,
+                        insetShadow: true,
+                        width: 240,
+                        child: DecoratedBox(
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              image: DecorationImage(
+                                image: AssetImage(
+                                  "assets/images/abajo.png",
+                                ),
+                                fit: BoxFit.cover,
+                                filterQuality: FilterQuality.high,
+                              )),
+                        ),
+                      )),
                 ),
                 const SizedBox(
                   width: 15,
@@ -122,52 +115,46 @@ class SectionZero extends StatelessWidget {
               ],
             )
           : Center(
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Expanded(
-                    flex: 3,
-                    child: Align(
-                      alignment: Alignment.topCenter,
-                      child: MuiCard(
-                        circular: true,
-                        insetShadow: false,
-                        width: 240,
-                        heigth: 240,
-                        child: RepaintBoundary(
-                          child: DecoratedBox(
-                            decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                image: DecorationImage(
-                                  image: AssetImage(
-                                    "assets/images/abajo.png",
-                                  ),
-                                  // colorFilter: ColorFilter.mode(
-                                  //   Theme.of(context).colorScheme.onPrimary,
-                                  //   BlendMode.hue,
-                                  // ),
-                                  fit: BoxFit.cover,
-                                  filterQuality: FilterQuality.high,
-                                )),
-                          ),
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 1100),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const MuiCard(
+                      circular: true,
+                      insetShadow: false,
+                      width: 240,
+                      heigth: 240,
+                      child: RepaintBoundary(
+                        child: DecoratedBox(
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              image: DecorationImage(
+                                image: AssetImage(
+                                  "assets/images/abajo.png",
+                                ),
+                                fit: BoxFit.cover,
+                                filterQuality: FilterQuality.high,
+                              )),
                         ),
                       ),
                     ),
-                  ),
-                  const SizedBox(
-                    width: 15,
-                  ),
-                  item2,
-                ],
+                    const SizedBox(
+                      width: 15,
+                    ),
+                    item2,
+                  ],
+                ),
               ),
             ),
     );
   }
 }
 
-const _accentStyle = TextStyle(
-  fontFamily: "Montserrat",
-  fontSize: 36,
+final _accentStyle = TextStyle(
   color: AppColors.lightPurple,
-  shadows: [],
+  shadows: [
+    for (int i = 1; i < 3; i++)
+      Shadow(color: AppColors.lightPurple, blurRadius: i * 5)
+  ],
 );

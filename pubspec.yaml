@@ -52,7 +52,3 @@ flutter:
       fonts:
         - asset: assets/fonts/Comfortaa-Regular.ttf
           weight: 400
-    - family: Montserrat
-      fonts:
-        - asset: assets/fonts/Montserrat-Bold.ttf
-          weight: 700

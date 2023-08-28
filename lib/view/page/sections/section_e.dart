@@ -28,90 +28,97 @@ class _SectionFifth extends State<SectionFifth> {
     return SizedBox(
       height: h,
       width: w,
-      child: Column(
-        children: [
-          const Spacer(),
-          Expanded(
-            flex: 12,
-            child: Padding(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 14.0, horizontal: 20),
-              child: AutoSizeText.rich(
-                TextSpan(text: l10n.sectionE1, children: [
-                  TextSpan(
-                    text: l10n.sectionE2,
-                    style: _accentStyle,
+      child: Center(
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 1100),
+          child: Column(
+            children: [
+              const Spacer(),
+              Expanded(
+                flex: 12,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 14.0, horizontal: 20),
+                  child: AutoSizeText.rich(
+                    TextSpan(text: l10n.sectionE1, children: [
+                      TextSpan(
+                        text: l10n.sectionE2,
+                        style: _accentStyle,
+                      ),
+                      TextSpan(text: l10n.sectionE3),
+                      TextSpan(
+                        text: l10n.sectionE4,
+                        style: _accentStyle,
+                      ),
+                      TextSpan(text: l10n.sectionE5),
+                      TextSpan(
+                        text: l10n.sectionE6,
+                        style: _accentStyle,
+                      ),
+                      TextSpan(text: l10n.sectionE7),
+                      TextSpan(
+                        text: l10n.sectionE8,
+                        style: _accentStyle,
+                      ),
+                      TextSpan(text: l10n.sectionE9),
+                      TextSpan(
+                        text: l10n.sectionE10,
+                        style: _accentStyle,
+                      ),
+                      TextSpan(text: l10n.sectionE11),
+                      TextSpan(
+                        text: l10n.sectionE12,
+                        style: _accentStyle,
+                      ),
+                      TextSpan(text: l10n.sectionE13),
+                      TextSpan(
+                        text: l10n.sectionE14,
+                        style: _accentStyle,
+                      ),
+                      TextSpan(text: l10n.sectionE15),
+                      TextSpan(
+                        text: l10n.sectionE16,
+                        style: _accentStyle,
+                      ),
+                      TextSpan(text: l10n.sectionE17),
+                      TextSpan(
+                        text: l10n.sectionE18,
+                        style: _accentStyle,
+                      ),
+                      TextSpan(text: l10n.sectionE19),
+                      TextSpan(
+                        text: l10n.sectionE20,
+                        style: _accentStyle,
+                      ),
+                      TextSpan(text: l10n.sectionE21),
+                    ]),
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                      fontSize: 30,
+                      color: Colors.white,
+                      fontFamily: "Comfortaa",
+                      shadows: [
+                        for (int i = 1; i < 3; i++)
+                          Shadow(
+                              color: AppColors.whiteAccent, blurRadius: i * 5)
+                      ],
+                    ),
                   ),
-                  TextSpan(text: l10n.sectionE3),
-                  TextSpan(
-                    text: l10n.sectionE4,
-                    style: _accentStyle,
-                  ),
-                  TextSpan(text: l10n.sectionE5),
-                  TextSpan(
-                    text: l10n.sectionE6,
-                    style: _accentStyle,
-                  ),
-                  TextSpan(text: l10n.sectionE7),
-                  TextSpan(
-                    text: l10n.sectionE8,
-                    style: _accentStyle,
-                  ),
-                  TextSpan(text: l10n.sectionE9),
-                  TextSpan(
-                    text: l10n.sectionE10,
-                    style: _accentStyle,
-                  ),
-                  TextSpan(text: l10n.sectionE11),
-                  TextSpan(
-                    text: l10n.sectionE12,
-                    style: _accentStyle,
-                  ),
-                  TextSpan(text: l10n.sectionE13),
-                  TextSpan(
-                    text: l10n.sectionE14,
-                    style: _accentStyle,
-                  ),
-                  TextSpan(text: l10n.sectionE15),
-                  TextSpan(
-                    text: l10n.sectionE16,
-                    style: _accentStyle,
-                  ),
-                  TextSpan(text: l10n.sectionE17),
-                  TextSpan(
-                    text: l10n.sectionE18,
-                    style: _accentStyle,
-                  ),
-                  TextSpan(text: l10n.sectionE19),
-                  TextSpan(
-                    text: l10n.sectionE20,
-                    style: _accentStyle,
-                  ),
-                  TextSpan(text: l10n.sectionE21),
-                ]),
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 30,
-                  color: Colors.white,
-                  fontFamily: "Comfortaa",
-                  shadows: [
-                    for (int i = 1; i < 3; i++)
-                      Shadow(color: AppColors.whiteAccent, blurRadius: i * 5)
-                  ],
                 ),
               ),
-            ),
+              const Spacer()
+            ],
           ),
-          const Spacer()
-        ],
+        ),
       ),
     );
   }
 }
 
-const _accentStyle = TextStyle(
-  fontFamily: "Montserrat",
-  fontSize: 36,
+final _accentStyle = TextStyle(
   color: AppColors.lightPurple,
-  shadows: [],
+  shadows: [
+    for (int i = 1; i < 3; i++)
+      Shadow(color: AppColors.lightPurple, blurRadius: i * 5)
+  ],
 );
