@@ -1,7 +1,10 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_improved_scrolling/flutter_improved_scrolling.dart';
 import 'package:provider/provider.dart';
 import 'package:ricardomejiastravieso/providers/device_provider.dart';
 import 'package:ricardomejiastravieso/providers/theme_provider.dart';
+import 'package:ricardomejiastravieso/utils/scroll_utils.dart';
 import 'package:ricardomejiastravieso/view/page/sections/section_a.dart';
 import 'package:ricardomejiastravieso/view/page/sections/section_b.dart';
 import 'package:ricardomejiastravieso/view/page/sections/section_c.dart';
@@ -19,6 +22,10 @@ class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final isWebMobile =
+        Provider.of<DeviceProvider>(context, listen: true).isWebMobile;
+    // final shouldDisableTouchScroll = shouldDisableAllowScrolling(
+    //                     context, Theme.of(context).platform);
     return Scaffold(
       backgroundColor: const Color(0xFF333333),
       body: LayoutBuilder(builder: (context, constraints) {
@@ -50,80 +57,95 @@ class HomePage extends StatelessWidget {
             SizedBox(
               height: h,
               width: w,
-              child: SingleChildScrollView(
-                scrollDirection: Axis.vertical,
-                controller: _controllerPrimary,
-                physics: const ClampingScrollPhysics(),
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: h,
-                      width: w,
-                      child: SectionInitialNewmorphism(
-                        sections: sections,
-                        controller: _controllerPrimary,
-                        sectionH: h,
-                        sectionW: w,
-                        totalH: h * (sections - 1),
-                      ),
+              child: ImprovedScrolling(
+                scrollController: _controllerPrimary,
+                enableCustomMouseWheelScrolling: !isWebMobile,
+                customMouseWheelScrollConfig:
+                    const CustomMouseWheelScrollConfig(
+                  scrollAmountMultiplier: 2,
+                  // scrollDuration: const Duration(milliseconds: 500),
+                ),
+                child: ScrollConfiguration(
+                  behavior:
+                      const CustomScrollBehaviour().copyWith(scrollbars: false),
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.vertical,
+                    controller: _controllerPrimary,
+                    physics: !isWebMobile
+                        ? const NeverScrollableScrollPhysics()
+                        : const ClampingScrollPhysics(),
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: h,
+                          width: w,
+                          child: SectionInitialNewmorphism(
+                            sections: sections,
+                            controller: _controllerPrimary,
+                            sectionH: h,
+                            sectionW: w,
+                            totalH: h * (sections - 1),
+                          ),
+                        ),
+                        SizedBox(
+                          height: h,
+                          width: w,
+                          child: SectionZero(
+                            sections: sections,
+                            controller: _controllerPrimary,
+                            sectionH: h,
+                            sectionW: w,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 2 * h,
+                          width: w,
+                          child: SecondSection(
+                            controller: _controllerPrimary,
+                            sections: sections,
+                            sectionH: h,
+                            sectionW: w,
+                            totalH: h * (sections - 1),
+                          ),
+                        ),
+                        SizedBox(
+                          height: h,
+                          width: w,
+                          child: ThirdSection(
+                            controller: _controllerPrimary,
+                            sections: sections,
+                            sectionH: h,
+                            sectionW: w,
+                            totalH: h * (sections - 1),
+                          ),
+                        ),
+                        SectionFourth(
+                          sections: sections,
+                          sectionH: h,
+                          sectionW: w,
+                          totalH: h * sections - 1,
+                        ),
+                        SizedBox(
+                          height: h,
+                          width: w,
+                          child: SectionFifth(
+                            sections: sections,
+                            sectionH: h,
+                            controller: _controllerPrimary,
+                          ),
+                        ),
+                        SizedBox(
+                          height: h,
+                          width: w,
+                          child: SectionLast(
+                            sections: sections,
+                            sectionH: h,
+                            controller: _controllerPrimary,
+                          ),
+                        ),
+                      ],
                     ),
-                    SizedBox(
-                      height: h,
-                      width: w,
-                      child: SectionZero(
-                        sections: sections,
-                        controller: _controllerPrimary,
-                        sectionH: h,
-                        sectionW: w,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 2 * h,
-                      width: w,
-                      child: SecondSection(
-                        controller: _controllerPrimary,
-                        sections: sections,
-                        sectionH: h,
-                        sectionW: w,
-                        totalH: h * (sections - 1),
-                      ),
-                    ),
-                    SizedBox(
-                      height: h,
-                      width: w,
-                      child: ThirdSection(
-                        controller: _controllerPrimary,
-                        sections: sections,
-                        sectionH: h,
-                        sectionW: w,
-                        totalH: h * (sections - 1),
-                      ),
-                    ),
-                    SectionFourth(
-                      sections: sections,
-                      sectionH: h,
-                      sectionW: w,
-                      totalH: h * sections - 1,
-                    ),
-                    SizedBox(
-                      height: h,
-                      width: w,
-                      child: SectionFifth(
-                        sections: sections,
-                        sectionH: h,
-                        controller: _controllerPrimary,
-                      ),
-                    ),
-                    SizedBox(
-                      height: h,
-                      width: w,
-                      child: SectionLast(
-                        sections: sections,
-                        sectionH: h,
-                        controller: _controllerPrimary,
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
               ),
             ),
@@ -159,5 +181,32 @@ class HomePage extends StatelessWidget {
         );
       }),
     );
+  }
+}
+
+class CustomScrollBehaviour extends MaterialScrollBehavior {
+  const CustomScrollBehaviour();
+
+  @override
+  Set<PointerDeviceKind> get dragDevices => {
+        PointerDeviceKind.touch,
+        PointerDeviceKind.mouse,
+        PointerDeviceKind.stylus,
+        PointerDeviceKind.unknown,
+      };
+
+  @override
+  Widget buildScrollbar(
+      BuildContext context, Widget child, ScrollableDetails details) {
+    final platform = getPlatform(context);
+    if (shouldDisableAllowScrolling(context, platform)) {
+      return Scrollbar(
+        controller: details.controller,
+        thumbVisibility: false,
+        interactive: true,
+        child: child,
+      );
+    }
+    return child;
   }
 }

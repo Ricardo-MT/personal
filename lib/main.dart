@@ -1,6 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:ricardomejiastravieso/providers/device_provider.dart';
 import 'package:ricardomejiastravieso/providers/locale_provider.dart';
@@ -9,8 +10,6 @@ import 'package:ricardomejiastravieso/view/page/home.dart';
 import 'package:seo_renderer/helpers/renderer_state.dart';
 import 'package:seo_renderer/helpers/robot_detector_vm.dart';
 import 'package:url_strategy/url_strategy.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'providers/theme_provider.dart';
 
@@ -53,7 +52,7 @@ class MyApp extends StatelessWidget {
       ],
       locale: Provider.of<LocaleProvider>(context, listen: true).locale,
       supportedLocales: AppLocalizations.supportedLocales,
-      scrollBehavior: MyCustomScrollBehavior().copyWith(scrollbars: false),
+      // scrollBehavior: MyCustomScrollBehavior().copyWith(scrollbars: false),
       debugShowCheckedModeBanner: false,
       theme: AppTheme.light,
       darkTheme: AppTheme.dark,
@@ -67,10 +66,29 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyCustomScrollBehavior extends CupertinoScrollBehavior {
+class MyCustomScrollBehavior extends MaterialScrollBehavior {
   @override
   Set<PointerDeviceKind> get dragDevices => {
         PointerDeviceKind.touch,
         PointerDeviceKind.mouse,
+        PointerDeviceKind.stylus,
+        PointerDeviceKind.unknown,
       };
+
+  @override
+  Widget buildScrollbar(
+      BuildContext context, Widget child, ScrollableDetails details) {
+    final platform = getPlatform(context);
+    if (platform == TargetPlatform.linux ||
+        platform == TargetPlatform.macOS ||
+        platform == TargetPlatform.windows) {
+      return Scrollbar(
+        controller: details.controller,
+        thumbVisibility: false,
+        interactive: true,
+        child: child,
+      );
+    }
+    return child;
+  }
 }
