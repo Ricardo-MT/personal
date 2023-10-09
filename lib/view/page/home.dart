@@ -62,9 +62,11 @@ class HomePage extends StatelessWidget {
                 enableCustomMouseWheelScrolling: !isWebMobile,
                 customMouseWheelScrollConfig:
                     const CustomMouseWheelScrollConfig(
-                  scrollAmountMultiplier: 2,
-                  // scrollDuration: const Duration(milliseconds: 500),
+                  scrollAmountMultiplier: 10,
+                  scrollDuration: Duration(milliseconds: 200),
                 ),
+                enableKeyboardScrolling: !isWebMobile,
+                keyboardScrollConfig: const KeyboardScrollConfig(),
                 child: ScrollConfiguration(
                   behavior:
                       const CustomScrollBehaviour().copyWith(scrollbars: false),
