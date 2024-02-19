@@ -52,7 +52,7 @@ class MyApp extends StatelessWidget {
       ],
       locale: Provider.of<LocaleProvider>(context, listen: true).locale,
       supportedLocales: AppLocalizations.supportedLocales,
-      // scrollBehavior: MyCustomScrollBehavior().copyWith(scrollbars: false),
+      scrollBehavior: MyCustomScrollBehavior().copyWith(scrollbars: false),
       debugShowCheckedModeBanner: false,
       theme: AppTheme.light,
       darkTheme: AppTheme.dark,
@@ -74,21 +74,4 @@ class MyCustomScrollBehavior extends MaterialScrollBehavior {
         PointerDeviceKind.stylus,
         PointerDeviceKind.unknown,
       };
-
-  @override
-  Widget buildScrollbar(
-      BuildContext context, Widget child, ScrollableDetails details) {
-    final platform = getPlatform(context);
-    if (platform == TargetPlatform.linux ||
-        platform == TargetPlatform.macOS ||
-        platform == TargetPlatform.windows) {
-      return Scrollbar(
-        controller: details.controller,
-        thumbVisibility: false,
-        interactive: true,
-        child: child,
-      );
-    }
-    return child;
-  }
 }

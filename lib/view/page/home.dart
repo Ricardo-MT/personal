@@ -1,6 +1,5 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_improved_scrolling/flutter_improved_scrolling.dart';
 import 'package:provider/provider.dart';
 import 'package:ricardomejiastravieso/providers/device_provider.dart';
 import 'package:ricardomejiastravieso/providers/theme_provider.dart';
@@ -24,8 +23,6 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final isWebMobile =
         Provider.of<DeviceProvider>(context, listen: true).isWebMobile;
-    // final shouldDisableTouchScroll = shouldDisableAllowScrolling(
-    //                     context, Theme.of(context).platform);
     return Scaffold(
       backgroundColor: const Color(0xFF333333),
       body: LayoutBuilder(builder: (context, constraints) {
@@ -57,96 +54,83 @@ class HomePage extends StatelessWidget {
             SizedBox(
               height: h,
               width: w,
-              child: ImprovedScrolling(
-                scrollController: _controllerPrimary,
-                enableCustomMouseWheelScrolling: !isWebMobile,
-                customMouseWheelScrollConfig:
-                    const CustomMouseWheelScrollConfig(
-                  scrollAmountMultiplier: 10,
-                  scrollDuration: Duration(milliseconds: 200),
-                ),
-                enableKeyboardScrolling: !isWebMobile,
-                keyboardScrollConfig: const KeyboardScrollConfig(),
-                child: ScrollConfiguration(
-                  behavior:
-                      const CustomScrollBehaviour().copyWith(scrollbars: false),
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.vertical,
-                    controller: _controllerPrimary,
-                    physics: !isWebMobile
-                        ? const NeverScrollableScrollPhysics()
-                        : const ClampingScrollPhysics(),
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          height: h,
-                          width: w,
-                          child: SectionInitialNewmorphism(
-                            sections: sections,
-                            controller: _controllerPrimary,
-                            sectionH: h,
-                            sectionW: w,
-                            totalH: h * (sections - 1),
-                          ),
+              child: ScrollConfiguration(
+                behavior:
+                    const CustomScrollBehaviour().copyWith(scrollbars: false),
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
+                  controller: _controllerPrimary,
+                  physics: const ClampingScrollPhysics(),
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: h,
+                        width: w,
+                        child: SectionInitialNewmorphism(
+                          sections: sections,
+                          controller: _controllerPrimary,
+                          sectionH: h,
+                          sectionW: w,
+                          totalH: h * (sections - 1),
                         ),
-                        SizedBox(
-                          height: h,
-                          width: w,
-                          child: SectionZero(
-                            sections: sections,
-                            controller: _controllerPrimary,
-                            sectionH: h,
-                            sectionW: w,
-                          ),
+                      ),
+                      SizedBox(
+                        height: h,
+                        width: w,
+                        child: SectionZero(
+                          sections: sections,
+                          controller: _controllerPrimary,
+                          sectionH: h,
+                          sectionW: w,
                         ),
-                        SizedBox(
-                          height: 2 * h,
-                          width: w,
-                          child: SecondSection(
-                            controller: _controllerPrimary,
-                            sections: sections,
-                            sectionH: h,
-                            sectionW: w,
-                            totalH: h * (sections - 1),
-                          ),
-                        ),
-                        SizedBox(
-                          height: h,
-                          width: w,
-                          child: ThirdSection(
-                            controller: _controllerPrimary,
-                            sections: sections,
-                            sectionH: h,
-                            sectionW: w,
-                            totalH: h * (sections - 1),
-                          ),
-                        ),
-                        SectionFourth(
+                      ),
+                      SizedBox(
+                        height: 2 * h,
+                        width: w,
+                        child: SecondSection(
+                          controller: _controllerPrimary,
                           sections: sections,
                           sectionH: h,
                           sectionW: w,
-                          totalH: h * sections - 1,
+                          totalH: h * (sections - 1),
                         ),
-                        SizedBox(
-                          height: h,
-                          width: w,
-                          child: SectionFifth(
-                            sections: sections,
-                            sectionH: h,
-                            controller: _controllerPrimary,
-                          ),
+                      ),
+                      SizedBox(
+                        height: h,
+                        width: w,
+                        child: ThirdSection(
+                          controller: _controllerPrimary,
+                          sections: sections,
+                          sectionH: h,
+                          sectionW: w,
+                          totalH: h * (sections - 1),
                         ),
-                        SizedBox(
-                          height: h,
-                          width: w,
-                          child: SectionLast(
-                            sections: sections,
-                            sectionH: h,
-                            controller: _controllerPrimary,
-                          ),
+                      ),
+                      SectionFourth(
+                        sections: sections,
+                        sectionH: h,
+                        sectionW: w,
+                        totalH: h * sections - 1,
+                      ),
+                      SizedBox(
+                        height: h,
+                        width: w,
+                        child: SectionFifth(
+                          sections: sections,
+                          sectionH: h,
+                          controller: _controllerPrimary,
                         ),
-                      ],
-                    ),
+                      ),
+                      SizedBox(
+                        height: h,
+                        width: w,
+                        child: SectionLast(
+                          sections: sections,
+                          sectionH: h,
+                          controller: _controllerPrimary,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -165,10 +149,7 @@ class HomePage extends StatelessWidget {
             SizedBox(
               height: h,
               width: w,
-              child:
-                  Provider.of<DeviceProvider>(context, listen: true).isWebMobile
-                      ? null
-                      : const CustomCursorLayer(),
+              child: isWebMobile ? null : const CustomCursorLayer(),
             ),
             // Layer encargada de cargar en la cache todas las imágenes,
             // luego transiciona de 0xFF333333 al contenido real de la web.

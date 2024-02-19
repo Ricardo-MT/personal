@@ -11,9 +11,10 @@
         },
         {
             "program": "lib/main.dart",
-            "name": "Flutter (web-build)",
+            "name": "Web dev",
             "request": "launch",
             "type": "dart",
+            "flutterMode": "debug",
             "args": [
                 "-d",
                 "chrome",
@@ -27,7 +28,7 @@
         },
         {
             "program": "lib/main.dart",
-            "name": "Flutter (web-profile)",
+            "name": "Web profile",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile",

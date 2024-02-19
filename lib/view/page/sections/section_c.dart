@@ -203,15 +203,9 @@ class MuiSectionWidget extends StatelessWidget {
       padding: const EdgeInsets.symmetric(
         horizontal: 10,
       ),
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          color: AppColors.lightPurple,
-        ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: inverted ? children.reversed.toList() : children,
-        ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: inverted ? children.reversed.toList() : children,
       ),
     );
   }
