@@ -250,7 +250,7 @@ class _SectionLast extends State<SectionLast> {
             child: Center(
               child: TextRenderer(
                 child: Text(
-                  "©2023 RICARDO MEJIAS TRAVIESO\nPOWERED WITH FLUTTER",
+                  "©${DateTime.now().year} RICARDO MEJIAS TRAVIESO\nPOWERED WITH FLUTTER",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontFamily: "Comfortaa",

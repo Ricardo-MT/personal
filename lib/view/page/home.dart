@@ -1,11 +1,13 @@
+import 'dart:math';
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ricardomejiastravieso/providers/device_provider.dart';
 import 'package:ricardomejiastravieso/providers/theme_provider.dart';
 import 'package:ricardomejiastravieso/utils/scroll_utils.dart';
-import 'package:ricardomejiastravieso/view/page/sections/section_a.dart';
-import 'package:ricardomejiastravieso/view/page/sections/section_b.dart';
+import 'package:ricardomejiastravieso/view/page/sections/section_a/section_a.dart';
+import 'package:ricardomejiastravieso/view/page/sections/section_b/section_b.dart';
 import 'package:ricardomejiastravieso/view/page/sections/section_c.dart';
 import 'package:ricardomejiastravieso/view/page/sections/section_d.dart';
 import 'package:ricardomejiastravieso/view/page/sections/section_e.dart';
@@ -89,21 +91,21 @@ class HomePage extends StatelessWidget {
                         width: w,
                         child: SecondSection(
                           controller: _controllerPrimary,
-                          sections: sections,
                           sectionH: h,
                           sectionW: w,
-                          totalH: h * (sections - 1),
                         ),
                       ),
-                      SizedBox(
-                        height: h,
-                        width: w,
-                        child: ThirdSection(
-                          controller: _controllerPrimary,
-                          sections: sections,
-                          sectionH: h,
-                          sectionW: w,
-                          totalH: h * (sections - 1),
+                      Center(
+                        child: SizedBox(
+                          height: h,
+                          width: min(w, 1000),
+                          child: ThirdSection(
+                            controller: _controllerPrimary,
+                            sections: sections,
+                            sectionH: h,
+                            sectionW: min(w, 1000),
+                            totalH: h * (sections - 1),
+                          ),
                         ),
                       ),
                       SectionFourth(

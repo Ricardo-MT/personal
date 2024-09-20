@@ -336,10 +336,6 @@ class _ScaleInLayer extends State<ScaleInLayer> with TickerProviderStateMixin {
     _controller.dispose();
   }
 
-  void nextState() {
-    setState(() {});
-  }
-
   @override
   Widget build(BuildContext context) {
     return ScaleTransition(
@@ -357,10 +353,6 @@ class _ScaleInLayer extends State<ScaleInLayer> with TickerProviderStateMixin {
                   image: AssetImage(
                     "assets/images/front.png",
                   ),
-                  // colorFilter: ColorFilter.mode(
-                  //   Theme.of(context).colorScheme.onPrimary,
-                  //   BlendMode.hue,
-                  // ),
                   fit: BoxFit.contain,
                   filterQuality: FilterQuality.high,
                 )),
