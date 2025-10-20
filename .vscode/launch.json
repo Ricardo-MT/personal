@@ -21,9 +21,7 @@
                 "--web-port",
                 "8080",
                 "--web-hostname",
-                "localhost",
-                "--web-renderer",
-                "canvaskit"
+                "localhost"
             ],
         },
         {
@@ -34,9 +32,7 @@
             "flutterMode": "profile",
             "args": [
                 "-d",
-                "chrome",
-                "--web-renderer",
-                "canvaskit"
+                "chrome"
             ],
         }
     ]

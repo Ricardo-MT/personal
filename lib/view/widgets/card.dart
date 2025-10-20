@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-// ignore: unused_import
-import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart'
-    as shadow;
-
 class MuiCard extends StatelessWidget {
   const MuiCard({
     Key? key,
@@ -52,25 +48,23 @@ class MuiCard extends StatelessWidget {
         width: width,
         height: heigth,
         curve: curve,
-        decoration: shadow.BoxDecoration(
+        decoration: BoxDecoration(
           borderRadius: circular ? null : BorderRadius.circular(26),
           shape: circular ? BoxShape.circle : BoxShape.rectangle,
           color: localBackgroundColor,
           boxShadow: active
               ? [
-                  shadow.BoxShadow(
+                  BoxShadow(
                     color: localColorStart,
                     offset: offset,
                     blurRadius: blurRadius,
                     spreadRadius: spreadRadius,
-                    inset: insetShadow,
                   ),
-                  shadow.BoxShadow(
+                  BoxShadow(
                     color: localColorEnd,
                     offset: Offset(-offset.dx, -offset.dy),
                     blurRadius: blurRadius,
                     spreadRadius: spreadRadius,
-                    inset: insetShadow,
                   ),
                 ]
               : [],
