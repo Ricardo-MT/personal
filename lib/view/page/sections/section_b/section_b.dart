@@ -833,8 +833,8 @@ class ParallaxMobileFlowDelegate extends FlowDelegate {
 }
 
 const icons = [
-  Icons.book_outlined,
-  Icons.school_outlined,
+  Icons.important_devices_rounded,
+  Icons.important_devices_rounded,
   Icons.important_devices_rounded,
   Icons.important_devices_rounded
 ];
